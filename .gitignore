@@ -1,0 +1,27 @@
+# Archivos
+# --------------------------------
+*.class
+*.log
+*.log.1
+*.zip
+*.war
+plugin.xml
+# .project
+# .classpath
+
+
+# Configuracion local
+# --------------------------------
+liquidacion-haberes/grails-app/conf/MiConfig.groovy
+
+
+# Directorios
+# --------------------------------
+target
+target-eclipse
+bin
+WEB-INF
+.metadata
+.settings
+.link_to_grails_plugins
+# plugins

@@ -1,7 +1,7 @@
 grails.project.work.dir = 'target'
 
 def gebVersion = "0.9.0-RC-1"
-def seleniumVersion = "2.25.0"
+def seleniumVersion = "2.39.0"
 def spockVersion = "0.7"
 
 grails.project.dependency.resolution = {

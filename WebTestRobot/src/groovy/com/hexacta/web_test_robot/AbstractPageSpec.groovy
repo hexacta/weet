@@ -15,7 +15,7 @@ class AbstractPageSpec extends GebSpec {
 	}
 
 	def cleanup() {
-		user.logout()
+		// user.logout()
 	}
 
 	/**

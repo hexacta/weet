@@ -1,10 +1,9 @@
-
+import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import org.openqa.selenium.ie.InternetExplorerDriver
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.openqa.selenium.chrome.ChromeDriver
 
-// run as grails -baseUrl="http://localhost:8080/liquidacion-haberes" -functional test-app
+// run as grails test-app -functional
 // See: http://code.google.com/p/selenium/wiki/HtmlUnitDriver
 driver = { 
 	def driver = new HtmlUnitDriver()
@@ -12,24 +11,25 @@ driver = {
 	driver
 }
 
+baseUrl = "http://localhost:8080"
+reportsDir = new File("target/geb-reports")
+reportOnTestFailureOnly = true
+
 environments {
 	
-    // run as grails -baseUrl="https://hxgna01:8443/liquidacion-haberes/" -functional -Dgeb.env=chrome -Dwebdriver.chrome.driver=..\browser-drivers\chromedriver.exe test-app
-	// -DDataBase=jdbc:jtds:Sqlserver://hxsqldev:1433/GNA_LiqHaberes1;instance=sql2008 -DDataBaseUser=gnaslh -DDataBasePass=epchm
+    // run as grails -functional -Dgeb.env=chrome -Dwebdriver.chrome.driver=..\browser-drivers\chromedriver.exe 
 	// See: http://code.google.com/p/selenium/wiki/ChromeDriver
 	chrome {
 		driver = { new ChromeDriver() }
 	}
 	
-	// run as grails -baseUrl="https://hxgna01:8443/liquidacion-haberes/" -functional -Dgeb.env=firefox test-app
-	// -DDataBase=jdbc:jtds:Sqlserver://hxsqldev:1433/GNA_LiqHaberes1;instance=sql2008 -DDataBaseUser=gnaslh -DDataBasePass=epchm
+	// run as grails test-app -functional -Dgeb.env=firefox
 	// See: http://code.google.com/p/selenium/wiki/FirefoxDriver
 	firefox {
 		driver = { new FirefoxDriver() }
 	}
 
-    // run as grails -baseUrl="https://hxgna01:8443/liquidacion-haberes/" -functional -Dgeb.env=ie -Dwebdriver.ie.driver=..\browser-drivers\IEDriverServer.exe test-app
-	// -DDataBase=jdbc:jtds:Sqlserver://hxsqldev:1433/GNA_LiqHaberes1;instance=sql2008 -DDataBaseUser=gnaslh -DDataBasePass=epchm
+    // run as grails test-app -functional -Dgeb.env=ie -Dwebdriver.ie.driver=..\browser-drivers\IEDriverServer.exe
 	ie {
 		driver = { new InternetExplorerDriver() }
 	}

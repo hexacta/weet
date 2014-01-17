@@ -1,7 +1,7 @@
 grails.project.work.dir = 'target'
 
-def gebVersion = "0.9.0-RC-1"
-def seleniumVersion = "2.39.0"
+def gebVersion = "0.9.1"
+def seleniumVersion = "2.27.0"
 def spockVersion = "0.7"
 
 grails.project.dependency.resolution = {
@@ -36,6 +36,10 @@ grails.project.dependency.resolution = {
 		test("org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion")
 		// test "org.codehaus.geb:geb-junit4:$gebVersion"
 		// test("org.spockframework:spock-core:$spockVersion")
+		
+//		compile("xerces:xercesImpl:2.10.0") {
+//			excludes 'xml-apis'
+//		}
     }
 
     plugins {

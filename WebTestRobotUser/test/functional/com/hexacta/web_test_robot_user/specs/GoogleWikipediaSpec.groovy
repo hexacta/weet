@@ -31,22 +31,4 @@ class GoogleWikipediaSpec extends AbstractPageSpec {
 		then:
 		waitFor { at WikipediaPage }
 	}
-	
-	/*
-	def "Go google"() {
-		given: "Go to Google"
-		to GoogleHomePage
- 
-		expect: "Current page is Google"
-		at GoogleHomePage
- 
-		when: "Type a text and search"
-		search.text = "clarin"
-		search.button.click()
-		
-		then: "Verify the search results"
-		waitFor { at GoogleResultsPage }
-		// at "www.clarin.com"
-	}
-*/
 }

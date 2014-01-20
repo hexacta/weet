@@ -10,17 +10,13 @@ plugin.xml
 # .classpath
 
 
-# Configuracion local
-# --------------------------------
-liquidacion-haberes/grails-app/conf/MiConfig.groovy
-
-
 # Directorios
 # --------------------------------
 target
 target-eclipse
 bin
 WEB-INF
+WS-2.2
 .metadata
 .settings
 .link_to_grails_plugins

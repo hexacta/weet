@@ -1,5 +1,6 @@
 package com.hexacta.googlewebtest.pages.modules
 
+import com.hexacta.googlewebtest.pages.GoogleResultsPage
 import com.hexacta.web_test_robot.AbstractModule
 
 /**

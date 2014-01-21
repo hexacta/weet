@@ -1,5 +1,6 @@
 package com.hexacta.googlewebtest.pages
 
+import com.hexacta.googlewebtest.pages.modules.GoogleSearchModule
 import com.hexacta.web_test_robot.AbstractPage
 
 class GoogleHomePage extends AbstractPage {

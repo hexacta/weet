@@ -2,6 +2,9 @@ package com.hexacta.googlewebtest.specs
 
 import spock.lang.*
 
+import com.hexacta.googlewebtest.pages.GoogleHomePage
+import com.hexacta.googlewebtest.pages.GoogleResultsPage
+import com.hexacta.googlewebtest.pages.WikipediaPage
 import com.hexacta.web_test_robot.AbstractPageSpec
 
 class GoogleWikipediaSpec extends AbstractPageSpec {
@@ -14,6 +17,7 @@ class GoogleWikipediaSpec extends AbstractPageSpec {
 		at GoogleHomePage
  
 		when:
+		report "google"
 		search.text.value("wikipedia")
  
 		then:
@@ -23,6 +27,7 @@ class GoogleWikipediaSpec extends AbstractPageSpec {
 		firstResultLink.text() == "Wikipedia"
  
 		when:
+		report "google results"
 		firstResultLink.click()
  
 		then:

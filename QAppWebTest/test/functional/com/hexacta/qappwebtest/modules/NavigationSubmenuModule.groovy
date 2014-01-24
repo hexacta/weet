@@ -7,19 +7,14 @@ import com.hexacta.web_test_robot.AbstractModule
  * 
  * @author gmassenzano
  */
-class NavigationMenuModule extends AbstractModule {
+class NavigationSubmenuModule extends AbstractModule {
  
-    static base = { $("ul.nav") }
+    static base = { $("ul.dropdown-menu") }
  
     static content = {
 		item { i -> $().children("li")[i].find("a")[0] }
 		itemText { i -> item(i).text().trim() }
-		
-		submenu { menu -> module NavigationSubmenuModule, menu }
-		clickItem { i -> 
-			item(i).click()
-			return submenu( $().children("li")[i] )
-		}
+		clickItem { i, page -> item(i).click(page) }
     }
 }
 /*<li>

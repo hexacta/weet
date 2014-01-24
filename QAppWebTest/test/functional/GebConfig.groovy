@@ -15,6 +15,11 @@ baseUrl = "http://mordor.hexacta.com:8181/qapplication/"
 reportsDir = new File("target/geb-reports")
 reportOnTestFailureOnly = true
 
+waiting {
+	timeout = 2
+	retryInterval = 0.1
+}
+
 environments {
 	
     // run as grails -functional -Dgeb.env=chrome -Dwebdriver.chrome.driver=..\browser-drivers\chromedriver.exe 

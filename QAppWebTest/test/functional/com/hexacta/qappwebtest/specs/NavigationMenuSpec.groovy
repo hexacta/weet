@@ -3,10 +3,12 @@ package com.hexacta.qappwebtest.specs
 import static com.hexacta.qappwebtest.pages.QApplicationPage.*
 import spock.lang.*
 
-import com.hexacta.qappwebtest.pages.HomePage
+import com.hexacta.qappwebtest.audits.AuditsPage
+import com.hexacta.qappwebtest.configuration.ProcessPage
+import com.hexacta.qappwebtest.configuration.TemplatesPage
 
 class NavigationMenuSpec extends QApplicationSpec {
-
+/*
     def "Menu Configuration"() {
 		given:
 		def itemConfig = menu.item(CONFIGURATION)
@@ -17,5 +19,34 @@ class NavigationMenuSpec extends QApplicationSpec {
         then: "Redirects to home page"
 		itemConfig.text().trim() == "Configuration"
     }
-    
+*/
+
+    def "Navigate to Templates"() {
+        when: ""
+		def submenu = menu.clickItem(CONFIGURATION)
+		submenu.clickItem(CONF_TEMPLATES, TemplatesPage)
+        
+        then: ""
+		waitFor { at TemplatesPage }
+    }
+
+    def "Navigate to Processes"() {
+        when: ""
+		def submenu = menu.clickItem(CONFIGURATION)
+		submenu.item(CONF_PROCESSES).click(ProcessPage)
+        
+        then: ""
+		waitFor { at ProcessPage }
+    }
+
+	def "Navigate to Audits"() {
+		when: ""
+		def submenu = menu.clickItem(AUDITS)
+		submenu.item(AUDIT_LIST).click(AuditsPage)
+		
+		then: ""
+		waitFor { at AuditsPage }
+	}
+
+
 }

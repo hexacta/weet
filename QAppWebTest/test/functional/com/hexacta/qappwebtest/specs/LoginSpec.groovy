@@ -6,7 +6,7 @@ import com.hexacta.qappwebtest.pages.HomePage
 import com.hexacta.qappwebtest.pages.LoginPage
 import com.hexacta.web_test_robot.AbstractPageSpec
 
-class LoginPageSpec extends AbstractPageSpec {
+class LoginSpec extends AbstractPageSpec {
 
     def "Succesful login"() {
         given: "Any page"

@@ -9,7 +9,7 @@ import com.hexacta.web_test_robot.AbstractModule
  */
 class NavigationMenuModule extends AbstractModule {
  
-    static base = { $("ul.nav") }
+    static base = { $("ul.nav")[0] }
  
     static content = {
 		item { i -> $().children("li")[i].find("a")[0] }

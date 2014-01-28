@@ -6,7 +6,7 @@ import com.hexacta.qappwebtest.pages.HomePage
 import com.hexacta.qappwebtest.pages.LoginPage
 import com.hexacta.web_test_robot.AbstractPageSpec
 
-class QApplicationSpec extends AbstractPageSpec {
+abstract class QApplicationSpec extends AbstractPageSpec {
 
 	def setup() {
 		given:

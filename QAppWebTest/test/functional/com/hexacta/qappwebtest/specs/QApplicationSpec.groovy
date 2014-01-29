@@ -10,7 +10,7 @@ abstract class QApplicationSpec extends AbstractPageSpec {
 
 	def setup() {
 		given:
-		to LoginPage
+		waitFor { to LoginPage }
 		username = "admin"
 		password = "admin"
 		logIn.click()

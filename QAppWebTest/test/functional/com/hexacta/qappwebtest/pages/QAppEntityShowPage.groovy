@@ -7,7 +7,7 @@ abstract class QAppEntityShowPage extends QAppEntityPage {
 	static int LIST = 1, NEW = 2
 	
 	static content = {
-		edit {  $("a", text: contains("Edit")).click() }
-		delete {  $("button", text: contains("Delete")).click() }
+		edit {  $("a", text: containsWord("Edit")) }
+		delete {  $("button", text: containsWord("Delete")) }
 	}
 }

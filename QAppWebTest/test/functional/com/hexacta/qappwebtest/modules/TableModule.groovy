@@ -11,8 +11,10 @@ class TableModule extends AbstractModule {
  
     static content = {
 		cell { $("td", it) }
+		rows(required: false) { $("tbody").find("tr") }
+		rowCount { rows ? rows.size() : 0} 
 		column { 
-			i -> $("tr").collect {
+			i -> rows.collect {
 				row -> row.find("td")[i] 
 			}
 		}
@@ -30,6 +32,7 @@ class TableModule extends AbstractModule {
 			}
 			link?.find("a")
 		}
+		
     }
 }
 

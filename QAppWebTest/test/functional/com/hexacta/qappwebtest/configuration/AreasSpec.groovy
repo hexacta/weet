@@ -11,6 +11,8 @@ import com.hexacta.qappwebtest.specs.QApplicationSpec
 class AreasSpec extends QApplicationSpec {
 
 	static final String AREA_NAME = "webtest-area"
+
+	static final String AREA_NAME_UPDATED = "webtest-area-updated"
 	int entityId
 	
 	def setup() {
@@ -20,12 +22,17 @@ class AreasSpec extends QApplicationSpec {
 	}
 
 
-	@Ignore
+	// @Ignore
     def "Area creation"() {
-        given: "From the entity list navigate to new entity page."
-		pageMenu.item(NEW).click(AreaNewPage)
+		when: "Find the entity to be inserted is not present"
+		def rowCount, rowLink
+		(rowCount, rowLink) = this.findRowInPages(AREA_NAME)
+		
+		then: "Check that the link for the searched value was found"
+		rowLink == null
         
-        when: "Set the values for each entity property and save."
+        when: "Navigate to new entity page and set the values for each entity property and save."
+		pageMenu.item(NEW).click(AreaNewPage)
 		name = AREA_NAME
 		create.click(AreaShowPage)
 		
@@ -34,17 +41,14 @@ class AreasSpec extends QApplicationSpec {
 		name == AREA_NAME
     }
 
-    def "Area update"() {
+	// @Ignore
+	def "Area update"() {
         when: "Look for the inserted value in the entity list"
 		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException
 		//def rowLink = table.findRowInPages("webtest-area")
 		
-		def lastValue = table.findLastValue()
-		while (lastValue < AREA_NAME) {
-			table.nextPage.click(AreasPage)
-			lastValue = table.findLastValue()
-		}
-		def rowLink = table.findRowLink(AREA_NAME)
+		def rowCount, rowLink
+		(rowCount, rowLink) = this.findRowInPages(AREA_NAME)
 		
 		then: "Check that the link for the searched value was found"
 		rowLink != null
@@ -63,11 +67,64 @@ class AreasSpec extends QApplicationSpec {
 		name == AREA_NAME
 		
 		when: "Update its attributes and save"
-		name = "webtest-area-updated"
+		name = AREA_NAME_UPDATED
 		update.click(AreaShowPage)
 		
 		then: "Navigates back to the show enity page with the new values"
-		name == "webtest-area-updated"
+		name == AREA_NAME_UPDATED
     }
 
+	def "Area delete"() {
+		when: "Look for the inserted value in the entity list"
+		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException
+		//def rowLink = table.findRowInPages("webtest-area")
+		def rowCount, rowLink
+		(rowCount, rowLink) = this.findRowInPages(AREA_NAME_UPDATED)
+		
+		then: "Check that the link for the searched value was found"
+		rowLink != null
+		
+		when: "Navigate to the show entity page"
+		rowLink.click(AreaShowPage)
+		// TODO: check entityId
+
+		then: "Check that its attributes are the same as the ones in the entity previously inserted."
+		name == AREA_NAME_UPDATED
+		
+		when: "Click delete"
+		delete.click(AreaShowPage)
+		
+		then: "Confirmation modal dialog is displayed"
+		deleteConfirmation.displayed == true
+		
+		when: "Cancel deletion"
+		deleteConfirmation.cancel.click(AreaShowPage)
+		
+		then: "Confirmation modal dialog is not displayed and go back to show entity page."
+		deleteConfirmation.displayed == false
+		
+		when: "Click delete and Confirm deletion"
+		delete.click(AreaShowPage)
+		deleteConfirmation.confirm.click(AreasPage)
+		def newRowCount
+		(newRowCount, rowLink) = this.findRowInPages(AREA_NAME_UPDATED)
+		
+		then: "Navigate to entity list. Check the entity is not listed and the size decreased in one."
+		rowLink == null
+		rowCount == newRowCount + 1 // XXX: this works if the deleted value was in the last page
+	}
+
+	private findRowInPages(String value) {
+		int rowCount = 0, pageRowCount 
+		while ( (pageRowCount = table.pageRowCount()) > 0 && 
+				 table.nextPage != null &&
+				 table.findLastValue() < value) {
+				 
+			rowCount += pageRowCount
+			table.nextPage.click(AreasPage)
+		}
+		rowCount += pageRowCount
+		def rowLink = table.findRowLink(value)
+		[rowCount, rowLink]
+	}
 }

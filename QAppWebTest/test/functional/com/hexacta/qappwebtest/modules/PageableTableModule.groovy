@@ -20,6 +20,7 @@ class PageableTableModule extends AbstractModule {
 		column { i -> table.column(i) }
 		findLastValue { table.findLastValue() }
 		findRowLink(required: false) { value -> table.findRowLink(value) }
+		pageRowCount { table.rowCount() }
 		
 		pagination { navigationBase }
 		nextPage(required: false) { pagination().find("a", text: "Next") } 

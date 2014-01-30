@@ -1,6 +1,6 @@
 package com.hexacta.qappwebtest.pages
 
-import com.hexacta.qappwebtest.modules.PageMenuModule
+import com.hexacta.qappwebtest.modules.ConfirmationModalModule
 
 abstract class QAppEntityShowPage extends QAppEntityPage {
 	// Page menu options
@@ -9,5 +9,7 @@ abstract class QAppEntityShowPage extends QAppEntityPage {
 	static content = {
 		edit {  $("a", text: containsWord("Edit")) }
 		delete {  $("button", text: containsWord("Delete")) }
+		
+		deleteConfirmation { module ConfirmationModalModule, confirmText: "Delete", $("div", id: "deleteModal") }
 	}
 }

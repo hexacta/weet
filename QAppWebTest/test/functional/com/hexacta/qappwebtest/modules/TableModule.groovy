@@ -10,7 +10,8 @@ import com.hexacta.web_test_robot.AbstractModule
 class TableModule extends AbstractModule {
  
     static content = {
-		cell { $("td", it) }
+    	cell { $("td", it) }
+		cells { $("td") }
 		rows(required: false) { $("tbody").find("tr") }
 		rowCount { rows ? rows.size() : 0} 
 		column { 
@@ -18,6 +19,8 @@ class TableModule extends AbstractModule {
 				row -> row.find("td")[i] 
 			}
 		}
+		
+		findCell(required: false) { value -> $("td", text: value.toString()) }
 		
 		findLastValue {
 			def columns = column(0)

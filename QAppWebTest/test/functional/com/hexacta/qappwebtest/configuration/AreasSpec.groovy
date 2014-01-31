@@ -115,9 +115,9 @@ class AreasSpec extends QApplicationSpec {
 	}
 
 	private findRowInPages(String value) {
-		int rowCount = 0, pageRowCount 
+		int rowCount = 0, pageRowCount
 		while ( (pageRowCount = table.pageRowCount()) > 0 && 
-				 table.nextPage != null &&
+				 table.nextPage?.present &&
 				 table.findLastValue() < value) {
 				 
 			rowCount += pageRowCount

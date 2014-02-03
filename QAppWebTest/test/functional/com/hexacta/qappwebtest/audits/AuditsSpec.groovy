@@ -22,8 +22,7 @@ class AuditsSpec extends QApplicationSpec {
 		
         when: "Navigate to new entity page and set the values for each entity property and save."
 		project = AUDIT_PROJECT
-		waitFor { phase.displayed  }
-		phase = "Desarrollo"
+		// waitFor { phase.displayed  }
 		revisionManager.search = "Gerardo"
 		revisionManager.selectValue("Gerardo Massenzano")
 		
@@ -33,9 +32,23 @@ class AuditsSpec extends QApplicationSpec {
 		
 		to.value = new Date().format('dd/MM/yyyy')
 		date.value = new Date().format('dd/MM/yyyy')
-		create.click()
+		
+		phase = "Desarrollo"
+		
+		create.click(AuditNewAnswerQuestionsPage)
 		
 		then: "Navigate to show entity page displaying the values for the new entity."
+		groups.size() == 2
+		groups[0].text().contains("Gestión de proyectos")
+		groups[1].text().contains("Gestión de proyectos Ágiles")
+		
+		when:
+		if (groups[0].isExpanded()) {
+			groups[0].toogle
+		}
+		groups[1].toogle
+		
+		then:
 		true
     }
 }

@@ -4,57 +4,57 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.page.HomePage
 import com.hexacta.liqhabtester.page.LoginPage
-import com.hexacta.web_test_robot.AbstractPageSpec
+import com.hexacta.webtester.AbstractPageSpec
 
 class LoginSpec extends AbstractPageSpec {
 
-    def "Succesful login"() {
-        given: "Any page"
+    def "Login correcto"() {
+        given: "Cualquier página"
         go ""
  
-        expect: "Redirects to login page"
+        expect: "Redirige a la página de login"
         at LoginPage
  
-        when: "username y clave correctos"
+        when: "Usuario y clave correctos"
         username = "admin"
         password = "admin"
-        logIn.click()
+        logIn.click(HomePage)
         
-        then: "Redirects to home page"
+        then: "Redirige a la paina incio"
         at HomePage
     }
     
-    def "Invalid password"() {
-        given: "Any page"
+    def "Password invalido"() {
+        given: "Cualquier página"
         go ""
- 
-        expect: "Redirects to login page"
+     
+        expect: "Redirige a la página de login"
         at LoginPage
  
-        when: "Invalid password"
+        when: "Password invalida"
         username = "admin"
         password = "xxxxxxxxx"
-        logIn.click()
+        logIn.click(LoginPage)
  
-        then: "Stay at login page"
+        then: "Permanece en la página de login y muestra el mensaje de error"
         at LoginPage
 		$().text().contains("El nombre de usuario o contraseña no válidos. Verifique los datos ingresados")
      }
 	
-	def "Invalid username"() {
-        given: "Any page"
-        go ""
- 
-        expect: "Redirects to login page"
-        at LoginPage
+	def "Usuario inexistente"() {
+		given: "Cualquier página"
+		go ""
 		
-		when: "Invalid username"
-		username = "invalidusername"
-		password = "xxxxxxxxx"
-		logIn.click()
+		expect: "Redirige a la página de login"
+		at LoginPage
  
-        then: "Stay at login page"
-        at LoginPage
+		when: "Password invalida"
+		username = "UsuarioInexistente"
+		password = "xxxxxxxxx"
+		logIn.click(LoginPage)
+ 
+		then: "Permanece en la página de login y muestra el mensaje de error"
+		at LoginPage
 		$().text().contains("El nombre de usuario o contraseña no válidos. Verifique los datos ingresados")
 	 }
 }

@@ -1,8 +1,9 @@
-package com.hexacta.liqhabtester.page
+package com.hexacta.qappwebtester.pages
 
-import com.hexacta.webtester.AbstractPage
+import com.hexacta.qappwebtester.modules.NavigationMenuModule
+import com.hexacta.webtester.AjaxPage
 
-abstract class LiquidacionHaberesPage extends AbstractPage {
+abstract class QApplicationPage extends AjaxPage {
 	// Menu options
 	static int CONFIGURATION = 0, AUDITS = 1
 	
@@ -13,6 +14,6 @@ abstract class LiquidacionHaberesPage extends AbstractPage {
 	static int AUDIT_CREATE = 0, AUDIT_LIST = 1
 		
 	static content = {
-		// menu { module NavigationMenuModule }
+		menu { module NavigationMenuModule }
 	}
 }

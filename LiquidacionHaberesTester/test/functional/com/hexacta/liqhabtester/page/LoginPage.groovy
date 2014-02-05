@@ -1,6 +1,6 @@
 package com.hexacta.liqhabtester.page
 
-import com.hexacta.webtester.AbstractPage
+import com.hexacta.webtester.pages.AbstractPage;
 
 class LoginPage extends AbstractPage {
 	static url = "login/index"

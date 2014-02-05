@@ -1,6 +1,6 @@
 package com.hexacta.liqhabtester.page
 
-import com.hexacta.webtester.AbstractPage
+import com.hexacta.webtester.pages.AbstractPage;
 
 abstract class LiquidacionHaberesPage extends AbstractPage {
 	// Menu options

@@ -1,4 +1,4 @@
-package com.hexacta.webtester
+package com.hexacta.webtester.modules
 
 import geb.Module
 

@@ -6,7 +6,7 @@ import org.openqa.selenium.JavascriptExecutor
 
 import spock.lang.*
 
-class AbstractPageSpec extends GebSpec {
+class AbstractSpec extends GebSpec {
 
 	@Shared UserRobot user
 

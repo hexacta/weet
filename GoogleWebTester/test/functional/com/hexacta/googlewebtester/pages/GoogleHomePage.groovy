@@ -1,7 +1,7 @@
 package com.hexacta.googlewebtester.pages
 
 import com.hexacta.googlewebtester.pages.modules.GoogleSearchModule
-import com.hexacta.webtester.AbstractPage
+import com.hexacta.webtester.pages.AbstractPage;
 
 class GoogleHomePage extends AbstractPage {
 	// pages can define their location, either absolutely or relative to a base

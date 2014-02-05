@@ -4,9 +4,9 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.page.HomePage
 import com.hexacta.liqhabtester.page.LoginPage
-import com.hexacta.webtester.AbstractPageSpec
+import com.hexacta.webtester.AbstractSpec
 
-class LoginSpec extends AbstractPageSpec {
+class LoginSpec extends AbstractSpec {
 
     def "Login correcto"() {
         given: "Cualquier página"

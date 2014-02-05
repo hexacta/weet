@@ -1,6 +1,6 @@
 package com.hexacta.liqhabtester.page
 
-import com.hexacta.webtester.AbstractPage
+import com.hexacta.webtester.pages.AbstractPage;
 
 class HomePage extends LiquidacionHaberesPage {
 	static url = ""

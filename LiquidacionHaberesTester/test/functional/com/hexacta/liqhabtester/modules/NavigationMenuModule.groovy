@@ -1,6 +1,6 @@
 package com.hexacta.liqhabtester.modules
 
-import com.hexacta.webtester.AbstractModule
+import com.hexacta.webtester.modules.AbstractModule;
 
 /**
  * 

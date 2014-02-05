@@ -1,4 +1,4 @@
-package com.hexacta.webtester
+package com.hexacta.webtester.pages
 
 import geb.Page
 

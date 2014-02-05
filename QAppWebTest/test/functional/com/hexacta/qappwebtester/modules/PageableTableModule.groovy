@@ -1,8 +1,7 @@
 package com.hexacta.qappwebtester.modules
 
-import org.openqa.selenium.StaleElementReferenceException
+import com.hexacta.webtester.modules.AbstractModule
 
-import com.hexacta.webtester.AbstractModule
 
 /**
  * 

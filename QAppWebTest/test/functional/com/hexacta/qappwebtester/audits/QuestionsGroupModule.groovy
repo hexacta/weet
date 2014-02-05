@@ -1,6 +1,7 @@
 package com.hexacta.qappwebtester.audits
 
-import com.hexacta.webtester.AbstractModule
+import com.hexacta.webtester.modules.AbstractModule
+
 
 /**
  * 

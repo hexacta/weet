@@ -1,6 +1,5 @@
 package com.hexacta.qappwebtester.pages
 
-import com.hexacta.webtester.AbstractPage
 
 class HomePage extends QApplicationPage {
 	static url = ""

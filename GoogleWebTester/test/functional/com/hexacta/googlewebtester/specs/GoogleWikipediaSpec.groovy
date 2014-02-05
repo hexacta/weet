@@ -5,7 +5,7 @@ import spock.lang.*
 import com.hexacta.googlewebtester.pages.GoogleHomePage
 import com.hexacta.googlewebtester.pages.GoogleResultsPage
 import com.hexacta.googlewebtester.pages.WikipediaPage
-import com.hexacta.webtester.AbstractSpec
+import com.hexacta.webtester.specs.AbstractSpec;
 
 class GoogleWikipediaSpec extends AbstractSpec {
 

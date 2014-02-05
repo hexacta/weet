@@ -4,18 +4,15 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.page.HomePage
 import com.hexacta.liqhabtester.page.LoginPage
-import com.hexacta.webtester.AbstractPageSpec
+import com.hexacta.webtester.specs.ApplicationSpec
 
-abstract class LiquidacionHaberesSpec extends AbstractPageSpec {
+abstract class LiquidacionHaberesSpec extends ApplicationSpec {
 
-	def setup() {
-		given:
-		waitFor { to LoginPage }
-		username = "admin"
-		password = "admin"
-		logIn.click()
-		
-		then: "Redirects to home page"
-		waitFor { at HomePage }
+	def getInitialPage() {
+		HomePage
+	}
+	
+	def getLoginPage() {
+		LoginPage
 	}
 }

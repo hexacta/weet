@@ -1,12 +1,14 @@
-package com.hexacta.webtester
+package com.hexacta.webtester.specs
 
 import geb.spock.GebSpec
 
 import org.openqa.selenium.JavascriptExecutor
 
+import com.hexacta.webtester.UserRobot;
+
 import spock.lang.*
 
-class AbstractSpec extends GebSpec {
+abstract class AbstractSpec extends GebSpec {
 
 	@Shared UserRobot user
 

@@ -17,8 +17,7 @@ class AreasSpec extends QApplicationSpec {
 	
 	def setup() {
 		given:
-		def submenu = menu.clickItem(CONFIGURATION)
-		submenu.item(CONF_AREAS).click(AreasPage)
+		menu.expand(CONFIGURATION).item(CONF_AREAS).click(AreasPage)
 	}
 
 

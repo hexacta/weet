@@ -17,8 +17,7 @@ class AuditsSpec extends QApplicationSpec {
 	// @Ignore
     def "Audit creation"() {
 		given:
-		def submenu = menu.clickItem(AUDITS)
-		submenu.item(AUDIT_CREATE).click(AuditNewPage)
+		menu.expand(AUDITS).item(AUDIT_CREATE).click(AuditNewPage)
 		
         when: "Navigate to new entity page and set the values for each entity property and save."
 		project = AUDIT_PROJECT

@@ -18,12 +18,16 @@ class GradosSpec extends LiquidacionHaberesSpec {
 	
 	def setup() {
 		given:
-		def submenu = menu.clickItem(CONFIGURACION)
-		submenu.item(CONF_GRADOS).click()
+		menu.expand(CONFIGURACION).item(CONF_GRADOS).click()
 	}
 
+	def "Item text"() {
+		expect:
+		//menu.itemText(CONFIGURACION) == "Configuracion"
+		menu.expand(CONFIGURACION).itemText(CONF_GRADOS) == "Grados"
+	}
 
-	// @Ignore
+	@Ignore
     def "Area creation"() {
 		when: "Find the entity to be inserted is not present"
 		def rowCount, rowLink

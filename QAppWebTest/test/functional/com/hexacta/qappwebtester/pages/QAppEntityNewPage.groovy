@@ -1,6 +1,5 @@
 package com.hexacta.qappwebtester.pages
 
-import com.hexacta.qappwebtester.modules.PageMenuModule
 
 abstract class QAppEntityNewPage extends QAppEntityPage {
 	// Menu options

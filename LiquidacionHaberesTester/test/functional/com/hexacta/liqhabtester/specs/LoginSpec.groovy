@@ -2,8 +2,8 @@ package com.hexacta.liqhabtester.specs
 
 import spock.lang.*
 
-import com.hexacta.liqhabtester.page.HomePage
-import com.hexacta.liqhabtester.page.LoginPage
+import com.hexacta.liqhabtester.pages.HomePage
+import com.hexacta.liqhabtester.pages.LoginPage
 
 class LoginSpec extends com.hexacta.webtester.specs.LoginSpec {
 

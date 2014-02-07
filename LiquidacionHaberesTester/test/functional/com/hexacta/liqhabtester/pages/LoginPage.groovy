@@ -1,4 +1,4 @@
-package com.hexacta.liqhabtester.page
+package com.hexacta.liqhabtester.pages
 
 
 class LoginPage extends com.hexacta.webtester.pages.LoginPage {

@@ -1,4 +1,4 @@
-package com.hexacta.liqhabtester.page
+package com.hexacta.liqhabtester.pages
 
 import com.hexacta.webtester.pages.AbstractPage;
 

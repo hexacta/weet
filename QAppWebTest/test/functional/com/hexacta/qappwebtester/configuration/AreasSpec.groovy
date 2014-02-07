@@ -5,10 +5,10 @@ import static com.hexacta.qappwebtester.pages.QAppEntityPage.*
 import static com.hexacta.qappwebtester.pages.QApplicationPage.*
 import spock.lang.*
 
-import com.hexacta.qappwebtester.specs.QApplicationSpec
+import com.hexacta.qappwebtester.specs.QApplicationCRUDSpec
 
 //@Stepwise
-class AreasSpec extends QApplicationSpec {
+class AreasSpec extends QApplicationCRUDSpec {
 
 	static final String AREA_NAME = "aawebtest-area"
 
@@ -25,7 +25,8 @@ class AreasSpec extends QApplicationSpec {
     def "Area creation"() {
 		when: "Find the entity to be inserted is not present"
 		def rowCount, rowLink
-		(rowCount, rowLink) = this.findRowInPages(AREA_NAME)
+		(rowCount, rowLink) = this.findRowInPages(0, AREA_NAME)
+		// (rowCount, rowLink) = this.findRowInPages(0, AREA_NAME)
 		
 		then: "Check that the link for the searched value was found"
 		rowLink == null
@@ -47,7 +48,7 @@ class AreasSpec extends QApplicationSpec {
 		//def rowLink = table.findRowInPages("webtest-area")
 		
 		def rowCount, rowLink
-		(rowCount, rowLink) = this.findRowInPages(AREA_NAME)
+		(rowCount, rowLink) = this.findRowInPages(0, AREA_NAME)
 		
 		then: "Check that the link for the searched value was found"
 		rowLink != null
@@ -73,12 +74,13 @@ class AreasSpec extends QApplicationSpec {
 		name == AREA_NAME_UPDATED
     }
 
+	// @Ignore
 	def "Area delete"() {
 		when: "Look for the inserted value in the entity list"
 		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException
 		//def rowLink = table.findRowInPages("webtest-area")
 		def rowCount, rowLink
-		(rowCount, rowLink) = this.findRowInPages(AREA_NAME_UPDATED)
+		(rowCount, rowLink) = this.findRowInPages(0, AREA_NAME_UPDATED)
 		
 		then: "Check that the link for the searched value was found"
 		rowLink != null
@@ -106,24 +108,10 @@ class AreasSpec extends QApplicationSpec {
 		delete.click(AreaShowPage)
 		deleteConfirmation.confirm.click(AreasPage)
 		def newRowCount
-		(newRowCount, rowLink) = this.findRowInPages(AREA_NAME_UPDATED)
+		(newRowCount, rowLink) = this.findRowInPages(0, AREA_NAME_UPDATED)
 		
 		then: "Navigate to entity list. Check the entity is not listed and the size decreased in one."
 		rowLink == null
 		rowCount == newRowCount + 1 // XXX: this works if the deleted value was in the last page
-	}
-
-	private findRowInPages(String value) {
-		int rowCount = 0, pageRowCount
-		while ( (pageRowCount = table.pageRowCount()) > 0 && 
-				 table.nextPage?.present &&
-				 table.findLastValue() < value) {
-				 
-			rowCount += pageRowCount
-			table.nextPage.click(AreasPage)
-		}
-		rowCount += pageRowCount
-		def rowLink = table.findRowLink(value)
-		[rowCount, rowLink]
 	}
 }

@@ -2,49 +2,66 @@ package com.hexacta.liqhabtester.configuracion
 
 //import static com.hexacta.qappwebtester.pages.QAppEntityListPage.*
 //import static com.hexacta.qappwebtester.pages.QAppEntityPage.*
-import static com.hexacta.liqhabtester.page.LiquidacionHaberesPage.*
-
-import com.hexacta.liqhabtester.specs.LiquidacionHaberesSpec
-
+import static com.hexacta.liqhabtester.pages.LiquidacionHaberesPage.*
 import spock.lang.*
 
+import com.hexacta.liqhabtester.specs.LiquidacionHaberesCRUDSpec
+
 //@Stepwise
-class GradosSpec extends LiquidacionHaberesSpec {
+class GradosSpec extends LiquidacionHaberesCRUDSpec {
 
-	static final String AREA_NAME = "aawebtest-area"
+	static final String CODIGO = "9999", CARGO = "Militares", JERARQUIA = "Oficial Jefes", 
+		DESCRIPCION = "WebTesterGrado", DESC_CORTA = "WebTester" 
 
-	static final String AREA_NAME_UPDATED = "aaSwebtest-area-updated"
 	int entityId
 	
 	def setup() {
 		given:
-		menu.expand(CONFIGURACION).item(CONF_GRADOS).click()
-	}
-
-	def "Item text"() {
-		expect:
-		//menu.itemText(CONFIGURACION) == "Configuracion"
-		menu.expand(CONFIGURACION).itemText(CONF_GRADOS) == "Grados"
+		menu.expand(CONFIGURACION).item(CONF_GRADOS).click(GradosPage)
 	}
 
 	@Ignore
-    def "Area creation"() {
+	def "Buscar codigo"() {
+		when: "Find the entity to be inserted is not present"
+		def row = table.findRow(0, CODIGO)
+		row.click(GradoEditPage)
+
+		then: "Check that the link for the searched value was found"
+		true
+	}
+
+	def "Area creation"() {
 		when: "Find the entity to be inserted is not present"
 		def rowCount, rowLink
-		(rowCount, rowLink) = this.findRowInPages(AREA_NAME)
-		
+		(rowCount, rowLink) = this.findRowInPages(0, CODIGO)
+
 		then: "Check that the link for the searched value was found"
 		rowLink == null
-        
-        when: "Navigate to new entity page and set the values for each entity property and save."
-		pageMenu.item(NEW).click(AreaNewPage)
-		name = AREA_NAME
-		create.click(AreaShowPage)
-		
+
+		when: "Navigate to new entity page and set the values for each entity property and save."
+		create.click(GradoNewPage)
+		codigo = CODIGO
+		// create.click(GradosPage)
+
 		then: "Navigate to show entity page displaying the values for the new entity."
 		// TODO: set entityId
-		name == AREA_NAME
-    }
+		true
+	}
+/*
+	protected findRowInPages(int col, String value) {
+		int rowCount = 0, pageRowCount
+		while ( (pageRowCount = table.pageRowCount()) > 0 &&
+		table.nextPage?.present &&
+		table.findLastValue(col) < value) {
+
+			rowCount += pageRowCount
+			table.nextPage.click(GradosPage)
+		}
+		rowCount += pageRowCount
+		def rowLink = table.findRow(col, value)
+		[rowCount, rowLink]
+	}
+*/
 /*
 	// @Ignore
 	def "Area update"() {
@@ -119,18 +136,5 @@ class GradosSpec extends LiquidacionHaberesSpec {
 		rowCount == newRowCount + 1 // XXX: this works if the deleted value was in the last page
 	}
 
-	private findRowInPages(String value) {
-		int rowCount = 0, pageRowCount
-		while ( (pageRowCount = table.pageRowCount()) > 0 && 
-				 table.nextPage?.present &&
-				 table.findLastValue() < value) {
-				 
-			rowCount += pageRowCount
-			table.nextPage.click(AreasPage)
-		}
-		rowCount += pageRowCount
-		def rowLink = table.findRowLink(value)
-		[rowCount, rowLink]
-	}
 */	
 }

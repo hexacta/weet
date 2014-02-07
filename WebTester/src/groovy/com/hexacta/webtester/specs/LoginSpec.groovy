@@ -14,6 +14,20 @@ abstract class LoginSpec extends AbstractSpec {
 
 	def invalidUsernameExtraAssertion() { true }
 	
+	/**
+	 * The default username used for the successful login.
+	 */
+	String getUsernameValue() {
+		"admin"
+	}
+
+	/**
+	 * The default password used for the successful login.
+	 */
+	String getPasswordValue() {
+		"admin"
+	}
+
     def "Succesful login"() {
         given: "Any page"
         go ""
@@ -22,8 +36,8 @@ abstract class LoginSpec extends AbstractSpec {
         at loginPage
  
         when: "username y clave correctos"
-        username = "admin"
-        password = "admin"
+        username = usernameValue
+        password = passwordValue
         logIn.click()
         
         then: "Redirects to home page"

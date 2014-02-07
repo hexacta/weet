@@ -1,4 +1,4 @@
-package com.hexacta.qappwebtester.modules
+package com.hexacta.webtester.modules
 
 import com.hexacta.webtester.modules.AbstractModule
 

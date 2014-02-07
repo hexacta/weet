@@ -1,4 +1,4 @@
-package com.hexacta.qappwebtester.modules
+package com.hexacta.webtester.modules
 
 import com.hexacta.webtester.modules.AbstractModule
 
@@ -23,20 +23,32 @@ class TableModule extends AbstractModule {
 		
 		findCell(required: false) { value -> $("td", text: value.toString()) }
 		
-		findLastValue {
-			def columns = column(0)
+		findLastValue { col ->
+			def columns = column(col)
 			def lastCol = columns.last()
-			def lastValue = lastCol.find("a").text()
+			def lastValue = lastCol.text().trim()
+			// def lastValue = lastCol.find("a").text()
 			lastValue
 		}
 		
-		findRowLink(required: false) { value ->
-			def link = column(0).find{
+		findRowLink(required: false) { col, value ->
+			def link = column(col).find{
 				it.find("a", text: value)
 			}
 			link?.find("a")
+			
 		}
 		
+		findRow(required: false) { col, value ->
+			def td = column(col).find{
+				def text = it.text().trim()
+				//def text2 = it.find(":not(:has(*))").text()
+				// def text2 = it.find("").not("*:has(*)").text()
+				// it.find(":not(:has(*))").text() == value
+				text == value
+			}
+			td?.closest("tr")
+		}
     }
 }
 

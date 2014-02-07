@@ -1,5 +1,7 @@
 package com.hexacta.qappwebtester.pages
 
+import com.hexacta.webtester.modules.ConfirmationModalModule
+
 
 abstract class QAppEntityEditPage extends QAppEntityPage {
 	// Menu options
@@ -8,5 +10,7 @@ abstract class QAppEntityEditPage extends QAppEntityPage {
 	static content = {
 		update {  $("input", value: "Update") }
 		delete {  $("button", text: containsWord("Delete")) }
+		
+		deleteConfirmation { module ConfirmationModalModule, confirmText: "Delete", $("div", id: "deleteModal") }
 	}
 }

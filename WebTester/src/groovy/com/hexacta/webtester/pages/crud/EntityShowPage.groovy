@@ -1,8 +1,9 @@
-package com.hexacta.qappwebtester.pages
+package com.hexacta.webtester.pages.crud
 
 import com.hexacta.webtester.modules.ConfirmationModalModule
 
-abstract class QAppEntityShowPage extends QAppEntityPage {
+
+abstract class EntityShowPage extends EntityPage {
 	// Page menu options
 	static int LIST = 1, NEW = 2
 	

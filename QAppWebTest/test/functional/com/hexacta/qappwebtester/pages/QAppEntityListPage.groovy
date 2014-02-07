@@ -1,12 +1,12 @@
 package com.hexacta.qappwebtester.pages
 
-import com.hexacta.qappwebtester.modules.PageableTableModule
+import com.hexacta.webtester.pages.crud.EntityListPage
 
-abstract class QAppEntityListPage extends QAppEntityPage {
+abstract class QAppEntityListPage extends EntityListPage {
 	// Menu options
 	static int NEW = 1
 		
 	static content = {
-		table { module PageableTableModule, tableBase: $("table"), navigationBase: $("div.pagination") }
+		create { pageMenu.item(NEW) } 
 	}
 }

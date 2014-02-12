@@ -10,8 +10,8 @@ import com.hexacta.liqhabtester.specs.LiquidacionHaberesCRUDSpec
 //@Stepwise
 class GradosSpec extends LiquidacionHaberesCRUDSpec {
 
-	static final String CODIGO = "9999", CARGO = "Militares", JERARQUIA = "Oficial Jefes", 
-		DESCRIPCION = "WebTesterGrado", DESC_CORTA = "WebTester" 
+	static final String CODIGO = "9999", CARGO = "1 - Militares", JERARQUIA = "Oficial Jefes", 
+		DESCRIPCION = "WebTesterGrado", DESC_CORTA = "WTst" 
 
 	int entityId
 	
@@ -30,7 +30,9 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		true
 	}
 
-	def "Area creation"() {
+	@Ignore
+	// TODO: revisar el getValue de los selects
+	def "Grado creation"() {
 		when: "Find the entity to be inserted is not present"
 		def rowCount, rowLink
 		(rowCount, rowLink) = this.findRowInPages(0, CODIGO)
@@ -40,28 +42,37 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 
 		when: "Navigate to new entity page and set the values for each entity property and save."
 		create.click(GradoNewPage)
-		codigo = CODIGO
-		// create.click(GradosPage)
+		cargo            = CARGO
+		jerarquia        = JERARQUIA
+		codigo           = CODIGO
+		descripcion      = DESCRIPCION
+		descripcionCorta = DESC_CORTA
+		create.click(GradosPage)
 
-		then: "Navigate to show entity page displaying the values for the new entity."
-		// TODO: set entityId
-		true
-	}
-/*
-	protected findRowInPages(int col, String value) {
-		int rowCount = 0, pageRowCount
-		while ( (pageRowCount = table.pageRowCount()) > 0 &&
-		table.nextPage?.present &&
-		table.findLastValue(col) < value) {
+		(rowCount, rowLink) = this.findRowInPages(0, "9.999")
+		
+		then: "Check that the link for the searched value was found"
+		rowLink != null
 
-			rowCount += pageRowCount
-			table.nextPage.click(GradosPage)
-		}
-		rowCount += pageRowCount
-		def rowLink = table.findRow(col, value)
-		[rowCount, rowLink]
+		when: "Navigate to the show entity page"
+		rowLink.click(GradoEditPage)
+		
+		then:
+		def cargoElem = cargo
+		def cargoValue = cargoValue
+		def cargoVal = cargo.value()
+		def cargoText = cargo.text()
+		def selected = cargo.find("option", selected: "selected")
+		def selVal = selected?.value()
+		def selText = selected?.text()
+		def cargoFilter = cargo.filter(":selected")
+		def cargoFilterText = cargoFilter.text()  
+		cv            == CARGO
+		jerarquia        == JERARQUIA
+		codigo           == CODIGO
+		descripcion      == DESCRIPCION
+		descripcionCorta == DESC_CORTA
 	}
-*/
 /*
 	// @Ignore
 	def "Area update"() {

@@ -9,6 +9,11 @@ class GradoEditPage extends EntityEditPage {
 	static at = { title.contains("Editar grado") } 
 	
 	static content = {
-		codigo  {  $("input", name: "codigo") }
+		cargo            { $("select", name: "cargo.id") }
+		cargoValue       { $("select", name: "cargo.id").find("option", selected: "selected")?.text() }
+		jerarquia        { $("select", name: "jerarquia.id") }
+		codigo           { $("input", name: "codigo") }
+		descripcion      { $("input", name: "descripcion") }
+		descripcionCorta { $("input", name: "descripcionCorta") }
 	}
 }

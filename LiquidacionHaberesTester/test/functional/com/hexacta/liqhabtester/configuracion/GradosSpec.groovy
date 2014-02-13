@@ -30,7 +30,7 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		true
 	}
 
-	@Ignore
+	// @Ignore
 	// TODO: revisar el getValue de los selects
 	def "Grado creation"() {
 		when: "Find the entity to be inserted is not present"

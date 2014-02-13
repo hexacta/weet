@@ -7,14 +7,5 @@ class ListaEntidadesPage extends EntityListPage {
 	static content = {
 		create { $("a", name: "create") }
 	}
-	
-	String getNextPageText() {
-		"Siguiente"
-	}
-	
-	String getPrevPageText() {
-		"Anterior"
-	}
-
 
 }

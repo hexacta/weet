@@ -14,42 +14,43 @@ class TableModule extends AbstractModule {
     	cell { $("td", it) }
 		cells { $("td") }
 		rows(required: false) { $("tbody").find("tr") }
-		rowCount { rows ? rows.size() : 0} 
 		column { 
 			i -> rows.collect {
 				row -> row.find("td")[i] 
 			}
 		}
-		
-		findCell(required: false) { value -> $("td", text: value.toString()) }
-		
-		findLastValue { col ->
-			def columns = column(col)
-			def lastCol = columns.last()
-			def lastValue = lastCol.text().trim()
-			// def lastValue = lastCol.find("a").text()
-			lastValue
-		}
-		
-		findRowLink(required: false) { col, value ->
-			def link = column(col).find{
-				it.find("a", text: value)
-			}
-			link?.find("a")
-			
-		}
-		
-		findRow(required: false) { col, value ->
-			def td = column(col).find{
-				def text = it.text().trim()
-				//def text2 = it.find(":not(:has(*))").text()
-				// def text2 = it.find("").not("*:has(*)").text()
-				// it.find(":not(:has(*))").text() == value
-				text == value
-			}
-			td?.closest("tr")
-		}
     }
+
+	int getRowCount() { 
+		rows ? rows.size() : 0
+	}
+	
+	def findCell(value) { 
+		cells.filter(text: value.toString()) 
+	}
+	
+	String findLastValue(int col) {
+		def columns = column(col)
+		def lastCol = columns.last()
+		def lastValue = lastCol.text().trim()
+		lastValue
+	}
+	
+	def findRowLink(int col, String value) {
+		def link = column(col).find{
+			it.find("a", text: value)
+		}
+		link?.find("a")
+	}
+	
+	def findRow(int col, String value) {
+		def td = column(col).find{
+			def text = it.text().trim()
+			text == value
+		}
+		td?.closest("tr")
+	}
+
 }
 
 /*

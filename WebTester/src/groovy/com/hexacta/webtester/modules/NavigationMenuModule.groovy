@@ -46,45 +46,46 @@ class NavigationMenuModule extends AbstractModule {
 		item { i -> $().children("li")[i] }
 		
 		/**
-		 * Returns the displayed text for the menu item corresponding to the received index.
-		 *  
-		 * @param i
-		 * 		0-Index of the item position
-		 */
-		itemText { i -> itemLink(i).text().trim() }
-		
-		/**
-		 * Expands the menu item corresponding to the received index, returning a submenu (instance of this class).
-		 * 
-		 * @param i
-		 * 		0-Index of the item position
-		 */
-		expand { i -> 
-			def item = item(i) 
-			item.click()
-			return submenu(item)
-		}
-
-		/* ------------------------------------------------------------------------------------------------------*/				
-		/*                                              Private use                                              */				
-		/* ------------------------------------------------------------------------------------------------------*/
-						
-		/**
-		 * 	Private use.
-		 *  Returns the submenu under the received item.
-		 *  
+		 * Returns the submenu under the received item.
+		 *
 		 * @param item
 		 * 		web element returned by item property.
+		 * 
+		 * NOTE: private usage, better to use the provided methods.
 		 */
 		submenu { item -> module NavigationMenuModule, item.$("ul") }
-
-		/**
-		 * Private use.
-		 * Returns the link contained by the menu item corresponding to the received index.
-		 *  
-		 * @param i
-		 * 		0-Index of the item position
-		 */
-		itemLink { i -> item(i).find("a")[0] }
     }
+
+	/**
+	 * Returns the displayed text for the menu item corresponding to the received index.
+	 *
+	 * @param i
+	 * 		0-Index of the item position
+	 */
+	String getItemText(int i) {
+		itemLink(i).text().trim() 
+	}
+
+	/**
+	 * Expands the menu item corresponding to the received index, returning a submenu (instance of this class).
+	 *
+	 * @param i
+	 * 		0-Index of the item position
+	 */
+	def expand(int i) {
+		def item = item(i)
+		item.click()
+		return submenu(item)
+	}
+
+	/**
+	 * Returns the link contained by the menu item corresponding to the received index.
+	 *
+	 * @param i
+	 * 		0-Index of the item position
+	 */
+	private getItemLink(int i) { 
+		item(i).find("a")[0] 
+	}
+
 }

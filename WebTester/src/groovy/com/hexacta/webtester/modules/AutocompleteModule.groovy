@@ -14,16 +14,28 @@ class AutocompleteModule extends AbstractModule {
 	 
     static content = {
 		search       {  $("input", name: inputValueName) }
-		selectValue  { val -> $("ul").find("li", text: val).click() }
-		
-		// XXX: combining both not working
-		value        { val -> 
-			$("input", name: inputValueName).value(val)
-			selectValue(val)
-		}
+		options      { $("ul li") }
     }
 	
+	def selectValue(val) {
+		def option = options.filter(text: val.toString())
+		if (option) {
+			avoidElementNotClickable(option)
+			option.click()
+		} 
+	}
+
+	// XXX: combining both not working
+	def setValue(val) {
+		search.value(val)
+		waitFor { options.present } 
+		selectValue(val)
+	}
 	
+	def getValue() {
+		search.value()
+	}
+
 }
 /*
 <div class="yui-ac">

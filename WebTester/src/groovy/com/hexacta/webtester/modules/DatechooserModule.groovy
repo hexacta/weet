@@ -2,25 +2,44 @@ package com.hexacta.webtester.modules
 
 import com.hexacta.webtester.modules.AbstractModule
 
-
 /**
- * 
+ * Datechooser
  * 
  * @author gmassenzano
  */
 class DatechooserModule extends AbstractModule {
  
     static content = {
-		value     {  $("input", type: "text") }
-		prevMonth { $("a", text: startsWith("Previous Month")) }
-		nextMonth { $("a", text: startsWith("Next Month")) }
+		value { $("input", type: "text") }
+		
+		// PRIVATE
+		links { $("a") }
 		days { module TableModule, $("table") }
-		
-		selectDay { nr -> days.findCell(nr)?.find("a").click() }
-		
     }
 	
+	def showCalendar() {
+		avoidElementNotClickable(value)
+		value.click()
+	}
 	
+	def selectDay(nr) {
+		def link = days.findCell(nr)?.find("a")
+		avoidElementNotClickable(link)
+		link.click() 
+	}
+
+	def prevMonth() {
+		def link = links.filter(text: startsWith("Previous Month"))
+		avoidElementNotClickable(link)
+		link.click() 
+	}
+	
+	def nextMonth() {
+		def link = links.filter(text: startsWith("Next Month"))
+		avoidElementNotClickable(link)
+		link.click() 
+	}
+
 }
 /*
 <div class="controls">
@@ -65,42 +84,6 @@ January 2014
 <td class="calcell wd4 d9 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell11"><a href="#" class="selector">9</a></td>
 <td class="calcell wd5 d10 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell12"><a href="#" class="selector">10</a></td>
 <td class="calcell wd6 d11 selectable calcellright" id="calic2ea648e5c3c095a2c33a0f382064c14_cell13"><a href="#" class="selector">11</a></td>
-</tr>
-<tr class="w3">
-<td class="calcell wd0 d12 selectable calcellleft" id="calic2ea648e5c3c095a2c33a0f382064c14_cell14"><a href="#" class="selector">12</a></td>
-<td class="calcell wd1 d13 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell15"><a href="#" class="selector">13</a></td>
-<td class="calcell wd2 d14 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell16"><a href="#" class="selector">14</a></td>
-<td class="calcell wd3 d15 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell17"><a href="#" class="selector">15</a></td>
-<td class="calcell wd4 d16 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell18"><a href="#" class="selector">16</a></td>
-<td class="calcell wd5 d17 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell19"><a href="#" class="selector">17</a></td>
-<td class="calcell wd6 d18 selectable calcellright" id="calic2ea648e5c3c095a2c33a0f382064c14_cell20"><a href="#" class="selector">18</a></td>
-</tr>
-<tr class="w4">
-<td class="calcell wd0 d19 selectable calcellleft" id="calic2ea648e5c3c095a2c33a0f382064c14_cell21"><a href="#" class="selector">19</a></td>
-<td class="calcell wd1 d20 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell22"><a href="#" class="selector">20</a></td>
-<td class="calcell wd2 d21 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell23"><a href="#" class="selector">21</a></td>
-<td class="calcell wd3 d22 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell24"><a href="#" class="selector">22</a></td>
-<td class="calcell wd4 d23 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell25"><a href="#" class="selector">23</a></td>
-<td class="calcell wd5 d24 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell26"><a href="#" class="selector">24</a></td>
-<td class="calcell wd6 d25 selectable calcellright" id="calic2ea648e5c3c095a2c33a0f382064c14_cell27"><a href="#" class="selector">25</a></td>
-</tr>
-<tr class="w5">
-<td class="calcell wd0 d26 selectable calcellleft" id="calic2ea648e5c3c095a2c33a0f382064c14_cell28"><a href="#" class="selector">26</a></td>
-<td class="calcell wd1 d27 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell29"><a href="#" class="selector">27</a></td>
-<td class="calcell wd2 d28 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell30"><a href="#" class="selector">28</a></td>
-<td class="calcell wd3 d29 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell31"><a href="#" class="selector">29</a></td>
-<td class="calcell wd4 d30 selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell32"><a href="#" class="selector">30</a></td>
-<td class="calcell wd5 d31 today selectable" id="calic2ea648e5c3c095a2c33a0f382064c14_cell33"><a href="#" class="selector">31</a></td>
-<td class="calcell oom calcellright" id="calic2ea648e5c3c095a2c33a0f382064c14_cell34">1</td>
-</tr>
-<tr class="w6">
-<td class="calcell oom calcellleft calcellbottom" id="calic2ea648e5c3c095a2c33a0f382064c14_cell35">2</td>
-<td class="calcell oom calcellbottom" id="calic2ea648e5c3c095a2c33a0f382064c14_cell36">3</td>
-<td class="calcell oom calcellbottom" id="calic2ea648e5c3c095a2c33a0f382064c14_cell37">4</td>
-<td class="calcell oom calcellbottom" id="calic2ea648e5c3c095a2c33a0f382064c14_cell38">5</td>
-<td class="calcell oom calcellbottom" id="calic2ea648e5c3c095a2c33a0f382064c14_cell39">6</td>
-<td class="calcell oom calcellbottom" id="calic2ea648e5c3c095a2c33a0f382064c14_cell40">7</td>
-<td class="calcell oom calcellright calcellbottom" id="calic2ea648e5c3c095a2c33a0f382064c14_cell41">8</td>
 </tr>
 </tbody>
 </table></div>

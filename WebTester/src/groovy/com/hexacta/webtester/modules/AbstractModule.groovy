@@ -8,5 +8,8 @@ import geb.Module
  * @author gmassenzano
  */
 class AbstractModule extends Module {
- 
+
+	def avoidElementNotClickable(element) {
+		page.avoidElementNotClickable(element)
+	} 
 }

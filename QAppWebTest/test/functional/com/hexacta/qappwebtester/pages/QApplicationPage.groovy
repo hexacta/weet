@@ -1,9 +1,9 @@
 package com.hexacta.qappwebtester.pages
 
 import com.hexacta.webtester.modules.NavigationMenuModule
-import com.hexacta.webtester.pages.AjaxPage
+import com.hexacta.webtester.pages.ApplicationPage
 
-abstract class QApplicationPage extends AjaxPage {
+abstract class QApplicationPage extends ApplicationPage {
 	// Menu options
 	static int CONFIGURATION = 0, AUDITS = 1
 	

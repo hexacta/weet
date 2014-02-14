@@ -1,7 +1,6 @@
 package com.hexacta.qappwebtester.audits
 
-import static com.hexacta.qappwebtester.pages.QAppEntityListPage.*
-import static com.hexacta.qappwebtester.pages.QAppEntityPage.*
+import static com.hexacta.qappwebtester.pages.crud.QAppEntityListPage.*
 import static com.hexacta.qappwebtester.pages.QApplicationPage.*
 import spock.lang.*
 
@@ -21,7 +20,7 @@ class AuditsSpec extends QApplicationSpec {
 		
         when: "Navigate to new entity page and set the values for each entity property and save."
 		project = AUDIT_PROJECT
-		// waitFor { phase.displayed  }
+		
 		revisionManager.search = "Gerardo"
 		revisionManager.selectValue("Gerardo Massenzano")
 		
@@ -32,6 +31,7 @@ class AuditsSpec extends QApplicationSpec {
 		to.value = new Date().format('dd/MM/yyyy')
 		date.value = new Date().format('dd/MM/yyyy')
 		
+		// waitFor { phase.displayed  }
 		phase = "Desarrollo"
 		
 		create.click(AuditNewAnswerQuestionsPage)

@@ -11,14 +11,31 @@ import com.hexacta.webtester.modules.AbstractModule
 class TableModule extends AbstractModule {
  
     static content = {
-    	cell { $("td", it) }
+		// generic cell accessor that takes an index
+		cell { i -> $("td", i) }
+		
 		cells { $("td") }
-		rows(required: false) { $("tbody").find("tr") }
+		
+		rows(required: false) { $("tbody tr") }
+		
+		row { i -> $("tbody tr", i) }
+		
 		column { 
 			i -> rows.collect {
 				row -> row.find("td")[i] 
 			}
 		}
+
+		// TODO: resolver dinamicamente la columna segun el titulo, para usarlo por ej:
+		// table.row(0).title
+		// table.row(1).author
+		
+//		title { cell(0).text() }
+//		author { cell(1).text() }
+//		format { cell(2).text() }
+//		price { cell(3).text().find(/\d+(?:\.\d+)?/).toBigDecimal() }
+//		releaseDate { new SimpleDateFormat("d MMM yyyy").parse(cell(4).text()) }
+
     }
 
 	int getRowCount() { 

@@ -1,6 +1,6 @@
 package com.hexacta.qappwebtester.audits
 
-import com.hexacta.qappwebtester.pages.QAppEntityNewPage
+import com.hexacta.qappwebtester.pages.crud.QAppEntityNewPage;
 
 class AuditNewAnswerQuestionsPage extends QAppEntityNewPage {
 	static url = "audit/answerQuestions"

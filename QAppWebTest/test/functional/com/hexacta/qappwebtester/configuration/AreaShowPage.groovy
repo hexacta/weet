@@ -1,6 +1,6 @@
 package com.hexacta.qappwebtester.configuration
 
-import com.hexacta.qappwebtester.pages.QAppEntityShowPage
+import com.hexacta.qappwebtester.pages.crud.QAppEntityShowPage;
 
 class AreaShowPage extends QAppEntityShowPage {
 	static url = "area/show"

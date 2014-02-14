@@ -5,11 +5,7 @@ import com.hexacta.webtester.pages.AjaxPage
 
 abstract class ApplicationPage extends AjaxPage {
 
-	def getMenuBase() {
-		$("ul" , id: "menu")
-	}
-	 		
 	static content = {
-		menu { module NavigationMenuModule, menuBase }
+		menu { module NavigationMenuModule, $("ul" , id: "menu") }
 	}
 }

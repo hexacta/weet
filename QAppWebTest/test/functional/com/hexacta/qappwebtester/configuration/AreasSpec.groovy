@@ -1,7 +1,6 @@
 package com.hexacta.qappwebtester.configuration
 
-import static com.hexacta.qappwebtester.pages.QAppEntityListPage.*
-import static com.hexacta.qappwebtester.pages.QAppEntityPage.*
+import static com.hexacta.qappwebtester.pages.crud.QAppEntityListPage.*
 import static com.hexacta.qappwebtester.pages.QApplicationPage.*
 import spock.lang.*
 

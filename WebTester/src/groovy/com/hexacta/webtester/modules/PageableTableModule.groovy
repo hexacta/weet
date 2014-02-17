@@ -1,12 +1,11 @@
 package com.hexacta.webtester.modules
 
-import com.hexacta.webtester.modules.AbstractModule
-
-
 /**
- * 
- * 
+ * Pageable table. 
+ *
  * @author gmassenzano
+ * @see TableModule
+ * @see PaginationModule
  */
 class PageableTableModule extends AbstractModule {
  

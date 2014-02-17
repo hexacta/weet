@@ -1,8 +1,24 @@
 package com.hexacta.webtester.modules
 
 /**
- * 
- * 
+ * Pagination panel. 
+ * <p> 
+ * Following is an example of the html node that handles an instance of this class:
+<code> 
+<div class="pagination">
+	<div class="mensaje_pagination">
+		<label>
+			11 - 20
+			de un total de 75
+		</label>
+	</div>
+	<a href="/liquidacion-haberes/grado/list?offset=0&amp;max=10" class="prevLink">Anterior</a>
+	<a href="/liquidacion-haberes/grado/list?offset=0&amp;max=10" class="step">1</a>
+	<span class="currentStep">2</span>
+	<a href="/liquidacion-haberes/grado/list?offset=20&amp;max=10" class="step">3</a>
+	<a href="/liquidacion-haberes/grado/list?offset=20&amp;max=10" class="nextLink">Siguiente</a>
+</div>
+</code> 
  * @author gmassenzano
  */
 class PaginationModule extends AbstractModule {
@@ -38,14 +54,3 @@ class PaginationModule extends AbstractModule {
 		nextLink.empty
 	}
 }
-/*
- <div class="pagination">
-	 <ul>
-		 <li><span class="currentStep">1</span>
-		 <a href="/qapplication/area/list?offset=15&amp;max=15&amp;sort=name" class="step">2</a>
-		 <a href="/qapplication/area/list?offset=30&amp;max=15&amp;sort=name" class="step">3</a>
-		 <a href="/qapplication/area/list?offset=15&amp;max=15&amp;sort=name" class="nextLink">Next</a>
-		 </li>
-	 </ul>
- </div>
-*/

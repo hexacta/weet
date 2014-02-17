@@ -8,7 +8,7 @@ package com.hexacta.webtester.modules
  * <code> menu { module NavigationMenuModule, $("ul.nav")[0] } </code>
  * <p> 
  * Following is an example of the html node that handles an instance of this class:
- <code> 
+<code> 
 <ul>
 	<li>
 		<div class="btn-group">

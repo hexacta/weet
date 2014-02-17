@@ -1,5 +1,6 @@
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.firefox.FirefoxProfile
 import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import org.openqa.selenium.ie.InternetExplorerDriver
 
@@ -82,7 +83,11 @@ environments {
 	// run as grails test-app -functional -Dgeb.env=firefox
 	// See: http://code.google.com/p/selenium/wiki/FirefoxDriver
 	firefox {
-		driver = { new FirefoxDriver() }
+		FirefoxProfile profile = new FirefoxProfile()
+		//explicitly enable native events(this is mandatory on Linux system, since they
+		//are not enabled by default
+		profile.setEnableNativeEvents(true)
+		driver = { new FirefoxDriver(profile) }
 	}
 
     // run as grails test-app -functional -Dgeb.env=ie -Dwebdriver.ie.driver=..\browser-drivers\IEDriverServer.exe

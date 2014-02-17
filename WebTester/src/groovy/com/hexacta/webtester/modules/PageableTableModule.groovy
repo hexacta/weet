@@ -47,6 +47,10 @@ class PageableTableModule extends AbstractModule {
 	// ---------------------------------------------------------------
 	// Navigation methods
 	// ---------------------------------------------------------------
+	def getCurrentPage() {
+		pagination.currentPage
+	}
+	
 	def prevPage() {
 		pagination.previous()
 	}

@@ -1,5 +1,8 @@
 package com.hexacta.webtester.modules
 
+import org.openqa.selenium.WebElement
+import org.openqa.selenium.interactions.Actions
+
 
 /**
  * Represents a navigation menu. Each item can have nested submenus of the same type. 
@@ -74,7 +77,13 @@ class NavigationMenuModule extends AbstractModule {
 	 */
 	def expand(int i) {
 		def item = item(i)
-		item.click()
+		Actions actions = new Actions(driver)
+		WebElement element = item.firstElement()
+		actions.moveToElement(element)
+		element.click()
+		actions.clickAndHold(element)
+		sleep(1000)  // To avoid "Element is not clickable at point" exception
+		actions.release()
 		return submenu(item)
 	}
 

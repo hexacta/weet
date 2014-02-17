@@ -17,9 +17,7 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 	
 	def setup() {
 		given:
-		def item = menu.expand(CONFIGURACION).item(CONF_GRADOS)
-		avoidElementNotClickable(item)
-		item.click(GradosPage)
+		menu.expand(CONFIGURACION).item(CONF_GRADOS).click(GradosPage)
 	}
 
 	@Ignore
@@ -68,7 +66,7 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		descripcionCorta == DESC_CORTA
 	}
 
-	// @Ignore
+	@Ignore
 	def "Grado update"() {
         when: "Look for the inserted value in the entity list"
 		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException
@@ -158,4 +156,56 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 	}
 
 */	
+	def "Paginacion correcta"() {
+		expect: "Pagina inicial"
+		table.pageRowCount == 10
+		table.currentPage == 1
+		table.firstPage
+		!table.lastPage
+		
+		when: "user navigates to 2nd page of results"
+		table.toPage(2)
+
+		then:
+		// at GradosPage
+		table.pageRowCount == 10
+		table.currentPage == 2
+		!table.firstPage
+		!table.lastPage
+		
+		when: "user navigates to last page of results"
+		table.toPage(8)
+
+		then:
+		// at GradosPage
+		table.pageRowCount == 5
+		table.currentPage == 8
+		!table.firstPage
+		table.lastPage
+		
+		when: "user navigates back to 1st page of results"
+		table.toPage(1)
+
+		then:
+		// at GradosPage
+		table.pageRowCount == 10
+		table.currentPage == 1
+		
+		when: "user uses next button to go to 2nd page"
+		table.nextPage()
+		
+		then:
+		// at GradosPage
+		table.pageRowCount == 10
+		table.currentPage == 2
+		
+		when: "user uses previous button to go back to 1st page"
+		table.prevPage()
+
+		then:
+		// at GradosPage
+		table.pageRowCount == 10
+		table.currentPage == 1
+	}
+
 }

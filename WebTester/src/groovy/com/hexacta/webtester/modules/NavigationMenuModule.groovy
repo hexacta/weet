@@ -82,7 +82,9 @@ class NavigationMenuModule extends AbstractModule {
 		actions.moveToElement(element)
 		element.click()
 		actions.clickAndHold(element)
-		sleep(1000)  // To avoid "Element is not clickable at point" exception
+		sleep(500)
+		item.jquery.mouseover()
+		sleep(500)  // To avoid "Element is not clickable at point" exception
 		actions.release()
 		return submenu(item)
 	}

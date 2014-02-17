@@ -1,4 +1,5 @@
 // locations to search for config files that get merged into the main config;
+
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
@@ -10,6 +11,11 @@
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
+
+dbUrl = "jdbc:jtds:Sqlserver://hxsqldev:1433/GNA_LiqHaberes1;instance=sql2008"
+dbUser = "gnaslh"
+dbPassword = "epchm"
+
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format

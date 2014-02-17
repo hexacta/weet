@@ -30,7 +30,7 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		true
 	}
 
-	@Ignore
+	// @Ignore
 	// TODO: revisar el getValue de los selects
 	def "Grado creation"() {
 		when: "Find the entity to be inserted is not present"
@@ -66,7 +66,7 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		descripcionCorta == DESC_CORTA
 	}
 
-	@Ignore
+	// @Ignore
 	def "Grado update"() {
         when: "Look for the inserted value in the entity list"
 		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException
@@ -113,6 +113,9 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		codigo           == CODIGO
 		descripcion      == DESCRIPCION  + "XX"
 		descripcionCorta == DESC_CORTA + "Z"
+		
+		cleanup: "borro el usuario"
+		sql.execute( "delete from grado where codigo = $CODIGO" )
     }
 /*
 	def "Area delete"() {
@@ -156,6 +159,7 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 	}
 
 */	
+	@Ignore
 	def "Paginacion correcta"() {
 		expect: "Pagina inicial"
 		table.pageRowCount == 10

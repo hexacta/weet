@@ -28,6 +28,14 @@ class PageableTableModule extends AbstractModule {
 		table.column(i) 
 	}
 	
+	def getCell(row, int col) {
+		table.getCell(row, col)
+	}
+
+	String getCellValue(row, int col) {
+		table.getCellValue(row, col)
+	}
+
 	def findCell(String value) {
 		table.findCell(value)
 	}

@@ -14,7 +14,8 @@ driver = {
 
 baseUrl = "http://localhost:8080"
 reportsDir = new File("target/geb-reports")
-reportOnTestFailureOnly = true
+// Currently this flag is only supported by the TestNG adapter. Support for JUnit, Spock and other frameworks is forthcoming.
+reportOnTestFailureOnly = true 
 
 environments {
 	

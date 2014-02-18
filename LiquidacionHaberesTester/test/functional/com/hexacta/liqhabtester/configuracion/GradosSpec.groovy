@@ -20,6 +20,11 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		menu.expand(CONFIGURACION).item(CONF_GRADOS).click(GradosPage)
 	}
 
+	def cleanupSpec() {
+		// Delete the created Grado instance from database, because the application doesn't provide away to do it.
+		sql.execute( "delete from grado where codigo = $CODIGO" )
+	}
+	
 	@Ignore
 	def "Buscar codigo"() {
 		when: "Find the entity to be inserted is not present"
@@ -32,30 +37,33 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 
 	// @Ignore
 	// TODO: revisar el getValue de los selects
-	def "Grado creation"() {
+	def "Crear Grado"() {
 		when: "Find the entity to be inserted is not present"
-		def rowCount, rowLink
-		(rowCount, rowLink) = this.findRowInPages(0, "9.999")
+		def rowCount, row
+		(rowCount, row) = this.findRowInPages(0, "9.999")
 
 		then: "Check that the link for the searched value was found"
-		rowLink == null
+		row == null
 
 		when: "Navigate to new entity page and set the values for each entity property and save."
 		create.click(GradoNewPage)
 		cargo            = CARGO
-		jerarquia        = JERARQUIA
+		// jerarquia        = JERARQUIA
 		codigo           = CODIGO
 		descripcion      = DESCRIPCION
 		descripcionCorta = DESC_CORTA
 		create.click(GradosPage)
 
-		(rowCount, rowLink) = this.findRowInPages(0, "9.999")
+		int newRowCount
+		(newRowCount, row) = this.findRowInPages(0, "9.999")
 		
 		then: "Check that the link for the searched value was found"
-		rowLink != null
+		row != null
+		rowCount + 1 == newRowCount
+		isHabilitado(row)
 
 		when: "Navigate to the show entity page"
-		rowLink.click(GradoEditPage)
+		row.click(GradoEditPage)
 		
 		then:
 		// FIXME: no esta funcionando la comparacion del select por texto.
@@ -67,19 +75,16 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 	}
 
 	// @Ignore
-	def "Grado update"() {
+	def "Actualizar Grado"() {
         when: "Look for the inserted value in the entity list"
-		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException
-		//def rowLink = table.findRowInPages("webtest-area")
-		
-		def rowCount, rowLink
-		(rowCount, rowLink) = this.findRowInPages(0, "9.999")
+		def rowCount, row
+		(rowCount, row) = this.findRowInPages(0, "9.999")
 		
 		then: "Check that the link for the searched value was found"
-		rowLink != null
+		row != null
 		
-		when: "Navigate to the show entity page"
-		rowLink.click(GradoEditPage)
+		when: "Navigate to the entity edit page"
+		row.click(GradoEditPage)
 		// TODO: check entityId
 
 		then: "Check that its attributes are the same as the ones in the entity previously inserted."
@@ -91,20 +96,22 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		descripcionCorta == DESC_CORTA
 		
 		when: "Update its attributes and save"
-		cargo            = CARGO
-		jerarquia        = JERARQUIA
-		codigo           = CODIGO
+//		cargo            = CARGO
+//		jerarquia        = JERARQUIA
+//		codigo           = CODIGO
 		descripcion      = DESCRIPCION + "XX"
 		descripcionCorta = DESC_CORTA + "Z"
 		update.click(GradosPage)
 		
-		(rowCount, rowLink) = this.findRowInPages(0, "9.999")
+		int newRowCount
+		(newRowCount, row) = this.findRowInPages(0, "9.999")
 		
 		then: "Check that the link for the searched value was found"
-		rowLink != null
+		row != null
+		rowCount == newRowCount
 
 		when: "Navigate to the show entity page"
-		rowLink.click(GradoEditPage)
+		row.click(GradoEditPage)
 		
 		then:
 		// FIXME: no esta funcionando la comparacion del select por texto.
@@ -113,53 +120,40 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		codigo           == CODIGO
 		descripcion      == DESCRIPCION  + "XX"
 		descripcionCorta == DESC_CORTA + "Z"
-		
-		cleanup: "borro el usuario"
-		sql.execute( "delete from grado where codigo = $CODIGO" )
     }
-/*
-	def "Area delete"() {
+
+	def "Deshabilitar Grado"() {
 		when: "Look for the inserted value in the entity list"
-		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException
-		//def rowLink = table.findRowInPages("webtest-area")
-		def rowCount, rowLink
-		(rowCount, rowLink) = this.findRowInPages(AREA_NAME_UPDATED)
+		def rowCount, row
+		(rowCount, row) = this.findRowInPages(0, "9.999")
 		
 		then: "Check that the link for the searched value was found"
-		rowLink != null
+		row != null
 		
-		when: "Navigate to the show entity page"
-		rowLink.click(AreaShowPage)
-		// TODO: check entityId
+		when: "Navigate to the entity edit page"
+		row.click(GradoEditPage)
 
-		then: "Check that its attributes are the same as the ones in the entity previously inserted."
-		name == AREA_NAME_UPDATED
+		then: "Check that its attributes are the same as the ones in the entity previously updated."
+		// FIXME: no esta funcionando la comparacion del select por texto.
+//		cargoText        == CARGO
+//		jerarquia        == JERARQUIA
+		codigo           == CODIGO
+		descripcion      == DESCRIPCION  + "XX"
+		descripcionCorta == DESC_CORTA + "Z"
 		
 		when: "Click delete"
-		delete.click(AreaShowPage)
+		delete.click(GradosPage)
 		
-		then: "Confirmation modal dialog is displayed"
-		deleteConfirmation.displayed == true
-		
-		when: "Cancel deletion"
-		deleteConfirmation.cancel.click(AreaShowPage)
-		
-		then: "Confirmation modal dialog is not displayed and go back to show entity page."
-		deleteConfirmation.displayed == false
-		
-		when: "Click delete and Confirm deletion"
-		delete.click(AreaShowPage)
-		deleteConfirmation.confirm.click(AreasPage)
 		def newRowCount
-		(newRowCount, rowLink) = this.findRowInPages(AREA_NAME_UPDATED)
+		(newRowCount, row) = this.findRowInPages(0, "9.999")
 		
 		then: "Navigate to entity list. Check the entity is not listed and the size decreased in one."
-		rowLink == null
-		rowCount == newRowCount + 1 // XXX: this works if the deleted value was in the last page
+		row != null
+		!isHabilitado(row)
+		rowCount == newRowCount
 	}
 
-*/	
-	@Ignore
+	// @Ignore
 	def "Paginacion correcta"() {
 		expect: "Pagina inicial"
 		table.pageRowCount == 10

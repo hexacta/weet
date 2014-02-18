@@ -14,6 +14,7 @@ driver = {
 
 baseUrl = "http://mordor.hexacta.com:8181/qapplication/"
 reportsDir = new File("target/geb-reports")
+// Currently this flag is only supported by the TestNG adapter. Support for JUnit, Spock and other frameworks is forthcoming.
 reportOnTestFailureOnly = true
 
 waiting {

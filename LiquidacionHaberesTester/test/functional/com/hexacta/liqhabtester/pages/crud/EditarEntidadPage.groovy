@@ -8,8 +8,7 @@ abstract class EditarEntidadPage extends EntityEditPage {
 		
 	static content = {
 		update {  $("input", value: "Actualizar") }
-		delete {  $("button", text: containsWord("Deshabilitar")) }
-		
-		// deleteConfirmation { module ConfirmationModalModule, confirmText: "Delete", $("div", id: "deleteModal") }
+		delete(required: false) {  $("input", value: containsWord("Deshabilitar")) }
+		habilitar(required: false) {  $("input", value: containsWord("Habilitar")) }
 	}
 }

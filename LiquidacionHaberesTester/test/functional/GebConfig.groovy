@@ -14,7 +14,8 @@ driver = {
 
 baseUrl = "https://hxgna01:8443/liquidacion-haberes/"
 reportsDir = new File("target/geb-reports")
-reportOnTestFailureOnly = true
+// Currently this flag is only supported by the TestNG adapter. Support for JUnit, Spock and other frameworks is forthcoming.
+reportOnTestFailureOnly = true 
 
 waiting {
 	timeout = 2

@@ -46,7 +46,7 @@ class TableModule extends AbstractModule {
 		
 		column { 
 			i -> rows.collect {
-				row -> row.find("td")[i] 
+				row -> getCell(row, i) 
 			}
 		}
 
@@ -61,6 +61,14 @@ class TableModule extends AbstractModule {
 //		releaseDate { new SimpleDateFormat("d MMM yyyy").parse(cell(4).text()) }
 
     }
+
+	def getCell(row, int col) {
+		row.find("td")[col]
+	}
+
+	String getCellValue(row, int col) {
+		getCell(row, col).text()
+	}
 
 	int getRowCount() { 
 		rows ? rows.size() : 0

@@ -5,6 +5,7 @@ import spock.lang.*
 abstract class CRUDSpec extends ApplicationSpec {
 
 	// TODO: se asume la columna recibida ordenada ascendentemente
+	// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException
 	protected findRowInPages(int col, String value) {
 		int rowCount = 0, pageRowCount
 		while ( (pageRowCount = table.pageRowCount) > 0 && 
@@ -15,7 +16,7 @@ abstract class CRUDSpec extends ApplicationSpec {
 			table.nextPage()
 		}
 		rowCount += pageRowCount
-		def rowLink = table.findRow(col, value)
-		[rowCount, rowLink]
+		def row = table.findRow(col, value)
+		[rowCount, row]
 	}
 }

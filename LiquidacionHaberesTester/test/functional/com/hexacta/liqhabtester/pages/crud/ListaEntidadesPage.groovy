@@ -8,4 +8,9 @@ class ListaEntidadesPage extends EntityListPage {
 		create { $("a", name: "create") }
 	}
 
+	boolean isHabilitado(row) {
+		def td = row.find("td").last()
+		def enable = td.find("input", class: "enableFila")
+		enable.size() == 1
+	}
 }

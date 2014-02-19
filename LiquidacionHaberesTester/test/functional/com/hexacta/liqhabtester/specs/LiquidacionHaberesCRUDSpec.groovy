@@ -10,6 +10,7 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.pages.HomePage
 import com.hexacta.liqhabtester.pages.LoginPage
+import com.hexacta.webtester.pages.AbstractPage
 import com.hexacta.webtester.specs.CRUDSpec
 abstract class LiquidacionHaberesCRUDSpec extends CRUDSpec {
 
@@ -31,11 +32,13 @@ abstract class LiquidacionHaberesCRUDSpec extends CRUDSpec {
 		def config = grailsApplication.config
 	}
 	
-	def getInitialPage() {
+	@Override
+	Class<? extends AbstractPage> getInitialPage() {
 		HomePage
 	}
-	
-	def getLoginPage() {
+
+	@Override
+	Class<? extends LoginPage> getLoginPage() {
 		LoginPage
 	}
 }

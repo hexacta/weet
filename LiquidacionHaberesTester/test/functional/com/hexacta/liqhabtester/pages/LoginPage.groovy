@@ -7,6 +7,6 @@ class LoginPage extends com.hexacta.webtester.pages.LoginPage {
 	static at = { $().text().contains("Bienvenido, por favor ingrese su usuario y contraseña.") }
  
     static content = {
-        logIn     { $("input", value: "Ingresar") }
+        loginButton   { $("input", value: "Ingresar") }
     }
 }

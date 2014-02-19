@@ -2,7 +2,8 @@ package com.hexacta.webtester.specs
 
 import spock.lang.*
 
-import com.hexacta.webtester.UserRobot
+import com.hexacta.webtester.pages.AbstractPage
+import com.hexacta.webtester.pages.LoginPage
 
 /**
  * Common spec for any web application which starts with a user session login.
@@ -11,45 +12,49 @@ import com.hexacta.webtester.UserRobot
  */
 abstract class ApplicationSpec extends AbstractSpec {
 
+	boolean initialLogin = true
+	String usernameValue = "admin"
+	String passwordValue = "admin"
+	
 	/**
 	 * Logs in before any spec method is executed.
 	 */
 	def setup() {
-		given:
 		waitFor { to loginPage }
-		username = usernameValue
-		password = usernameValue
-		logIn.click()
-
-		then: "Redirects to home page"
-		waitFor { at initialPage }
+		if (initialLogin) {
+			given:
+			login usernameValue, passwordValue
+	
+			then: "Redirects to an initial page"
+			waitFor { at initialPage }
+		}
 	}
 
 	/**
 	 * Returns the class for the initial page after the login.
 	 */
-	abstract def getInitialPage()
+	abstract Class<? extends AbstractPage> getInitialPage()
 
 	/**
 	 * Returns the Login page class. It should contain 'username' and 'password' field properties, and a 'logIn' button property.	
 	 */
-	abstract def getLoginPage()
+	abstract Class<? extends LoginPage> getLoginPage()
 
 	/**
 	 * The default username used for the session. 
 	 */
-	String getUsernameValue() {
-		"admin"
-	}
+//	String getUsernameValue() {
+//		"admin"
+//	}
 
 	/**
 	 * The default password used for the session. 
 	 */
-	String getPasswordValue() {
-		"admin"
-	}
+//	String getPasswordValue() {
+//		"admin"
+//	}
 
 	def cleanup() {
-		// user.logout()
+		// logout()
 	}
 }

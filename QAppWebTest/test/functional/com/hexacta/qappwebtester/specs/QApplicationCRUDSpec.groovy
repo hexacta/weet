@@ -4,15 +4,18 @@ import spock.lang.*
 
 import com.hexacta.qappwebtester.pages.HomePage
 import com.hexacta.qappwebtester.pages.LoginPage
+import com.hexacta.webtester.pages.AbstractPage
 import com.hexacta.webtester.specs.CRUDSpec
 
 abstract class QApplicationCRUDSpec extends CRUDSpec {
 
-	def getInitialPage() {
+	@Override
+	Class<? extends AbstractPage> getInitialPage() {
 		HomePage
 	}
-	
-	def getLoginPage() {
+
+	@Override
+	Class<? extends LoginPage> getLoginPage() {
 		LoginPage
 	}
 

@@ -36,9 +36,7 @@ abstract class LoginSpec extends AbstractSpec {
         at loginPage
  
         when: "username y clave correctos"
-        username = usernameValue
-        password = passwordValue
-        logIn.click()
+        login usernameValue, passwordValue
         
         then: "Redirects to home page"
         at initialPage
@@ -52,9 +50,7 @@ abstract class LoginSpec extends AbstractSpec {
         at loginPage
  
         when: "Invalid password"
-        username = "admin"
-        password = "xxxxxxxxx"
-        logIn.click()
+        login usernameValue, "xxxxxxxxx"
  
         then: "Stay at login page"
         at loginPage
@@ -69,9 +65,7 @@ abstract class LoginSpec extends AbstractSpec {
         at loginPage
 		
 		when: "Invalid username"
-		username = "invalidusername"
-		password = "xxxxxxxxx"
-		logIn.click()
+        login "invalidusername", "xxxxxxxxx"
  
         then: "Stay at login page"
         at loginPage

@@ -9,11 +9,7 @@ import org.openqa.selenium.JavascriptExecutor
 
 import spock.lang.*
 
-import com.hexacta.webtester.UserRobot
-
 abstract class AbstractSpec extends GebSpec {
-
-	@Shared UserRobot user
 
 	@Rule TestName name = new TestName()
 	
@@ -28,8 +24,6 @@ abstract class AbstractSpec extends GebSpec {
 			// waitFor { to SecurityCertificateErrorPage }
 			// continueToThisWebsite()
 		}
-		
-		user = new UserRobot(getBrowser())
 	}
 
 	def setup() {
@@ -37,8 +31,6 @@ abstract class AbstractSpec extends GebSpec {
 	}
 	
 	def cleanup() {
-		// user.logout()
-		
 		// Generate a report of last page state before calling spec cleanup
 		report "${name.methodName}_cleanup"
 	}

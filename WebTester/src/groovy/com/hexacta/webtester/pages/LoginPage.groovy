@@ -10,6 +10,13 @@ abstract class LoginPage extends AbstractPage {
     static content = {
         username  { login() }                      // Equivalent to: { $("input", name: "login") }
         password  { $("input", name: "password") } // Can't be used { password() } because a circularity call is produced
-        logIn     { $("input", value: "Log in")  }
+        loginButton { $("input", value: "Log in")  }
     }
+	
+	void login(String user, String pswd) {
+		username = user
+		password = pswd
+		loginButton.click()
+	}
+
 }

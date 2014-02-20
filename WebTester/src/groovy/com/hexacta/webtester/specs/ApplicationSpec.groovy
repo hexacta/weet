@@ -30,6 +30,10 @@ abstract class ApplicationSpec extends AbstractSpec {
 		}
 	}
 
+	def cleanup() {
+		logout()
+	}
+
 	/**
 	 * Returns the class for the initial page after the login.
 	 */
@@ -54,7 +58,4 @@ abstract class ApplicationSpec extends AbstractSpec {
 //		"admin"
 //	}
 
-	def cleanup() {
-		// logout()
-	}
 }

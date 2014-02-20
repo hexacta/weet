@@ -3,6 +3,8 @@ package com.hexacta.webtester.pages
 import geb.Page
 
 import org.openqa.selenium.Capabilities
+import org.openqa.selenium.WebElement
+import org.openqa.selenium.interactions.Actions
 
 abstract class AbstractPage extends Page {
 	
@@ -16,7 +18,7 @@ abstract class AbstractPage extends Page {
 	 * @param element
 	 * 		A clickable element.
 	 */
-	def avoidElementNotClickable(element) {
+	void avoidElementNotClickable(element) {
 		Capabilities cp = driver.capabilities
 		if (cp.browserName == "chrome") {
 			try {
@@ -25,6 +27,18 @@ abstract class AbstractPage extends Page {
 				// Nothing to do.
 			}
 		}
+	}
+
+	void mouseoverAndClick(element) {
+		Actions actions = new Actions(driver)
+		WebElement webElement = element.firstElement()
+		actions.moveToElement(webElement)
+		element.click()
+		actions.clickAndHold(webElement)
+		sleep(500)
+		element.jquery.mouseover()
+		sleep(500)  // To avoid "Element is not clickable at point" exception
+		actions.release()
 	}
 
 }

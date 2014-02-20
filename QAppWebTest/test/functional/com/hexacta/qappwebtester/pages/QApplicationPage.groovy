@@ -15,5 +15,7 @@ abstract class QApplicationPage extends ApplicationPage {
 		
 	static content = {
 		menu { module NavigationMenuModule, $("ul.nav")[0] }
+		
+		userMenu { $("a", class:"btn dropdown-toggle").has("i") }
 	}
 }

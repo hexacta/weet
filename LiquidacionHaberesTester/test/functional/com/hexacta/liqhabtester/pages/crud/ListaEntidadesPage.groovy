@@ -6,6 +6,8 @@ class ListaEntidadesPage extends EntityListPage {
 	
 	static content = {
 		create { $("a", name: "create") }
+		
+		userMenu { $("li.menu_logout_right a.drop_logout") }
 	}
 
 	boolean isHabilitado(row) {

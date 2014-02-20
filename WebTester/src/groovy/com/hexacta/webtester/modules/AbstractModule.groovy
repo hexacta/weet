@@ -9,7 +9,11 @@ import geb.Module
  */
 class AbstractModule extends Module {
 
-	def avoidElementNotClickable(element) {
+	void avoidElementNotClickable(element) {
 		page.avoidElementNotClickable(element)
-	} 
+	}
+	
+	void mouseoverAndClick(element) {
+		page.mouseoverAndClick(element)
+	}
 }

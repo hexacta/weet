@@ -11,5 +11,7 @@ abstract class QAppEntityListPage extends EntityListPage {
 		pageMenu { module NavigationMenuModule, $("ul.nav")[1] }
 		
 		create { pageMenu.item(NEW) } 
+		
+		userMenu { $("a", class:"btn dropdown-toggle").has("i") }
 	}
 }

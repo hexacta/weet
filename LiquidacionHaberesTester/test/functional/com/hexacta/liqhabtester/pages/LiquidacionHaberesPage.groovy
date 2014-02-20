@@ -10,4 +10,7 @@ abstract class LiquidacionHaberesPage extends ApplicationPage {
 	// Configuration submenu
 	static int CONF_GRADOS = 13
 		
+	static content = {
+		userMenu { $("li.menu_logout_right a.drop_logout") }
+	}
 }

@@ -11,6 +11,8 @@ abstract class LoginPage extends AbstractPage {
         username  { login() }                      // Equivalent to: { $("input", name: "login") }
         password  { $("input", name: "password") } // Can't be used { password() } because a circularity call is produced
         loginButton { $("input", value: "Log in")  }
+		
+		logoutButton(required: false) { $("input", value: "Log out") }
     }
 	
 	void login(String user, String pswd) {
@@ -19,4 +21,10 @@ abstract class LoginPage extends AbstractPage {
 		loginButton.click()
 	}
 
+	void logout() {
+		def button = logoutButton
+		if (button?.size() == 1) {
+			button.click()
+		}
+	}
 }

@@ -1,7 +1,6 @@
 package com.hexacta.webtester.modules
 
 import org.openqa.selenium.WebElement
-import org.openqa.selenium.interactions.Actions
 
 
 /**
@@ -41,12 +40,11 @@ class NavigationMenuModule extends AbstractModule {
     static content = {
 		
 		/**
-		 * Returns the menu item corresponding to the received index.
-		 *  
-		 * @param i
-		 * 		0-Index of the item position
+		 * Returns all first level menu items.
 		 */
-		item { i -> $().children("li")[i] }
+		items { $().children("li") }
+		
+		item { i -> items[i] }
 		
 		/**
 		 * Returns the submenu under the received item.
@@ -65,6 +63,17 @@ class NavigationMenuModule extends AbstractModule {
 	 * @param i
 	 * 		0-Index of the item position
 	 */
+	def item(String itemText) {
+		def item = items.find { item -> getLink(item).text().trim() == itemText }
+		item?.size() > 0 ? item : null
+	}
+
+	/**
+	 * Returns the displayed text for the menu item corresponding to the received index.
+	 *
+	 * @param i
+	 * 		0-Index of the item position
+	 */
 	String getItemText(int i) {
 		itemLink(i).text().trim() 
 	}
@@ -75,20 +84,31 @@ class NavigationMenuModule extends AbstractModule {
 	 * @param i
 	 * 		0-Index of the item position
 	 */
-	def expand(int i) {
-		def item = item(i)
-		Actions actions = new Actions(driver)
-		WebElement element = item.firstElement()
-		actions.moveToElement(element)
-		element.click()
-		actions.clickAndHold(element)
-		sleep(500)
-		item.jquery.mouseover()
-		sleep(500)  // To avoid "Element is not clickable at point" exception
-		actions.release()
+	def expand(def item) {
+		mouseoverAndClick(item)
 		return submenu(item)
 	}
 
+	/**
+	 * Expands the menu item corresponding to the received index, returning a submenu (instance of this class).
+	 *
+	 * @param i
+	 * 		0-Index of the item position
+	 */
+	def expand(int i) {
+		expand(item(i))
+	}
+	
+	/**
+	 * Returns the link contained by the menu item.
+	 *
+	 * @param item
+	 * 		The menu item element.
+	 */
+	private getLink(def item) { 
+		item.find("a")[0] 
+	}
+	
 	/**
 	 * Returns the link contained by the menu item corresponding to the received index.
 	 *
@@ -96,7 +116,7 @@ class NavigationMenuModule extends AbstractModule {
 	 * 		0-Index of the item position
 	 */
 	private getItemLink(int i) { 
-		item(i).find("a")[0] 
+		getLink(item(i)) 
 	}
 
 }

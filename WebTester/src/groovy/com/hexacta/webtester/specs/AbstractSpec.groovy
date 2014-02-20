@@ -11,7 +11,7 @@ import spock.lang.*
 
 abstract class AbstractSpec extends GebSpec {
 
-	@Rule TestName name = new TestName()
+	@Rule TestName testName = new TestName()
 	
 	def setupSpec() {
 		reportGroup reportGroupName
@@ -32,7 +32,7 @@ abstract class AbstractSpec extends GebSpec {
 	
 	def cleanup() {
 		// Generate a report of last page state before calling spec cleanup
-		report "${name.methodName}_cleanup"
+		report "${testName.methodName}_cleanup"
 	}
 
 	/**

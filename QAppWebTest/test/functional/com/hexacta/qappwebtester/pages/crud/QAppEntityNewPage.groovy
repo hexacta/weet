@@ -10,5 +10,7 @@ abstract class QAppEntityNewPage extends EntityNewPage {
 		
 	static content = {
 		pageMenu { module NavigationMenuModule, $("ul.nav")[1] }
+		
+		userMenu { $("a", class:"btn dropdown-toggle").has("i") }
 	}
 }

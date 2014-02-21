@@ -1,3 +1,5 @@
+import geb.download.helper.SelfSignedCertificateHelper
+
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -5,6 +7,8 @@ import org.openqa.selenium.firefox.FirefoxProfile
 import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import org.openqa.selenium.ie.InternetExplorerDriver
 import org.openqa.selenium.remote.DesiredCapabilities
+
+import com.sun.net.ssl.HttpsURLConnection
 
 baseUrl = "https://hxgna01:8443/liquidacion-haberes/"
 
@@ -71,6 +75,14 @@ environments {
 		driver = { new InternetExplorerDriver(ieCapabilities) }
 	}
 
+}
+
+// Direct downloading and dealing with untrusted certificates
+downloadText { HttpURLConnection connection ->
+	if (connection instanceof HttpsURLConnection) {
+		def helper = new SelfSignedCertificateHelper(getClass().getResource('/keystore.jks'), 'slhserver')
+		helper.acceptCertificatesFor(connection as HttpsURLConnection)
+	}
 }
 
 /**

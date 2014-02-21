@@ -1,8 +1,7 @@
 package com.hexacta.liqhabtester.configuracion
 
-//import static com.hexacta.qappwebtester.pages.QAppEntityListPage.*
-//import static com.hexacta.qappwebtester.pages.QAppEntityPage.*
 import static com.hexacta.liqhabtester.pages.LiquidacionHaberesPage.*
+import geb.download.DownloadException
 import spock.lang.*
 
 import com.hexacta.liqhabtester.specs.LiquidacionHaberesCRUDSpec
@@ -206,4 +205,13 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		table.currentPage == 1
 	}
 
+	@FailsWith(DownloadException)
+	// FIXME: java.security.cert.CertificateException: No name matching hxgna01 found
+	def "Export excel"() {
+		when:
+		def bytes = downloadBytes(export.excel.@href)
+		
+		then:
+		true
+	}
 }

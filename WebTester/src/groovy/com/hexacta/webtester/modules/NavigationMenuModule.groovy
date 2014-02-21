@@ -37,12 +37,14 @@ import org.openqa.selenium.WebElement
  */
 class NavigationMenuModule extends AbstractModule {
  
+	String itemBase
+	
     static content = {
 		
 		/**
 		 * Returns all first level menu items.
 		 */
-		items { $().children("li") }
+		items { $().children(itemBase != null ? itemBase : "li") }
 		
 		item { i -> items[i] }
 		
@@ -54,7 +56,7 @@ class NavigationMenuModule extends AbstractModule {
 		 * 
 		 * NOTE: private usage, better to use the provided methods.
 		 */
-		submenu { item -> module NavigationMenuModule, item.$("ul") }
+		submenu { item -> module NavigationMenuModule, item.find("ul") }
     }
 
 	/**

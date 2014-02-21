@@ -1,37 +1,29 @@
 package com.hexacta.qappwebtester.specs
 
-import static com.hexacta.qappwebtester.pages.QApplicationPage.*
 import spock.lang.*
 
-import com.hexacta.qappwebtester.audits.AuditsPage
-import com.hexacta.qappwebtester.configuration.ProcessPage
-import com.hexacta.qappwebtester.configuration.TemplatesPage
+import com.hexacta.qappwebtester.pages.HomePage
+import com.hexacta.qappwebtester.pages.LoginPage
+import com.hexacta.webtester.pages.AbstractPage
 
-@Ignore
-class NavigationMenuSpec extends QApplicationSpec {
-    def "Navigate to Templates"() {
-        when: ""
-		menu.expand(CONFIGURATION).item(CONF_TEMPLATES).click(TemplatesPage)
-        
-        then: ""
-		true
-		waitFor { at TemplatesPage }
-    }
+class NavigationMenuSpec extends com.hexacta.webtester.specs.NavigationMenuSpec {
 
-    def "Navigate to Processes"() {
-        when: ""
-		menu.expand(CONFIGURATION).item(CONF_PROCESSES).click(ProcessPage)
-        
-        then: ""
-		waitFor { at ProcessPage }
-    }
+	Map menuConfig = [
+		"Configuración" : ["Templates", "Procesos", "Areas", "Estados de Proyectos", "Preguntas"],
+		"Auditorias" : ["Nueva auditoría", "Lista de auditorías"],
+		"Proyectos" : ["Proyectos", "Instancias de Checklist"],
+		"Métricas" : ["Métricas", "Resolver métricas"],
+		"Administración" : ["Usuarios", "Roles", "Configuración"]
+	]
+			
+	@Override
+	Class<? extends AbstractPage> getInitialPage() {
+		HomePage
+	}
 
-	def "Navigate to Audits"() {
-		when: ""
-		menu.expand(AUDITS).item(AUDIT_LIST).click(AuditsPage)
-		
-		then: ""
-		waitFor { at AuditsPage }
+	@Override
+	Class<? extends LoginPage> getLoginPage() {
+		LoginPage
 	}
 
 }

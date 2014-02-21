@@ -13,8 +13,8 @@ import com.hexacta.webtester.pages.LoginPage
 abstract class ApplicationSpec extends AbstractSpec {
 
 	boolean initialLogin = true
-	String usernameValue = "admin"
-	String passwordValue = "admin"
+	@Shared String username = "admin"
+	@Shared String password = "admin"
 	
 	/**
 	 * Logs in before any spec method is executed.
@@ -23,7 +23,7 @@ abstract class ApplicationSpec extends AbstractSpec {
 		waitFor { to loginPage }
 		if (initialLogin) {
 			given:
-			login usernameValue, passwordValue
+			login username, password
 	
 			then: "Redirects to an initial page"
 			waitFor { at initialPage }

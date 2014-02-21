@@ -11,6 +11,8 @@ abstract class LiquidacionHaberesPage extends ApplicationPage {
 	static int CONF_GRADOS = 13
 		
 	static content = {
+		menu { module NavigationMenuModule, $("ul" , id: "menu"), itemBase: "li.menu_right" }
+		
 		userMenu { $("li.menu_logout_right a.drop_logout") }
 	}
 }

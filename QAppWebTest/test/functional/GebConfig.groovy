@@ -35,6 +35,8 @@ driver = {
 	driver
 }
 
+def locale = "es"
+
 environments {
 	
     // run as grails -functional -Dgeb.env=chrome -Dwebdriver.chrome.driver=[path_to_driver] 
@@ -43,7 +45,7 @@ environments {
 		setDefaultSystemProperty("webdriver.chrome.driver","..\\browser-drivers\\chromedriver.exe")
 		
 		ChromeOptions options = new ChromeOptions()
-		options.addArguments("--lang=en-us")
+		options.addArguments("--lang=$locale")
 		driver = { new ChromeDriver(options) }
 	}
 	
@@ -51,7 +53,7 @@ environments {
 	// See: http://code.google.com/p/selenium/wiki/FirefoxDriver
 	firefox {
 		FirefoxProfile profile = new FirefoxProfile()
-		profile.setPreference( "intl.accept_languages", "en-us" )
+		profile.setPreference( "intl.accept_languages", locale )
 		profile.setPreference( "app.update.enabled", false)
 		profile.setPreference( "browser.tabs.autoHide", true)
 		//explicitly enable native events(this is mandatory on Linux system, since they are not enabled by default

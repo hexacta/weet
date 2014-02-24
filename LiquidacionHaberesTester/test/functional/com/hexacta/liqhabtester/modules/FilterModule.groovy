@@ -86,7 +86,7 @@ class FilterModule extends AbstractModule {
 	void addFilter(String field, OpType opType, value) {
 		def select = fieldOpType(field)
 		if (select.size() == 0) {
-			throw new NoSuchFieldError("$field is not a valid filter field.")
+			throw new NoSuchFieldException("$field is not a valid filter field.")
 		}
 		select.value(opType.value)
 		def input = fieldValue(field)

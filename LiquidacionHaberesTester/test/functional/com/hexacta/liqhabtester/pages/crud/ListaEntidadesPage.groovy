@@ -24,7 +24,7 @@ class ListaEntidadesPage extends EntityListPage {
 		enable.size() == 1
 	}
 	
-	void abrirFiltro() {
+	void openFilterPane() {
 		filterLink.click()
 	}
 	

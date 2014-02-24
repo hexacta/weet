@@ -1,6 +1,7 @@
 package com.hexacta.webtester.modules
 
-import com.hexacta.webtester.modules.AbstractModule
+import java.beans.Introspector
+import java.text.Normalizer
 
 
 /**
@@ -35,18 +36,22 @@ import com.hexacta.webtester.modules.AbstractModule
 class TableModule extends AbstractModule {
  
     static content = {
+		headers { $("tr th") }
+		
 		// generic cell accessor that takes an index
 		cell { i -> $("td", i) }
 		
 		cells { $("td") }
 		
-		rows(required: false) { $("tbody tr") }
+		rows(required: false) { moduleList TableRowModule, $("table tr").tail(), headerNames: headersText }
+		// rows(required: false) { $("tbody tr") }
 		
-		row { i -> $("tbody tr", i) }
+		// row { i -> rows(i) }
+		// row { i -> module TableRowModule, $("tbody tr", i), headerNames: headersText }
 		
 		column { 
 			i -> rows.collect {
-				row -> getCell(row, i) 
+				row -> row.cell(i) 
 			}
 		}
 
@@ -62,14 +67,28 @@ class TableModule extends AbstractModule {
 
     }
 
-	def getCell(row, int col) {
-		row.find("td")[col]
+	String toNormalizedCamelCase(String text) {
+		def newText = Normalizer.normalize(text, Normalizer.Form.NFKD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+		newText = newText.toLowerCase().split(' ').collect{ it.capitalize() }.join()
+		Introspector.decapitalize(newText)
 	}
-
-	String getCellValue(row, int col) {
-		getCell(row, col).text()
+	
+	List getHeadersText() { 
+		headers.collect { toNormalizedCamelCase(it.text()) }
 	}
-
+	
+	int getHeaderIndex(String name) {
+		headersText.findIndexOf(name) 
+	}
+	
+//	def getCell(row, int col) {
+//		row.find("td")[col]
+//	}
+//
+//	String getCellValue(row, int col) {
+//		getCell(row, col).text()
+//	}
+//
 	int getRowCount() { 
 		rows ? rows.size() : 0
 	}

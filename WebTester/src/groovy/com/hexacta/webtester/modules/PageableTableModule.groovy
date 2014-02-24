@@ -24,6 +24,10 @@ class PageableTableModule extends AbstractModule {
 		table.rowCount
 	}
 
+	def row(int i) {
+		table.rows[i] 
+	}
+	
 	def getColumn(int i) {
 		table.column(i) 
 	}

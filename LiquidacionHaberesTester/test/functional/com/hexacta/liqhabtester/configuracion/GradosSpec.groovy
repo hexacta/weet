@@ -10,7 +10,7 @@ import com.hexacta.liqhabtester.specs.LiquidacionHaberesCRUDSpec
 //@Stepwise
 class GradosSpec extends LiquidacionHaberesCRUDSpec {
 
-	static final String CODIGO = "9999", CARGO = "1 - Militares", JERARQUIA = "Oficial Jefes", 
+	static final String CODIGO = "999", CARGO = "1 - Militares", JERARQUIA = "Oficial Jefes", 
 		DESCRIPCION = "WebTesterGrado", DESC_CORTA = "WTst" 
 
 	int entityId
@@ -41,17 +41,21 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		true
 	}
 
-	// @Ignore
-	// TODO: revisar el getValue de los selects
+	void searchEntityById(String field, String value, int expectedNr) {
+		// "Find the entity to be inserted is not present"
+		openFilterPane()
+		filter."$field" OpType.EQ, value
+		filter.execute()
+
+		// "No row present with searched value"
+		assert table.pageRowCount == expectedNr
+	}
+	
 	def "Crear Grado"() {
 		when: "Find the entity to be inserted is not present"
-		def rowCount, row
-		(rowCount, row) = this.findRowInPages(0, "9.999")
-
-		then: "Check that the link for the searched value was found"
-		row == null
-
-		when: "Navigate to new entity page and set the values for each entity property and save."
+		searchEntityById("codigo", CODIGO, 0)
+		
+		and: "Navigate to new entity page and set the values for each entity property and save."
 		create.click(GradoNewPage)
 		cargo            = CARGO
 		// jerarquia        = JERARQUIA
@@ -60,39 +64,32 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		descripcionCorta = DESC_CORTA
 		create.click(GradosPage)
 
-		int newRowCount
-		(newRowCount, row) = this.findRowInPages(0, "9.999")
+		then: "Search for the new entity"
+		searchEntityById("codigo", CODIGO, 1)
 		
-		then: "Check that the link for the searched value was found"
-		row != null
-		rowCount + 1 == newRowCount
+		and: "The row contains the same values used for the new entity"
+		def row = table.row(0)
+		row.with {
+			cargo            == CARGO
+			jerarquia        == ""
+			codigo           == CODIGO
+			descripcion      == DESCRIPCION
+			descripcionCorta == DESC_CORTA
+		}
+		
+		and: "The entity is active"
 		isHabilitado(row)
-
-		when: "Navigate to the show entity page"
-		row.click(GradoEditPage)
-		
-		then:
-		// FIXME: no esta funcionando la comparacion del select por texto.
-//		cargoText        == CARGO
-//		jerarquia        == JERARQUIA
-		codigo           == CODIGO
-		descripcion      == DESCRIPCION
-		descripcionCorta == DESC_CORTA
 	}
 
 	// @Ignore
 	def "Actualizar Grado"() {
-        when: "Look for the inserted value in the entity list"
-		def rowCount, row
-		(rowCount, row) = this.findRowInPages(0, "9.999")
-		
-		then: "Check that the link for the searched value was found"
-		row != null
-		
-		when: "Navigate to the entity edit page"
-		row.click(GradoEditPage)
-		// TODO: check entityId
+		when: "Search for the new entity"
+		searchEntityById("codigo", CODIGO, 1)
 
+		and: "Navigate to the entity edit page"
+		table.row(0).click(GradoEditPage)
+		
+		// TODO: check entityId
 		then: "Check that its attributes are the same as the ones in the entity previously inserted."
 		// FIXME: no esta funcionando la comparacion del select por texto.
 //		cargoText        == CARGO
@@ -109,54 +106,40 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		descripcionCorta = DESC_CORTA + "Z"
 		update.click(GradosPage)
 		
-		int newRowCount
-		(newRowCount, row) = this.findRowInPages(0, "9.999")
+		and: "Search for the edited entity"
+		searchEntityById("codigo", CODIGO, 1)
 		
-		then: "Check that the link for the searched value was found"
-		row != null
-		rowCount == newRowCount
+		then: "The row contains the same values used for updating the entity"
+		def row = table.row(0)
+		row.with {
+			cargo            == CARGO
+			jerarquia        == ""
+			codigo           == CODIGO
+			descripcion      == DESCRIPCION + "XX"
+			descripcionCorta == DESC_CORTA + "Z"
+		}
 
-		when: "Navigate to the show entity page"
-		row.click(GradoEditPage)
-		
-		then:
-		// FIXME: no esta funcionando la comparacion del select por texto.
-//		cargoText        == CARGO
-//		jerarquia        == JERARQUIA
-		codigo           == CODIGO
-		descripcion      == DESCRIPCION  + "XX"
-		descripcionCorta == DESC_CORTA + "Z"
+		and: "The entity is active"
+		isHabilitado(row)
     }
 
 	def "Deshabilitar Grado"() {
-		when: "Look for the inserted value in the entity list"
-		def rowCount, row
-		(rowCount, row) = this.findRowInPages(0, "9.999")
+		when: "Search for the new entity"
+		searchEntityById("codigo", CODIGO, 1)
+		def row = table.row(0)
 		
-		then: "Check that the link for the searched value was found"
-		row != null
-		
+		then: "Check it is active"
+		isHabilitado(row)
+
 		when: "Navigate to the entity edit page"
 		row.click(GradoEditPage)
-
-		then: "Check that its attributes are the same as the ones in the entity previously updated."
-		// FIXME: no esta funcionando la comparacion del select por texto.
-//		cargoText        == CARGO
-//		jerarquia        == JERARQUIA
-		codigo           == CODIGO
-		descripcion      == DESCRIPCION  + "XX"
-		descripcionCorta == DESC_CORTA + "Z"
-		
-		when: "Click delete"
 		delete.click(GradosPage)
 		
-		def newRowCount
-		(newRowCount, row) = this.findRowInPages(0, "9.999")
-		
-		then: "Navigate to entity list. Check the entity is not listed and the size decreased in one."
-		row != null
-		!isHabilitado(row)
-		rowCount == newRowCount
+		and: "Search for the entity set inactive"
+		searchEntityById("codigo", CODIGO, 1)
+
+		then: "Check it is inactive"
+		!isHabilitado(table.row(0))
 	}
 
 	// @Ignore
@@ -212,13 +195,12 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		table.currentPage == 1
 	}
 
-	@IgnoreRest
 	def "Filtrar Grado"() {
 		expect:
 		!filter.displayed
 		
 		when:
-		abrirFiltro()
+		openFilterPane()
 		
 		then:
 		filter.displayed
@@ -231,12 +213,12 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		table.pageRowCount == 1
 		
 		when:
-		abrirFiltro()
+		openFilterPane()
 		filter.clear()
 		filter.pepe OpType.EQ, 1
 
 		then:
-		NoSuchFieldError ex = thrown()
+		NoSuchFieldException ex = thrown()
 		// Alternative syntax: def ex = thrown(InvalidDeviceException)
 		ex.message == 'pepe is not a valid filter field.'
 	}

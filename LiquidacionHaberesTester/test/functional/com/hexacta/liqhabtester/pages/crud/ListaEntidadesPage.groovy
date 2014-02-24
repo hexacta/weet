@@ -1,16 +1,17 @@
 package com.hexacta.liqhabtester.pages.crud
 
-import geb.download.helper.SelfSignedCertificateHelper
-
-import javax.net.ssl.HttpsURLConnection
-
 import com.hexacta.liqhabtester.modules.ExportModule
+import com.hexacta.liqhabtester.modules.FilterModule
 import com.hexacta.webtester.pages.crud.EntityListPage
 
 class ListaEntidadesPage extends EntityListPage {
 	
 	static content = {
 		create { $("a", name: "create") }
+		
+		filterLink { $("a", text: "Filtrar") }
+
+		filter { module FilterModule }
 		
 		export { module ExportModule }
 		
@@ -21,6 +22,10 @@ class ListaEntidadesPage extends EntityListPage {
 		def td = row.find("td").last()
 		def enable = td.find("input", class: "enableFila")
 		enable.size() == 1
+	}
+	
+	void abrirFiltro() {
+		filterLink.click()
 	}
 	
 //	def download(link) {

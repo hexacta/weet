@@ -4,6 +4,7 @@ import static com.hexacta.liqhabtester.pages.LiquidacionHaberesPage.*
 import geb.download.DownloadException
 import spock.lang.*
 
+import com.hexacta.liqhabtester.modules.FilterModule.OpType;
 import com.hexacta.liqhabtester.specs.LiquidacionHaberesCRUDSpec
 
 //@Stepwise
@@ -19,6 +20,12 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		menu.expand(CONFIGURACION).item(CONF_GRADOS).click(GradosPage)
 	}
 
+	def cleanup() {
+		if (page instanceof GradosPage && filter.displayed) {
+			filter.cancel()
+		}	
+	}
+	
 	def cleanupSpec() {
 		// Delete the created Grado instance from database, because the application doesn't provide away to do it.
 		sql.execute( "delete from grado where codigo = $CODIGO" )
@@ -203,6 +210,35 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		// at GradosPage
 		table.pageRowCount == 10
 		table.currentPage == 1
+	}
+
+	@IgnoreRest
+	def "Filtrar Grado"() {
+		expect:
+		!filter.displayed
+		
+		when:
+		abrirFiltro()
+		
+		then:
+		filter.displayed
+		
+		when:
+		filter.codigo OpType.EQ, 1
+		filter.execute()
+		
+		then:
+		table.pageRowCount == 1
+		
+		when:
+		abrirFiltro()
+		filter.clear()
+		filter.pepe OpType.EQ, 1
+
+		then:
+		NoSuchFieldError ex = thrown()
+		// Alternative syntax: def ex = thrown(InvalidDeviceException)
+		ex.message == 'pepe is not a valid filter field.'
 	}
 
 	@FailsWith(DownloadException)

@@ -11,7 +11,10 @@ abstract class QAppEntityEditPage extends EntityEditPage {
 	static content = {
 		pageMenu { module NavigationMenuModule, $("ul.nav")[1] }
 		
-		deleteConfirmation { module ConfirmationModalModule, confirmText: "Delete", $("div", id: "deleteModal") }
+		update {  $("input", value: "Actualizar") }
+		delete {  $("button", text: containsWord("Eliminar")) }
+		
+		deleteConfirmation { module ConfirmationModalModule, confirmText: "Eliminar", cancelText: "Cancelar", $("div", id: "deleteModal") }
 		
 		userMenu { $("a", class:"btn dropdown-toggle").has("i") }
 	}

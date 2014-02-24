@@ -20,7 +20,7 @@ class AreasSpec extends QApplicationCRUDSpec {
 	}
 
 
-	// @Ignore
+	@Ignore
     def "Area creation"() {
 		when: "Find the entity to be inserted is not present"
 		def rowCount, rowLink
@@ -73,7 +73,7 @@ class AreasSpec extends QApplicationCRUDSpec {
 		name == AREA_NAME_UPDATED
     }
 
-	// @Ignore
+	@IgnoreRest
 	def "Area delete"() {
 		when: "Look for the inserted value in the entity list"
 		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException

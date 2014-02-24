@@ -5,7 +5,7 @@ import com.hexacta.qappwebtester.pages.crud.QAppEntityNewPage;
 class AreaNewPage extends QAppEntityNewPage {
 	static url = "area/create"
 	
-	static at = { $().text().contains("Create Area") } 
+	static at = { $().text().contains("Crear Area") } 
 	
 	static content = {
 		name  {  $("input", name: "name") }

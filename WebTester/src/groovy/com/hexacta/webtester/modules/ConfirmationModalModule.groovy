@@ -22,12 +22,14 @@ import com.hexacta.webtester.modules.AbstractModule
  */
 class ConfirmationModalModule extends AbstractModule {
  
-	String confirmText
+	String cancelText = "Cancel"
+	String confirmText = "Confirm"
+	
     static content = {
 		// TODO: title { }
 		
 		cancel {
-			$("button", text: "Cancel")
+			$("button", text: cancelText)
 		}
 		
 		confirm {

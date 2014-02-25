@@ -44,18 +44,4 @@ abstract class ApplicationSpec extends AbstractSpec {
 	 */
 	abstract Class<? extends LoginPage> getLoginPage()
 
-	/**
-	 * The default username used for the session. 
-	 */
-//	String getUsernameValue() {
-//		"admin"
-//	}
-
-	/**
-	 * The default password used for the session. 
-	 */
-//	String getPasswordValue() {
-//		"admin"
-//	}
-
 }

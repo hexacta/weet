@@ -18,9 +18,9 @@ abstract class AbstractSpec extends GebSpec {
 		cleanReportGroupDir()
 		Capabilities cp = driver.capabilities
 		if (cp.browserName == "internet explorer") {
-//			go baseUrl
-//			def xx = $("overridelink")
-//			xx?.click()
+			// TODO: resolver erroe para aplicacion con certificado SSL
+			// go baseUrl
+			// $("overridelink")?.click()
 			// waitFor { to SecurityCertificateErrorPage }
 			// continueToThisWebsite()
 		}

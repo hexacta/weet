@@ -16,9 +16,7 @@ target
 target-eclipse
 bin
 WEB-INF
-WS-2.2
 .metadata
 .settings
 .link_to_grails_plugins
 # plugins
-geb-examples-master

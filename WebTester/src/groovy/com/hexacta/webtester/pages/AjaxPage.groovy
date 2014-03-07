@@ -40,8 +40,8 @@ abstract class AjaxPage extends AbstractPage {
 		def loops = Math.ceil(timeoutSecs / intervalSecs)
 		def pass = condition()
 		def i = 0
-		while (pass == false && i++ < loops) {
-			Thread.sleep((intervalSecs * 1000) as long)
+		while (!pass && i++ < loops) {
+			sleep(intervalSecs * 1000)
 			pass = condition()
 		}
 		if (i >= loops) {

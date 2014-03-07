@@ -1,19 +1,19 @@
 package com.hexacta.googlewebtester.pages
 
-import com.hexacta.googlewebtester.pages.modules.GoogleSearchModule
-import com.hexacta.webtester.pages.AbstractPage;
 
-class GoogleResultsPage extends AbstractPage {
+class GoogleResultsPage extends GoogleHomePage {
 	static at = { title.endsWith "Google Search" }
 	
 	static content = {
-		// reuse our previously defined module
-		search { module GoogleSearchModule, buttonValue: "Search" }
-
-		// content definitions can compose and build from other definitions
 		results { $("li.g") }
-		result { i -> results[i] }
-		resultLink { i -> result(i).find("a.l") }
-		firstResultLink { resultLink(0) }
+		resultLink { i -> results[i].find("a.l") }
+	}
+	
+	def go(int i) {
+		resultLink(i).click()
+	}
+	
+	def resultText(int i) {
+		resultLink(i).text()
 	}
 }

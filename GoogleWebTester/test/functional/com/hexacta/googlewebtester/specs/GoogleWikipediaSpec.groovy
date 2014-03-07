@@ -10,27 +10,27 @@ import com.hexacta.webtester.specs.AbstractSpec;
 class GoogleWikipediaSpec extends AbstractSpec {
 
 	def "first result for wikipedia search should be wikipedia"() {
-		given:
+		given: "Voy a la página de inicio de Google"
 		to GoogleHomePage
  
-		expect:
+		expect: "Se cargo la pagina buscada"
 		at GoogleHomePage
  
-		when:
+		when: "Ingreso 'wikipedia' en el campo de busqueda"
 		report "google"
-		search.text.value("wikipedia")
+		searchText("wikipedia")
  
-		then:
-		waitFor { at GoogleResultsPage }
+		then: "Espero a cargarse la nueva pagina con los resultados"
+		at GoogleResultsPage
  
-		and:
-		firstResultLink.text() == "Wikipedia"
+		and: "Chequeo que el texto del 1er resultado sea 'Wikipedia'"
+		resultText(0) == "Wikipedia"
  
-		when:
+		when: "Navego a la URL del link del 1er resultado"
 		report "google results"
-		firstResultLink.click()
+		go(0)
  
-		then:
-		waitFor { at WikipediaPage }
+		then: "Espero a cargarse la pagina (chequeando que sea la correcta)"
+		waitFor(3) { at WikipediaPage }
 	}
 }

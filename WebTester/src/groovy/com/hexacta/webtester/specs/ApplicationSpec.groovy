@@ -12,7 +12,7 @@ import com.hexacta.webtester.pages.LoginPage
  */
 abstract class ApplicationSpec extends AbstractSpec {
 
-	boolean initialLogin = true
+	@Shared boolean initialLogin = true
 	@Shared String username = "admin"
 	@Shared String password = "admin"
 	
@@ -22,7 +22,7 @@ abstract class ApplicationSpec extends AbstractSpec {
 	def setup() {
 		waitFor { to loginPage }
 		if (initialLogin) {
-			given:
+			given: "Session login"
 			login username, password
 	
 			then: "Redirects to an initial page"

@@ -9,9 +9,9 @@ import com.hexacta.qappwebtester.specs.QApplicationCRUDSpec
 //@Stepwise
 class AreasSpec extends QApplicationCRUDSpec {
 
-	static final String AREA_NAME = "aawebtest-area"
+	static final String AREA_NAME = "webtest-area"
 
-	static final String AREA_NAME_UPDATED = "aaSwebtest-area-updated"
+	static final String AREA_NAME_UPDATED = "webtest-area-updated"
 	int entityId
 	
 	def setup() {
@@ -20,12 +20,11 @@ class AreasSpec extends QApplicationCRUDSpec {
 	}
 
 
-	@Ignore
+	// @Ignore
     def "Area creation"() {
 		when: "Find the entity to be inserted is not present"
 		def rowCount, rowLink
 		(rowCount, rowLink) = this.findRowInPages(0, AREA_NAME)
-		// (rowCount, rowLink) = this.findRowInPages(0, AREA_NAME)
 		
 		then: "Check that the link for the searched value was found"
 		rowLink == null
@@ -73,7 +72,6 @@ class AreasSpec extends QApplicationCRUDSpec {
 		name == AREA_NAME_UPDATED
     }
 
-	@IgnoreRest
 	def "Area delete"() {
 		when: "Look for the inserted value in the entity list"
 		// XXX: Si se ejecuta dentro del modulo esta tirando StaleElementReferenceException

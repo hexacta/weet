@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities
 
 import com.sun.net.ssl.HttpsURLConnection
 
-baseUrl = "https://hxgna01:8443/liquidacion-haberes/"
+baseUrl = "https://hxgna01.hexacta.com:8443/liquidacion-haberes/"
 
 // --------------------------------------------------------------------------------------------
 //  Reports

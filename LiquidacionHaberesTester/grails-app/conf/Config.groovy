@@ -12,7 +12,7 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-dbUrl = "jdbc:jtds:Sqlserver://hxsqldev:1433/GNA_LiqHaberes1;instance=sql2008"
+dbUrl = "jdbc:jtds:Sqlserver://hxsqldev.hexacta.com:1433/GNA_LiqHaberes1;instance=sql2008"
 dbUser = "gnaslh"
 dbPassword = "epchm"
 

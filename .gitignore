@@ -15,7 +15,7 @@ plugin.xml
 target
 target-eclipse
 bin
-WEB-INF
+#WEB-INF
 .metadata
 .settings
 .link_to_grails_plugins

@@ -8,9 +8,6 @@ import com.hexacta.webtester.modules.PageableTableModule
 
 abstract class CRUDPage extends LiquidacionHaberesPage {
 
-	// CRUDAction action
-	// CRUDAction nextAction
-	
 	static url = { crudUrl }
 	
 	static at = { title == crudTitle }
@@ -33,9 +30,13 @@ abstract class CRUDPage extends LiquidacionHaberesPage {
 	}
 	
 	enum CRUDAction { NEW, EDIT, LIST }
+
+	abstract String getEntity()
+	abstract String getPluralEntity()
 	
+
 	def getCrudUrl() {
-		"$entity/$action2"
+		"$entity/$actionName"
 	}
 	
 	def newEntity() {
@@ -56,10 +57,7 @@ abstract class CRUDPage extends LiquidacionHaberesPage {
 		row.click(editPage)
 	}
 
-	abstract String getEntity()
-	abstract String getPluralEntity()
-	
-	String getAction2() {
+	String getActionName() {
 		action.name.toLowerCase()
 	}
 	
@@ -75,7 +73,6 @@ abstract class CRUDPage extends LiquidacionHaberesPage {
 				"Editar $entity"
 				break
 		}
-		
 	}
 	
 	boolean isHabilitado(row) {
@@ -89,30 +86,17 @@ abstract class CRUDPage extends LiquidacionHaberesPage {
 	}
 
 	def getListPage() {
-		this.class.metaClass.getAction << {
-			-> CRUDAction.LIST
-		}
+		this.class.metaClass.getAction << { -> CRUDAction.LIST }
 		this.class
 	}
 
 	def getEditPage() {
-		this.class.metaClass.getAction << {
-			-> CRUDAction.EDIT
-		}
+		this.class.metaClass.getAction << { -> CRUDAction.EDIT }
 		this.class
 	}
 	
 	def getNewPage() {
-		this.class.metaClass.getAction << {
-			-> CRUDAction.NEW
-		}
+		this.class.metaClass.getAction << { -> CRUDAction.NEW }
 		this.class
 	}
-	
-//	def getNewPage2() {
-//		def methods = [ action:{  -> CRUDAction.NEW } ]
-//		def newPage = ProxyGenerator.INSTANCE.instantiateAggregateFromBaseClass(methods, this.class)
-//		def newPageClass = newPage.class
-//		newPageClass
-//	}
 }

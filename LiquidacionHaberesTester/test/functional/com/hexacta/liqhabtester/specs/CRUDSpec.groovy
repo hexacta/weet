@@ -17,9 +17,6 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 	abstract int getMenuItemIdx()
 	abstract int getSubmenuItemIdx()
 	abstract Class getEntityPage()
-//	abstract Class getEntityListPage()
-//	abstract Class getEntityEditPage()
-//	abstract Class getEntityNewPage()
 	
 	abstract String getEntityIdField()
 	abstract List<CRUDField> getCRUDFields()
@@ -38,22 +35,13 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 		entityPage
 	}
 	
-//	def getListPage() {
-//		def methods = [ action: {  
-//			-> CRUDAction.LIST } 
-//		]
-//		def newPage = ProxyGenerator.INSTANCE.instantiateAggregateFromBaseClass(methods, entityListPage)
-//		def newPageClass = newPage.class
-//		newPageClass
-//	}
-
 	def setup() {
 		given:
 		menu.expand(menuItemIdx).item(submenuItemIdx).click(listPage)
 	}
 
 	def cleanup() {
-		if (entityPage.isInstance(page) && entityPage.action == CRUDAction.LIST && filter.displayed) {
+		if (entityPage.isInstance(page) && page.action == CRUDAction.LIST && filter.displayed) {
 			filter.cancel()
 		}	
 		entityPage.metaClass.getAction << { -> null }
@@ -89,13 +77,10 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 		
 		and: "Navigate to new entity page and set the values for each entity property and save."
 		newEntity()
-		// create.click(entityNewPage)
 		for ( crudField in crudFieldsMap.values() ) {
 			page."${crudField.field}" = crudField.value 
 		}
 		saveEntity()
-//		CRUDPage.action = CRUDAction.LIST
-//		create.click(entityListPage)
 
 		then: "Search for the new entity"
 		searchEntityById(1)
@@ -116,9 +101,6 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 
 		and: "Navigate to the entity edit page"
 		editRow(0)
-//		def row = table.row(0)
-//		CRUDPage.action = CRUDAction.EDIT
-//		row.click(entityEditPage)
 		
 		// TODO: check entityId
 		then: "Check that its attributes are the same as the ones in the entity previously inserted."
@@ -134,8 +116,6 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 			page."${crudField.field}" = crudField.updatedValue ?: crudField.value 
 		}
 		saveEntity()
-//		CRUDPage.action = CRUDAction.LIST
-//		update.click(entityListPage)
 		
 		and: "Search for the edited entity"
 		searchEntityById(1)
@@ -160,11 +140,7 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 
 		when: "Navigate to the entity edit page"
 		editRow(0)
-//		CRUDPage.action = CRUDAction.EDIT
-//		row.click(entityEditPage)
-//		CRUDPage.action = CRUDAction.LIST
 		disable()
-//		delete.click(entityListPage)
 		
 		and: "Search for the entity set inactive"
 		searchEntityById(1)

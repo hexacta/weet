@@ -1,12 +1,9 @@
-package com.hexacta.liqhabtester.configuracion
+package com.hexacta.liqhabtester.crud
 
-import com.hexacta.webtester.pages.crud.EntityNewPage
+import com.hexacta.liqhabtester.pages.crud.CRUDPage
 
-class SubunidadNewPage extends EntityNewPage {
-	static url = "subunidad/create"
-	
-	static at = { $().text().contains("Crear subunidad") } 
-	
+
+class SubunidadPage extends CRUDPage {
 	static content = {
 		unidad           { $("select", name: "unidad.id") }
 		codigo           { $("input", name: "codigo") }
@@ -17,5 +14,13 @@ class SubunidadNewPage extends EntityNewPage {
 		zonaMontana      { $("select", name: "zonaMontana") }
 		zonaSCD          { $("select", name: "zonaSCD") }
 		zonaPorcentaje   { $("input", name: "zonaPorcentaje") }
+	}
+	
+	String getEntity() {
+		"subunidad"
+	}
+	
+	String getPluralEntity() {
+		"subunidades"
 	}
 }

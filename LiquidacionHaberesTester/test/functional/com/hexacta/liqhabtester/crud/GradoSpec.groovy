@@ -1,4 +1,4 @@
-package com.hexacta.liqhabtester.configuracion
+package com.hexacta.liqhabtester.crud
 
 import static com.hexacta.liqhabtester.pages.LiquidacionHaberesPage.*
 import spock.lang.*
@@ -6,12 +6,13 @@ import spock.lang.*
 import com.hexacta.liqhabtester.specs.CRUDField
 import com.hexacta.liqhabtester.specs.CRUDSpec
 
-class CargoSpec extends CRUDSpec {
+class GradoSpec extends CRUDSpec {
 
 	List<CRUDField> getCRUDFields() {
 		[
 			new CRUDField(field: "codigo", value: "999"),
-			new CRUDField(field: "descripcion", value: "WeetCargo", updatedValue: "WeetCargo-new"),
+			new CRUDField(field: "cargo", value: "1 - Militares"),
+			new CRUDField(field: "descripcion", value: "WeetGrado", updatedValue: "WeetGrado-new"),
 			new CRUDField(field: "descripcionCorta", value: "Weet", updatedValue: "WeetNew")
 		]
 	}
@@ -21,19 +22,11 @@ class CargoSpec extends CRUDSpec {
 	}
 	
 	int getSubmenuItemIdx() {
-		CONF_CARGOS
+		CONF_GRADOS
 	}
 	
-	Class getEntityListPage() {
-		CargoPage
-	}
-	
-	Class getEntityEditPage() {
-		CargoPage
-	}
-	
-	Class getEntityNewPage() {
-		CargoPage
+	Class getEntityPage() {
+		GradoPage
 	}
 	
 	String getEntityIdField() {
@@ -41,7 +34,7 @@ class CargoSpec extends CRUDSpec {
 	}
 	
 	String getTableName() {
-		"cargo"
+		"grado"
 	}
 	
 	String getColumnIdName() {

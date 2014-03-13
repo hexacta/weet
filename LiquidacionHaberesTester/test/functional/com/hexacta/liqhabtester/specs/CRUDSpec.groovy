@@ -2,8 +2,6 @@ package com.hexacta.liqhabtester.specs
 
 import static com.hexacta.liqhabtester.pages.LiquidacionHaberesPage.*
 import geb.Browser
-import geb.Page
-import geb.PageChangeListener
 import spock.lang.*
 
 import com.hexacta.liqhabtester.modules.FilterModule.OpType
@@ -11,15 +9,17 @@ import com.hexacta.liqhabtester.pages.crud.CRUDPage
 import com.hexacta.liqhabtester.pages.crud.CRUDPage.CRUDAction
 
 //@Stepwise
-abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec implements PageChangeListener {
+// @Ignore
+abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 
 	@Shared Map<String, CRUDField> crudFieldsMap = [:]
 	
 	abstract int getMenuItemIdx()
 	abstract int getSubmenuItemIdx()
-	abstract Class getEntityListPage()
-	abstract Class getEntityEditPage()
-	abstract Class getEntityNewPage()
+	abstract Class getEntityPage()
+//	abstract Class getEntityListPage()
+//	abstract Class getEntityEditPage()
+//	abstract Class getEntityNewPage()
 	
 	abstract String getEntityIdField()
 	abstract List<CRUDField> getCRUDFields()
@@ -31,34 +31,41 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec implements PageChange
 	abstract String getTableName()
 	abstract String getColumnIdName()
 	
-	void pageWillChange(Browser browser, Page oldPage, Page newPage) {
-		if (newPage instanceof CRUDPage) {
-			newPage.action = oldPage instanceof CRUDPage ? oldPage.nextAction : CRUDAction.LIST
+	def getListPage() {
+		entityPage.metaClass.getAction << {
+			-> CRUDAction.LIST 
 		}
+		entityPage
 	}
 	
+//	def getListPage() {
+//		def methods = [ action: {  
+//			-> CRUDAction.LIST } 
+//		]
+//		def newPage = ProxyGenerator.INSTANCE.instantiateAggregateFromBaseClass(methods, entityListPage)
+//		def newPageClass = newPage.class
+//		newPageClass
+//	}
+
 	def setup() {
 		given:
-		menu.expand(menuItemIdx).item(submenuItemIdx).click(entityListPage)
+		menu.expand(menuItemIdx).item(submenuItemIdx).click(listPage)
 	}
 
 	def cleanup() {
-		page.action = null
-		page.nextAction = null
-		if (entityListPage.isInstance(page) && filter.displayed) {
+		if (entityPage.isInstance(page) && entityPage.action == CRUDAction.LIST && filter.displayed) {
 			filter.cancel()
 		}	
+		entityPage.metaClass.getAction << { -> null }
 	}
 	
 	def setupSpec() {
-		browser.registerPageChangeListener(this)
 		CRUDFields.each {
 			crudFieldsMap.put(it.field, it) 
 		}
 	}
 	
 	def cleanupSpec() {
-		browser.removePageChangeListener(this)
 		// Delete the created entity instance from database, because the application doesn't provide away to do it.
 		String statement = new String("delete from $tableName where $columnIdName = ${crudFieldsMap[entityIdField].value}")
 		sql.execute( statement )

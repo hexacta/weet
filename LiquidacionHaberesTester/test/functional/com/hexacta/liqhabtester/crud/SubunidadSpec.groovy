@@ -1,4 +1,4 @@
-package com.hexacta.liqhabtester.configuracion
+package com.hexacta.liqhabtester.crud
 
 import static com.hexacta.liqhabtester.pages.LiquidacionHaberesPage.*
 import spock.lang.*
@@ -30,16 +30,8 @@ class SubunidadSpec extends CRUDSpec {
 		CONF_SUBUNIDADES
 	}
 	
-	Class getEntityListPage() {
-		SubunidadListPage
-	}
-	
-	Class getEntityEditPage() {
-		SubunidadEditPage
-	}
-	
-	Class getEntityNewPage() {
-		SubunidadNewPage
+	Class getEntityPage() {
+		SubunidadPage
 	}
 	
 	String getEntityIdField() {

@@ -8,8 +8,8 @@ import com.hexacta.webtester.modules.PageableTableModule
 
 abstract class CRUDPage extends LiquidacionHaberesPage {
 
-	CRUDAction action
-	CRUDAction nextAction
+	// CRUDAction action
+	// CRUDAction nextAction
 	
 	static url = { crudUrl }
 	
@@ -39,25 +39,21 @@ abstract class CRUDPage extends LiquidacionHaberesPage {
 	}
 	
 	def newEntity() {
-		nextAction = CRUDAction.NEW
-		add.click(this.class)
+		add.click(newPage)
 	}
 	
 	def saveEntity() {
 		def button = action == CRUDAction.NEW ? create : update
-		nextAction = CRUDAction.LIST
-		button.click(this.class)
+		button.click(listPage)
 	}
 
 	def disable() {
-		nextAction = CRUDAction.LIST
-		delete.click(this.class)
+		delete.click(listPage)
 	}
 
 	def editRow(int idx) {
-		nextAction = CRUDAction.EDIT
 		def row = table.row(idx)
-		row.click(this.class)
+		row.click(editPage)
 	}
 
 	abstract String getEntity()
@@ -92,4 +88,31 @@ abstract class CRUDPage extends LiquidacionHaberesPage {
 		filterLink.click()
 	}
 
+	def getListPage() {
+		this.class.metaClass.getAction << {
+			-> CRUDAction.LIST
+		}
+		this.class
+	}
+
+	def getEditPage() {
+		this.class.metaClass.getAction << {
+			-> CRUDAction.EDIT
+		}
+		this.class
+	}
+	
+	def getNewPage() {
+		this.class.metaClass.getAction << {
+			-> CRUDAction.NEW
+		}
+		this.class
+	}
+	
+//	def getNewPage2() {
+//		def methods = [ action:{  -> CRUDAction.NEW } ]
+//		def newPage = ProxyGenerator.INSTANCE.instantiateAggregateFromBaseClass(methods, this.class)
+//		def newPageClass = newPage.class
+//		newPageClass
+//	}
 }

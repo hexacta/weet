@@ -8,7 +8,7 @@ abstract class LiquidacionHaberesPage extends ApplicationPage {
 	static int PERSONAL = 0, NOVEDADES = 1, LIQUIDACION = 2, CONFIGURACION = 3
 	
 	// Configuration submenu
-	static int CONF_GRADOS = 13
+	static int CONF_SUBUNIDADES = 7, CONF_CARGOS = 11, CONF_GRADOS = 13
 		
 	static content = {
 		menu { module NavigationMenuModule, $("ul" , id: "menu"), itemBase: "li.menu_right" }

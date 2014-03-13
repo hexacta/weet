@@ -1,12 +1,17 @@
 package com.hexacta.liqhabtester.specs
 
 import static com.hexacta.liqhabtester.pages.LiquidacionHaberesPage.*
+import geb.Browser
+import geb.Page
+import geb.PageChangeListener
 import spock.lang.*
 
 import com.hexacta.liqhabtester.modules.FilterModule.OpType
+import com.hexacta.liqhabtester.pages.crud.CRUDPage
+import com.hexacta.liqhabtester.pages.crud.CRUDPage.CRUDAction
 
 //@Stepwise
-abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
+abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec implements PageChangeListener {
 
 	@Shared Map<String, CRUDField> crudFieldsMap = [:]
 	
@@ -26,24 +31,34 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 	abstract String getTableName()
 	abstract String getColumnIdName()
 	
+	void pageWillChange(Browser browser, Page oldPage, Page newPage) {
+		if (newPage instanceof CRUDPage) {
+			newPage.action = oldPage instanceof CRUDPage ? oldPage.nextAction : CRUDAction.LIST
+		}
+	}
+	
 	def setup() {
 		given:
 		menu.expand(menuItemIdx).item(submenuItemIdx).click(entityListPage)
 	}
 
 	def cleanup() {
+		page.action = null
+		page.nextAction = null
 		if (entityListPage.isInstance(page) && filter.displayed) {
 			filter.cancel()
 		}	
 	}
 	
 	def setupSpec() {
+		browser.registerPageChangeListener(this)
 		CRUDFields.each {
 			crudFieldsMap.put(it.field, it) 
 		}
 	}
 	
 	def cleanupSpec() {
+		browser.removePageChangeListener(this)
 		// Delete the created entity instance from database, because the application doesn't provide away to do it.
 		String statement = new String("delete from $tableName where $columnIdName = ${crudFieldsMap[entityIdField].value}")
 		sql.execute( statement )
@@ -66,11 +81,14 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 		searchEntityById(0)
 		
 		and: "Navigate to new entity page and set the values for each entity property and save."
-		create.click(entityNewPage)
+		newEntity()
+		// create.click(entityNewPage)
 		for ( crudField in crudFieldsMap.values() ) {
 			page."${crudField.field}" = crudField.value 
 		}
-		create.click(entityListPage)
+		saveEntity()
+//		CRUDPage.action = CRUDAction.LIST
+//		create.click(entityListPage)
 
 		then: "Search for the new entity"
 		searchEntityById(1)
@@ -90,7 +108,10 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 		searchEntityById(1)
 
 		and: "Navigate to the entity edit page"
-		table.row(0).click(entityEditPage)
+		editRow(0)
+//		def row = table.row(0)
+//		CRUDPage.action = CRUDAction.EDIT
+//		row.click(entityEditPage)
 		
 		// TODO: check entityId
 		then: "Check that its attributes are the same as the ones in the entity previously inserted."
@@ -105,7 +126,9 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 		for ( crudField in crudFieldsMap.values() ) {
 			page."${crudField.field}" = crudField.updatedValue ?: crudField.value 
 		}
-		update.click(entityListPage)
+		saveEntity()
+//		CRUDPage.action = CRUDAction.LIST
+//		update.click(entityListPage)
 		
 		and: "Search for the edited entity"
 		searchEntityById(1)
@@ -129,8 +152,12 @@ abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 		isHabilitado(row)
 
 		when: "Navigate to the entity edit page"
-		row.click(entityEditPage)
-		delete.click(entityListPage)
+		editRow(0)
+//		CRUDPage.action = CRUDAction.EDIT
+//		row.click(entityEditPage)
+//		CRUDPage.action = CRUDAction.LIST
+		disable()
+//		delete.click(entityListPage)
 		
 		and: "Search for the entity set inactive"
 		searchEntityById(1)

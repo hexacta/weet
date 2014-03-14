@@ -11,7 +11,7 @@ import com.hexacta.liqhabtester.specs.LiquidacionHaberesCRUDSpec
 class GradosSpec extends LiquidacionHaberesCRUDSpec {
 
 	static final String CODIGO = "999", CARGO = "1 - Militares", JERARQUIA = "Oficial Jefes", 
-		DESCRIPCION = "WebTesterGrado", DESC_CORTA = "WTst" 
+		DESCRIPCION = "WeetGrado", DESC_CORTA = "WTst" 
 
 	int entityId
 	

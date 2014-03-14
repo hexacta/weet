@@ -14,7 +14,7 @@ import geb.Page
  * 
  * @author gmassenzano
  */
-abstract class AjaxPage extends AbstractPage {
+abstract class AjaxPage extends WeetPage {
 
 	/**
 	 * Luke Daley provided the implementation of a waitFor method in the <a href="http://xircles.codehaus.org/lists/user@geb.codehaus.org">geb-user mailing list</a>

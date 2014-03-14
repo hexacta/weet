@@ -4,7 +4,7 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.pages.HomePage
 import com.hexacta.liqhabtester.pages.LoginPage
-import com.hexacta.weet.pages.AbstractPage
+import com.hexacta.weet.pages.WeetPage
 import com.hexacta.weet.specs.NavigationMenuSpec
 
 class UtacUserSpec extends NavigationMenuSpec {
@@ -20,7 +20,7 @@ class UtacUserSpec extends NavigationMenuSpec {
 	}
 	
 	@Override
-	Class<? extends AbstractPage> getInitialPage() {
+	Class<? extends WeetPage> getInitialPage() {
 		HomePage
 	}
 

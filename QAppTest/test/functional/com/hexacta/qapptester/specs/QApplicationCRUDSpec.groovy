@@ -4,13 +4,13 @@ import spock.lang.*
 
 import com.hexacta.qapptester.pages.HomePage
 import com.hexacta.qapptester.pages.LoginPage
-import com.hexacta.weet.pages.AbstractPage
+import com.hexacta.weet.pages.WeetPage
 import com.hexacta.weet.specs.CRUDSpec
 
 abstract class QApplicationCRUDSpec extends CRUDSpec {
 
 	@Override
-	Class<? extends AbstractPage> getInitialPage() {
+	Class<? extends WeetPage> getInitialPage() {
 		HomePage
 	}
 

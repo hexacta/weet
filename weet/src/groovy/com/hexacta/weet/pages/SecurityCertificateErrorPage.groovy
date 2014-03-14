@@ -6,7 +6,7 @@ import geb.Page
  * 
  * @author gmassenzano
  */
-class SecurityCertificateErrorPage extends AbstractPage {
+class SecurityCertificateErrorPage extends WeetPage {
 
 	static url = ""
 	

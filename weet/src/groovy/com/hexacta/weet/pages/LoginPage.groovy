@@ -1,8 +1,8 @@
 package com.hexacta.weet.pages
 
-import com.hexacta.weet.pages.AbstractPage;
+import com.hexacta.weet.pages.WeetPage;
 
-abstract class LoginPage extends AbstractPage {
+abstract class LoginPage extends WeetPage {
 	// static url =   ** DEFINE IT ON SUBCLASS **
  
 	// static at =    ** DEFINE IT ON SUBCLASS **

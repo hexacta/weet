@@ -10,7 +10,7 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.pages.HomePage
 import com.hexacta.liqhabtester.pages.LoginPage
-import com.hexacta.weet.pages.AbstractPage
+import com.hexacta.weet.pages.WeetPage
 import com.hexacta.weet.specs.CRUDSpec
 abstract class LiquidacionHaberesCRUDSpec extends CRUDSpec {
 
@@ -33,7 +33,7 @@ abstract class LiquidacionHaberesCRUDSpec extends CRUDSpec {
 	}
 	
 	@Override
-	Class<? extends AbstractPage> getInitialPage() {
+	Class<? extends WeetPage> getInitialPage() {
 		HomePage
 	}
 

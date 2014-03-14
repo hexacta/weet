@@ -1,6 +1,6 @@
 package com.hexacta.qapptester.pages
 
-import com.hexacta.weet.pages.AbstractPage
+import com.hexacta.weet.pages.WeetPage
 
 
 class LoginPage extends com.hexacta.weet.pages.LoginPage {

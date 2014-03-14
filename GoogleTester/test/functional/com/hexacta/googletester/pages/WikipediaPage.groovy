@@ -1,7 +1,7 @@
 package com.hexacta.googletester.pages
 
-import com.hexacta.weet.pages.AbstractPage;
+import com.hexacta.weet.pages.WeetPage;
 
-class WikipediaPage extends AbstractPage {
+class WikipediaPage extends WeetPage {
     static at = {  title.startsWith "Wikipedia" }
 }

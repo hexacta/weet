@@ -2,30 +2,19 @@ package com.hexacta.weet.specs
 
 import spock.lang.*
 
-import com.hexacta.weet.pages.LoginPage
+/**
+ * Common login specifications.
+ * 
+ * @author gmassenzano
+ */
+abstract class LoginSpec extends ApplicationSpec {
 
-abstract class LoginSpec extends AbstractSpec {
-
-	abstract def getInitialPage()
-
-	abstract def getLoginPage()
-	
 	def invalidPasswordExtraAssertion() { true }
 
 	def invalidUsernameExtraAssertion() { true }
 	
-	/**
-	 * The default username used for the successful login.
-	 */
-	String getUsernameValue() {
-		"admin"
-	}
-
-	/**
-	 * The default password used for the successful login.
-	 */
-	String getPasswordValue() {
-		"admin"
+	def setupSpec() {
+		initialLogin = false
 	}
 
     def "Succesful login"() {
@@ -36,7 +25,7 @@ abstract class LoginSpec extends AbstractSpec {
         at loginPage
  
         when: "username y clave correctos"
-        login usernameValue, passwordValue
+        login username, password
         
         then: "Redirects to home page"
         at initialPage
@@ -50,7 +39,7 @@ abstract class LoginSpec extends AbstractSpec {
         at loginPage
  
         when: "Invalid password"
-        login usernameValue, "xxxxxxxxx"
+        login username, "xxxxxxxxx"
  
         then: "Stay at login page"
         at loginPage

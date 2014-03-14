@@ -5,9 +5,9 @@ import spock.lang.*
 import com.hexacta.googletester.pages.GoogleHomePage
 import com.hexacta.googletester.pages.GoogleResultsPage
 import com.hexacta.googletester.pages.WikipediaPage
-import com.hexacta.weet.specs.AbstractSpec;
+import com.hexacta.weet.specs.WeetSpec;
 
-class GoogleWikipediaSpec extends AbstractSpec {
+class GoogleWikipediaSpec extends WeetSpec {
 
 	def "first result for wikipedia search should be wikipedia"() {
 		given: "Voy a la página de inicio de Google"

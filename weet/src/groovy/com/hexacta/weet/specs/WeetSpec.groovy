@@ -9,7 +9,12 @@ import org.openqa.selenium.JavascriptExecutor
 
 import spock.lang.*
 
-abstract class AbstractSpec extends GebSpec {
+/**
+ * Generic spec which provides a generic behavior for any spec that uses weet.
+ * 
+ * @author gmassenzano
+ */
+abstract class WeetSpec extends GebSpec {
 
 	@Rule TestName testName = new TestName()
 	
@@ -18,7 +23,7 @@ abstract class AbstractSpec extends GebSpec {
 		cleanReportGroupDir()
 		Capabilities cp = driver.capabilities
 		if (cp.browserName == "internet explorer") {
-			// TODO: resolver erroe para aplicacion con certificado SSL
+			// TODO: resolver error para aplicacion con certificado SSL
 			// go baseUrl
 			// $("overridelink")?.click()
 			// waitFor { to SecurityCertificateErrorPage }
@@ -27,6 +32,7 @@ abstract class AbstractSpec extends GebSpec {
 	}
 
 	def setup() {
+		// Configures the folder where the spec reports will be saved.
 		reportGroup reportGroupName
 	}
 	

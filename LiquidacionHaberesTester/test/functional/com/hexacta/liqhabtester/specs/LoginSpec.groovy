@@ -4,14 +4,17 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.pages.HomePage
 import com.hexacta.liqhabtester.pages.LoginPage
+import com.hexacta.weet.pages.WeetPage
 
 class LoginSpec extends com.hexacta.weet.specs.LoginSpec {
 
-	def getInitialPage() {
+	@Override
+	Class<? extends WeetPage> getInitialPage() {
 		HomePage
 	}
-	
-	def getLoginPage() {
+
+	@Override
+	Class<? extends LoginPage> getLoginPage() {
 		LoginPage
 	}
 	

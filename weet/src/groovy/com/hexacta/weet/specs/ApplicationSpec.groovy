@@ -2,7 +2,7 @@ package com.hexacta.weet.specs
 
 import spock.lang.*
 
-import com.hexacta.weet.pages.AbstractPage
+import com.hexacta.weet.pages.WeetPage
 import com.hexacta.weet.pages.LoginPage
 
 /**
@@ -10,14 +10,14 @@ import com.hexacta.weet.pages.LoginPage
  *  
  * @author gmassenzano
  */
-abstract class ApplicationSpec extends AbstractSpec {
+abstract class ApplicationSpec extends WeetSpec {
 
 	@Shared boolean initialLogin = true
 	@Shared String username = "admin"
 	@Shared String password = "admin"
 	
 	/**
-	 * Logs in before any spec method is executed.
+	 * Login before any spec method is executed.
 	 */
 	def setup() {
 		waitFor { to loginPage }
@@ -30,14 +30,19 @@ abstract class ApplicationSpec extends AbstractSpec {
 		}
 	}
 
+	/**
+	 * Logout after the spec method finish.
+	 */
 	def cleanup() {
-		logout()
+		if (initialLogin) {
+			logout()
+		}
 	}
 
 	/**
 	 * Returns the class for the initial page after the login.
 	 */
-	abstract Class<? extends AbstractPage> getInitialPage()
+	abstract Class<? extends WeetPage> getInitialPage()
 
 	/**
 	 * Returns the Login page class. It should contain 'username' and 'password' field properties, and a 'logIn' button property.	

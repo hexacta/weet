@@ -6,7 +6,7 @@ import org.openqa.selenium.Capabilities
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
 
-abstract class AbstractPage extends Page {
+abstract class WeetPage extends Page {
 	
 	/**
 	 * Workaround to avoid "element not clickable at point" bug for chromedriver.
@@ -30,6 +30,7 @@ abstract class AbstractPage extends Page {
 	}
 
 	void mouseoverAndClick(element) {
+		// TODO: revisar este workaround porque en algunas corridas sigue fallando con la excepcion "Element is not clickable at point"
 		Actions actions = new Actions(driver)
 		WebElement webElement = element.firstElement()
 		actions.moveToElement(webElement)

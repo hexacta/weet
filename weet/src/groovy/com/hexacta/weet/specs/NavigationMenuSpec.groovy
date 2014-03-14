@@ -2,6 +2,11 @@ package com.hexacta.weet.specs
 
 import spock.lang.*
 
+/**
+ * Common main navigation menu specifications.
+ * 
+ * @author gmassenzano
+ */
 abstract class NavigationMenuSpec extends ApplicationSpec {
 	
 	/**

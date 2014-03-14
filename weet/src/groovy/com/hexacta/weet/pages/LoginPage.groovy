@@ -1,7 +1,12 @@
 package com.hexacta.weet.pages
 
-import com.hexacta.weet.pages.WeetPage;
 
+/**
+ * Common login page, with basic elements, such as username, password and login button. Also provides the login method so that 
+ * a user of this class doesn't need to interact with those page elements.
+ * 
+ * @author gmassenzano
+ */
 abstract class LoginPage extends WeetPage {
 	// static url =   ** DEFINE IT ON SUBCLASS **
  

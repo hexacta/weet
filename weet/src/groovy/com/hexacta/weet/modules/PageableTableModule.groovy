@@ -7,7 +7,7 @@ package com.hexacta.weet.modules
  * @see TableModule
  * @see PaginationModule
  */
-class PageableTableModule extends AbstractModule {
+class PageableTableModule extends WeetModule {
  
 	def tableBase
 	def navigationBase

@@ -21,9 +21,9 @@ class AuditsSpec extends QApplicationSpec {
         when: "Navigate to new entity page and set the values for each entity property and save."
 		project = AUDIT_PROJECT
 		
-		revisionManager.search = "Gerardo"
+		revisionManager.searchValue("Gerardo")
 		revisionManager.selectValue("Gerardo Massenzano")
-//		revisionManager.value = "Gerardo Massenzano"
+//		revisionManager = "Gerardo Massenzano"
 		
 		from.showCalendar()
 		from.prevMonth()

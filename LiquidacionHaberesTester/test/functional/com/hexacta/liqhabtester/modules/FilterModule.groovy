@@ -2,7 +2,7 @@ package com.hexacta.liqhabtester.modules
 
 import geb.error.UndefinedPageContentException
 
-import com.hexacta.weet.modules.AbstractModule
+import com.hexacta.weet.modules.WeetModule
 
 /**
  * Filter panel. 
@@ -63,7 +63,7 @@ import com.hexacta.weet.modules.AbstractModule
 </code> 
  * @author gmassenzano
  */
-class FilterModule extends AbstractModule {
+class FilterModule extends WeetModule {
 
 	static base = { $("div", id:"filterPane") }
 	

@@ -21,7 +21,7 @@ package com.hexacta.weet.modules
 </code> 
  * @author gmassenzano
  */
-class PaginationModule extends AbstractModule {
+class PaginationModule extends WeetModule {
 
 	static content = {
 		links(required: false) { $("a") }

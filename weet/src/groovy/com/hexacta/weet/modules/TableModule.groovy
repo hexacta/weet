@@ -33,7 +33,7 @@ import java.text.Normalizer
 </code> 
  * @author gmassenzano
  */
-class TableModule extends AbstractModule {
+class TableModule extends WeetModule {
  
     static content = {
 		headers { $("tr th") }

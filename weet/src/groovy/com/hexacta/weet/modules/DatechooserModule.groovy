@@ -1,6 +1,6 @@
 package com.hexacta.weet.modules
 
-import com.hexacta.weet.modules.AbstractModule
+import com.hexacta.weet.modules.WeetModule
 
 /**
  * Datechooser
@@ -69,7 +69,7 @@ import com.hexacta.weet.modules.AbstractModule
 </code> 
  * @author gmassenzano
  */
-class DatechooserModule extends AbstractModule {
+class DatechooserModule extends WeetModule {
  
     static content = {
 		value { $("input", type: "text") }

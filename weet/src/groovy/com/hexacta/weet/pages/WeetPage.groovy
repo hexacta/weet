@@ -6,6 +6,11 @@ import org.openqa.selenium.Capabilities
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
 
+/**
+ * Abstract page which provides a generic behavior for any page that uses weet.
+ * 
+ * @author gmassenzano
+ */
 abstract class WeetPage extends Page {
 	
 	/**

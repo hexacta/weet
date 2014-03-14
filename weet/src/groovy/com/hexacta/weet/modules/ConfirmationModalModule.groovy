@@ -1,6 +1,6 @@
 package com.hexacta.weet.modules
 
-import com.hexacta.weet.modules.AbstractModule
+import com.hexacta.weet.modules.WeetModule
 
 
 /**
@@ -20,7 +20,7 @@ import com.hexacta.weet.modules.AbstractModule
 </code> 
  * @author gmassenzano
  */
-class ConfirmationModalModule extends AbstractModule {
+class ConfirmationModalModule extends WeetModule {
  
 	String cancelText = "Cancel"
 	String confirmText = "Confirm"

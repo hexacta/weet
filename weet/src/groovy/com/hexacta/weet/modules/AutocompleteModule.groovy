@@ -1,6 +1,6 @@
 package com.hexacta.weet.modules
 
-import com.hexacta.weet.modules.AbstractModule
+import com.hexacta.weet.modules.WeetModule
 
 /**
  * Autocomplete field. 
@@ -19,15 +19,24 @@ import com.hexacta.weet.modules.AbstractModule
  * 
  * @author gmassenzano
  */
-class AutocompleteModule extends AbstractModule {
+class AutocompleteModule extends WeetModule {
 
 	String inputValueName
 	 
     static content = {
-		search       {  $("input", name: inputValueName) }
-		options      { $("ul li") }
+		search  { $("input", name: inputValueName) }
+		options { $("ul li") }
     }
 	
+	def searchValue(val) {
+		search = val
+	}
+	
+	/**
+	 * 
+	 * @param val
+	 * @return
+	 */
 	def selectValue(val) {
 		def option = options.filter(text: val.toString())
 		if (option) {

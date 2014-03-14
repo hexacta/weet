@@ -32,7 +32,7 @@ import geb.error.UnresolvablePropertyException
 </code> 
  * @author gmassenzano
  */
-class TableRowModule extends AbstractModule {
+class TableRowModule extends WeetModule {
  
 	List headerNames
 	

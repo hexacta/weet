@@ -3,11 +3,11 @@ package com.hexacta.weet.modules
 import geb.Module
 
 /**
- * Represents a reusable fragment that can be used across pages that can be parameterized
+ * Abstract module which provides a generic behavior for any page that uses weet.
  * 
  * @author gmassenzano
  */
-class AbstractModule extends Module {
+class WeetModule extends Module {
 
 	void avoidElementNotClickable(element) {
 		page.avoidElementNotClickable(element)

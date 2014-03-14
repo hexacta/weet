@@ -1,6 +1,6 @@
 package com.hexacta.qapptester.audits
 
-import com.hexacta.weet.modules.AbstractModule
+import com.hexacta.weet.modules.WeetModule
 
 
 /**
@@ -8,7 +8,7 @@ import com.hexacta.weet.modules.AbstractModule
  * 
  * @author gmassenzano
  */
-class QuestionsGroupModule extends AbstractModule {
+class QuestionsGroupModule extends WeetModule {
  
 	//static base = $("div.accordion-group")
 	

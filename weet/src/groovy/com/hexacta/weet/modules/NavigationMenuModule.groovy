@@ -35,7 +35,7 @@ import org.openqa.selenium.WebElement
 </code> 
  * @author gmassenzano
  */
-class NavigationMenuModule extends AbstractModule {
+class NavigationMenuModule extends WeetModule {
  
 	String itemBase
 	

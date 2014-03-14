@@ -9,7 +9,6 @@ import com.hexacta.liqhabtester.pages.crud.CRUDPage
 import com.hexacta.liqhabtester.pages.crud.CRUDPage.CRUDAction
 
 //@Stepwise
-// @Ignore
 abstract class CRUDSpec extends LiquidacionHaberesCRUDSpec {
 
 	@Shared Map<String, CRUDField> crudFieldsMap = [:]

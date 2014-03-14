@@ -6,7 +6,7 @@ import spock.lang.*
 import com.hexacta.liqhabtester.specs.CRUDField
 import com.hexacta.liqhabtester.specs.CRUDSpec
 
-class GradoSpec extends CRUDSpec {
+class GradoCRUD extends CRUDSpec {
 
 	List<CRUDField> getCRUDFields() {
 		[

@@ -1,6 +1,6 @@
-package com.hexacta.webtester.pages
+package com.hexacta.weet.pages
 
-import com.hexacta.webtester.pages.AbstractPage;
+import com.hexacta.weet.pages.AbstractPage;
 
 abstract class LoginPage extends AbstractPage {
 	// static url =   ** DEFINE IT ON SUBCLASS **

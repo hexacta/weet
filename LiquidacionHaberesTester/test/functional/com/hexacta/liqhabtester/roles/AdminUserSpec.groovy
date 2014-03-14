@@ -4,8 +4,8 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.pages.HomePage
 import com.hexacta.liqhabtester.pages.LoginPage
-import com.hexacta.webtester.pages.AbstractPage
-import com.hexacta.webtester.specs.NavigationMenuSpec
+import com.hexacta.weet.pages.AbstractPage
+import com.hexacta.weet.specs.NavigationMenuSpec
 
 class AdminUserSpec extends NavigationMenuSpec {
 

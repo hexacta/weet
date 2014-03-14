@@ -1,8 +1,8 @@
 package com.hexacta.qappwebtester.pages.crud
 
-import com.hexacta.webtester.modules.ConfirmationModalModule
-import com.hexacta.webtester.modules.NavigationMenuModule
-import com.hexacta.webtester.pages.crud.EntityShowPage
+import com.hexacta.weet.modules.ConfirmationModalModule
+import com.hexacta.weet.modules.NavigationMenuModule
+import com.hexacta.weet.pages.crud.EntityShowPage
 
 abstract class QAppEntityShowPage extends EntityShowPage {
 	// Page menu options

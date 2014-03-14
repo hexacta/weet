@@ -1,6 +1,6 @@
-package com.hexacta.webtester.pages.crud
+package com.hexacta.weet.pages.crud
 
-import com.hexacta.webtester.modules.PageableTableModule
+import com.hexacta.weet.modules.PageableTableModule
 
 
 abstract class EntityListPage extends EntityPage {

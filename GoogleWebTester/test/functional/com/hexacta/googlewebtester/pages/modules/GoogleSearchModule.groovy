@@ -1,7 +1,7 @@
 package com.hexacta.googlewebtester.pages.modules
 
 import com.hexacta.googlewebtester.pages.GoogleResultsPage
-import com.hexacta.webtester.modules.AbstractModule;
+import com.hexacta.weet.modules.AbstractModule;
 
 /**
  * We are using a module to model the search function on the home and results pages.

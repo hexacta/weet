@@ -1,7 +1,7 @@
 package com.hexacta.qappwebtester.pages.crud
 
-import com.hexacta.webtester.modules.ConfirmationModalModule
-import com.hexacta.webtester.pages.crud.EntityEditPage
+import com.hexacta.weet.modules.ConfirmationModalModule
+import com.hexacta.weet.pages.crud.EntityEditPage
 
 
 abstract class QAppEntityEditPage extends EntityEditPage {

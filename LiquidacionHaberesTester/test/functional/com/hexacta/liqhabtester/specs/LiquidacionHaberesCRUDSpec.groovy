@@ -10,8 +10,8 @@ import spock.lang.*
 
 import com.hexacta.liqhabtester.pages.HomePage
 import com.hexacta.liqhabtester.pages.LoginPage
-import com.hexacta.webtester.pages.AbstractPage
-import com.hexacta.webtester.specs.CRUDSpec
+import com.hexacta.weet.pages.AbstractPage
+import com.hexacta.weet.specs.CRUDSpec
 abstract class LiquidacionHaberesCRUDSpec extends CRUDSpec {
 
 	@Shared Sql sql

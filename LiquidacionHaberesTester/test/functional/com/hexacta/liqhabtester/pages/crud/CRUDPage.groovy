@@ -3,7 +3,7 @@ package com.hexacta.liqhabtester.pages.crud
 import com.hexacta.liqhabtester.modules.ExportModule
 import com.hexacta.liqhabtester.modules.FilterModule
 import com.hexacta.liqhabtester.pages.LiquidacionHaberesPage
-import com.hexacta.webtester.modules.PageableTableModule
+import com.hexacta.weet.modules.PageableTableModule
 
 
 abstract class CRUDPage extends LiquidacionHaberesPage {

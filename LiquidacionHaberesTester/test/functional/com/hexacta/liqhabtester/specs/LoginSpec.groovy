@@ -5,7 +5,7 @@ import spock.lang.*
 import com.hexacta.liqhabtester.pages.HomePage
 import com.hexacta.liqhabtester.pages.LoginPage
 
-class LoginSpec extends com.hexacta.webtester.specs.LoginSpec {
+class LoginSpec extends com.hexacta.weet.specs.LoginSpec {
 
 	def getInitialPage() {
 		HomePage

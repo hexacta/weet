@@ -1,8 +1,8 @@
 package com.hexacta.qappwebtester.audits
 
 import com.hexacta.qappwebtester.pages.crud.QAppEntityNewPage;
-import com.hexacta.webtester.modules.AutocompleteModule
-import com.hexacta.webtester.modules.DatechooserModule
+import com.hexacta.weet.modules.AutocompleteModule
+import com.hexacta.weet.modules.DatechooserModule
 
 class AuditNewPage extends QAppEntityNewPage {
 	static url = "audit/create"

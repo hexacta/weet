@@ -2,7 +2,7 @@ package com.hexacta.liqhabtester.modules
 
 import geb.error.UndefinedPageContentException
 
-import com.hexacta.webtester.modules.AbstractModule
+import com.hexacta.weet.modules.AbstractModule
 
 /**
  * Filter panel. 

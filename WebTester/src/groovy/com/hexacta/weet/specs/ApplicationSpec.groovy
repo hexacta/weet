@@ -1,9 +1,9 @@
-package com.hexacta.webtester.specs
+package com.hexacta.weet.specs
 
 import spock.lang.*
 
-import com.hexacta.webtester.pages.AbstractPage
-import com.hexacta.webtester.pages.LoginPage
+import com.hexacta.weet.pages.AbstractPage
+import com.hexacta.weet.pages.LoginPage
 
 /**
  * Common spec for any web application which starts with a user session login.

@@ -2,7 +2,7 @@ package com.hexacta.liqhabtester.pages.crud
 
 import com.hexacta.liqhabtester.modules.ExportModule
 import com.hexacta.liqhabtester.modules.FilterModule
-import com.hexacta.webtester.pages.crud.EntityListPage
+import com.hexacta.weet.pages.crud.EntityListPage
 
 class ListaEntidadesPage extends EntityListPage {
 	

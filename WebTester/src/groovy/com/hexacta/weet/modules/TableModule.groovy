@@ -1,4 +1,4 @@
-package com.hexacta.webtester.modules
+package com.hexacta.weet.modules
 
 import java.beans.Introspector
 import java.text.Normalizer

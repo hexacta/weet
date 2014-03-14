@@ -1,7 +1,7 @@
 package com.hexacta.qappwebtester.pages.crud
 
-import com.hexacta.webtester.modules.NavigationMenuModule
-import com.hexacta.webtester.pages.crud.EntityListPage
+import com.hexacta.weet.modules.NavigationMenuModule
+import com.hexacta.weet.pages.crud.EntityListPage
 
 abstract class QAppEntityListPage extends EntityListPage {
 	// Menu options

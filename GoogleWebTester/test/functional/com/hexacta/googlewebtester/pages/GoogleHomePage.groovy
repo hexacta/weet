@@ -1,7 +1,7 @@
 package com.hexacta.googlewebtester.pages
 
 import com.hexacta.googlewebtester.pages.modules.GoogleSearchModule
-import com.hexacta.webtester.pages.AjaxPage
+import com.hexacta.weet.pages.AjaxPage
 
 class GoogleHomePage extends AjaxPage {
 	// pages can define their location, either absolutely or relative to a base

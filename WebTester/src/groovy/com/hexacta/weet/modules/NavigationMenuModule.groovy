@@ -1,4 +1,4 @@
-package com.hexacta.webtester.modules
+package com.hexacta.weet.modules
 
 import org.openqa.selenium.WebElement
 

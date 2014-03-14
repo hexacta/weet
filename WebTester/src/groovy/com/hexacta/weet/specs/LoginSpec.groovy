@@ -1,8 +1,8 @@
-package com.hexacta.webtester.specs
+package com.hexacta.weet.specs
 
 import spock.lang.*
 
-import com.hexacta.webtester.pages.LoginPage
+import com.hexacta.weet.pages.LoginPage
 
 abstract class LoginSpec extends AbstractSpec {
 

@@ -1,7 +1,7 @@
 package com.hexacta.qappwebtester.pages
 
-import com.hexacta.webtester.modules.NavigationMenuModule
-import com.hexacta.webtester.pages.ApplicationPage
+import com.hexacta.weet.modules.NavigationMenuModule
+import com.hexacta.weet.pages.ApplicationPage
 
 abstract class QApplicationPage extends ApplicationPage {
 	// Menu options

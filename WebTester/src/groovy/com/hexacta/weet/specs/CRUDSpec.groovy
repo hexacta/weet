@@ -1,4 +1,4 @@
-package com.hexacta.webtester.specs
+package com.hexacta.weet.specs
 
 import spock.lang.*
 

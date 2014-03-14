@@ -1,6 +1,6 @@
 package com.hexacta.liqhabtester.configuracion
 
-import com.hexacta.webtester.pages.crud.EntityNewPage
+import com.hexacta.weet.pages.crud.EntityNewPage
 
 class GradoNewPage extends EntityNewPage {
 	static url = "grado/create"

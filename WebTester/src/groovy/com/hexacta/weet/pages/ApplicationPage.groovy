@@ -1,7 +1,7 @@
-package com.hexacta.webtester.pages
+package com.hexacta.weet.pages
 
-import com.hexacta.webtester.modules.NavigationMenuModule
-import com.hexacta.webtester.pages.AjaxPage
+import com.hexacta.weet.modules.NavigationMenuModule
+import com.hexacta.weet.pages.AjaxPage
 
 abstract class ApplicationPage extends AjaxPage {
 

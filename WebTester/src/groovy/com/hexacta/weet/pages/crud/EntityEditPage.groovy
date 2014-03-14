@@ -1,4 +1,4 @@
-package com.hexacta.webtester.pages.crud
+package com.hexacta.weet.pages.crud
 
 
 abstract class EntityEditPage extends EntityPage {

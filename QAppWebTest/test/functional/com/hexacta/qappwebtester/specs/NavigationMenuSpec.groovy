@@ -4,9 +4,9 @@ import spock.lang.*
 
 import com.hexacta.qappwebtester.pages.HomePage
 import com.hexacta.qappwebtester.pages.LoginPage
-import com.hexacta.webtester.pages.AbstractPage
+import com.hexacta.weet.pages.AbstractPage
 
-class NavigationMenuSpec extends com.hexacta.webtester.specs.NavigationMenuSpec {
+class NavigationMenuSpec extends com.hexacta.weet.specs.NavigationMenuSpec {
 
 	Map menuConfig = [
 		"Configuración" : ["Templates", "Procesos", "Areas", "Estados de Proyectos", "Preguntas"],

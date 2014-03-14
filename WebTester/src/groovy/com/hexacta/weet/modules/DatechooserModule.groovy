@@ -1,6 +1,6 @@
-package com.hexacta.webtester.modules
+package com.hexacta.weet.modules
 
-import com.hexacta.webtester.modules.AbstractModule
+import com.hexacta.weet.modules.AbstractModule
 
 /**
  * Datechooser

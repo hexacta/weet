@@ -5,7 +5,7 @@ import com.hexacta.weet.modules.WeetModule
 /**
  * Datechooser
  * <p> 
- * Following is an example of the html node that handles an instance of this class:
+ * Following is an example of the html node that handles an instance of this class:<p>
 <code> 
 <div class="controls">
 	<input class="" style="" type="text" name="ic2ea648e5c3c095a2c33a0f382064c14" id="ic2ea648e5c3c095a2c33a0f382064c14" value="">
@@ -79,23 +79,37 @@ class DatechooserModule extends WeetModule {
 		days { module TableModule, $("table") }
     }
 	
+	/**
+	 * It displays the calendar.
+	 */
 	def showCalendar() {
 		avoidElementNotClickable(value)
 		value.click()
 	}
 	
+	/**
+	 * It finds the received day on current month and selects it. 
+	 * 
+	 * @param nr
+	 */
 	def selectDay(nr) {
 		def link = days.findCell(nr)?.find("a")
 		avoidElementNotClickable(link)
 		link.click() 
 	}
 
+	/**
+	 * It navigates the calendar to previous month.
+	 */
 	def prevMonth() {
 		def link = links.filter(text: startsWith("Previous Month"))
 		avoidElementNotClickable(link)
 		link.click() 
 	}
 	
+	/**
+	 * It navigates the calendar to next month.
+	 */
 	def nextMonth() {
 		def link = links.filter(text: startsWith("Next Month"))
 		avoidElementNotClickable(link)

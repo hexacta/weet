@@ -34,6 +34,12 @@ abstract class WeetPage extends Page {
 		}
 	}
 
+	/**
+	 * It does a mouseover and a click on the received element.
+	 * i.e. some menus items expand with a click and other with a mouseover. This method solves both cases.
+	 * 
+	 * @param element
+	 */
 	void mouseoverAndClick(element) {
 		// TODO: revisar este workaround porque en algunas corridas sigue fallando con la excepcion "Element is not clickable at point"
 		Actions actions = new Actions(driver)

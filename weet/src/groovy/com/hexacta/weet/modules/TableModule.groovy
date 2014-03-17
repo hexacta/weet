@@ -1,13 +1,11 @@
 package com.hexacta.weet.modules
 
-import java.beans.Introspector
-import java.text.Normalizer
-
+import com.hexacta.weet.utils.StringUtils
 
 /**
  * Table.
  * <p> 
- * Following is an example of the html node that handles an instance of this class:
+ * Following is an example of the html node that handles an instance of this class:<p>
  <code> 
 <table class="table table-striped">
 	<thead>
@@ -34,89 +32,70 @@ import java.text.Normalizer
  * @author gmassenzano
  */
 class TableModule extends WeetModule {
- 
+
+	/**
+	 * It is instantiated internally, no with this module instantiation. 
+	 */
+	List<String> headersText
+	
     static content = {
 		headers { $("tr th") }
-		
-		// generic cell accessor that takes an index
-		cell { i -> $("td", i) }
-		
 		cells { $("td") }
-		
 		rows(required: false) { moduleList TableRowModule, $("table tr").tail(), headerNames: headersText }
-		// rows(required: false) { $("tbody tr") }
-		
-		// row { i -> rows(i) }
-		// row { i -> module TableRowModule, $("tbody tr", i), headerNames: headersText }
-		
 		column { 
 			i -> rows.collect {
 				row -> row.cell(i) 
 			}
 		}
-
-		// TODO: resolver dinamicamente la columna segun el titulo, para usarlo por ej:
-		// table.row(0).title
-		// table.row(1).author
-		
-//		title { cell(0).text() }
-//		author { cell(1).text() }
-//		format { cell(2).text() }
-//		price { cell(3).text().find(/\d+(?:\.\d+)?/).toBigDecimal() }
-//		releaseDate { new SimpleDateFormat("d MMM yyyy").parse(cell(4).text()) }
-
     }
 
-	String toNormalizedCamelCase(String text) {
-		def newText = Normalizer.normalize(text, Normalizer.Form.NFKD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
-		newText = newText.toLowerCase().split(' ').collect{ it.capitalize() }.join()
-		Introspector.decapitalize(newText)
+	/**
+	 * Returns a list with the table headers. Each header is previously transformed, extracting accents, concatenating words
+	 * if it contains more than one, using camel case format, and lowering case to first letter.
+	 */
+	List<String> getHeadersText() { 
+		if (!headersText) {
+			headersText = headers.collect { StringUtils.toNormalizedCamelCase(it.text()) }
+		}
+		headersText
 	}
 	
-	List getHeadersText() { 
-		headers.collect { toNormalizedCamelCase(it.text()) }
-	}
-	
-	int getHeaderIndex(String name) {
-		headersText.findIndexOf(name) 
-	}
-	
-//	def getCell(row, int col) {
-//		row.find("td")[col]
-//	}
-//
-//	String getCellValue(row, int col) {
-//		getCell(row, col).text()
-//	}
-//
+	/**
+	 * Returns the number of rows.
+	 */
 	int getRowCount() { 
 		rows ? rows.size() : 0
 	}
 	
+	/**
+	 * Returns the cell that contains the received value.
+	 * 
+	 * @param value
+	 */
 	def findCell(value) { 
 		cells.filter(text: value.toString()) 
 	}
 	
+	/**
+	 * Returns the value corresponding to the cell of the received column index for last row.
+	 *  
+	 * @param col
+	 */
 	String findLastValue(int col) {
-		def columns = column(col)
-		def lastCol = columns.last()
-		def lastValue = lastCol.text().trim()
-		lastValue
+		def row = rows.last()
+		row.getValue(col)
 	}
-	
-	def findRowLink(int col, String value) {
-		def link = column(col).find{
-			it.find("a", text: value)
-		}
-		link?.find("a")
-	}
-	
+
+	/**
+	 * Returns the row which contains the received value for the cell of the corresponding column index.
+	 * 	
+	 * @param col
+	 * @param value
+	 */
 	def findRow(int col, String value) {
-		def td = column(col).find{
-			def text = it.text().trim()
-			text == value
+		rows.find { row ->
+			row.getValue(col) == value
 		}
-		td?.closest("tr")
 	}
 
 }

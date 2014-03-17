@@ -48,10 +48,6 @@ class PageableTableModule extends WeetModule {
 		table.findLastValue(col)
 	}
 	
-	def findRowLink(int col, String value) {
-		table.findRowLink(col, value)
-	}
-	
 	def findRow(int col, String value) {
 		table.findRow(col, value)
 	}

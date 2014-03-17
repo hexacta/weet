@@ -12,8 +12,13 @@ import com.hexacta.weet.pages.LoginPage
  */
 abstract class ApplicationSpec extends WeetSpec {
 
+	/** If true, any spec method, starts with the login. If false, it skips the generic login.  */
 	@Shared boolean initialLogin = true
+	
+	/** Username, with its default value */
 	@Shared String username = "admin"
+	
+	/** User password, with its default value */
 	@Shared String password = "admin"
 	
 	/**

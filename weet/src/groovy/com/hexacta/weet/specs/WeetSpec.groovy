@@ -16,8 +16,12 @@ import spock.lang.*
  */
 abstract class WeetSpec extends GebSpec {
 
+	/** It provides the method name of the spec is being run. */
 	@Rule TestName testName = new TestName()
 	
+	/**
+	 * Cleans the report group folder.
+	 */
 	def setupSpec() {
 		reportGroup reportGroupName
 		cleanReportGroupDir()
@@ -31,13 +35,17 @@ abstract class WeetSpec extends GebSpec {
 		}
 	}
 
+	/**
+	 * Configures the folder where the spec reports will be saved.
+	 */
 	def setup() {
-		// Configures the folder where the spec reports will be saved.
 		reportGroup reportGroupName
 	}
-	
+
+	/**
+	 * Generate a report of last page state before calling spec cleanup	
+	 */
 	def cleanup() {
-		// Generate a report of last page state before calling spec cleanup
 		report "${testName.methodName}_cleanup"
 	}
 

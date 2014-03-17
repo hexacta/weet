@@ -9,14 +9,27 @@ import spock.lang.*
  */
 abstract class LoginSpec extends ApplicationSpec {
 
-	def invalidPasswordExtraAssertion() { true }
+	/**
+	 * It does the extra assertion for the invalid password spec.
+	 */
+	void invalidPasswordExtraAssertion() { true }
 
-	def invalidUsernameExtraAssertion() { true }
+	/**
+	 * It does the extra assertion for the invalid username spec.
+	 */
+	void invalidUsernameExtraAssertion() { true }
 	
+	/**
+	 * It is overridden to avoid the initial login inherited from ApplicationSpec.
+	 */
 	def setupSpec() {
 		initialLogin = false
 	}
 
+	/**
+	 * Tests that after going to any page, the application redirects to the login page. 
+	 * Then when it enters a valid username and password, it logs in and redirect to the initial page.
+	 */
     def "Succesful login"() {
         given: "Any page"
         go ""
@@ -31,6 +44,11 @@ abstract class LoginSpec extends ApplicationSpec {
         at initialPage
     }
     
+	/**
+	 * Tests that after going to any page, the application redirects to the login page. 
+	 * Then when it enters a valid username and invalid password, it doesn't log in and stay at login page.
+	 * Then it does extra assertions.
+	 */
     def "Invalid password"() {
         given: "Any page"
         go ""
@@ -46,6 +64,11 @@ abstract class LoginSpec extends ApplicationSpec {
 		invalidPasswordExtraAssertion()
      }
 	
+	/**
+	 * Tests that after going to any page, the application redirects to the login page. 
+	 * Then when it enters an valid username, it doesn't log in and stay at login page.
+	 * Then it does extra assertions.
+	 */
 	def "Invalid username"() {
         given: "Any page"
         go ""

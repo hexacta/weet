@@ -3,6 +3,8 @@ package com.hexacta.weet.pages
 import geb.Page
 
 /**
+ * It represents a https error page.
+ * FIXME: Review it, currently is not working.
  * 
  * @author gmassenzano
  */

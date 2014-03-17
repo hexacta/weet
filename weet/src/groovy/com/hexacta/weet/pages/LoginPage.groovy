@@ -20,12 +20,22 @@ abstract class LoginPage extends WeetPage {
 		logoutButton(required: false) { $("input", value: "Log out") }
     }
 	
+	/**
+	 * Logs in to the user session.
+	 * 
+	 * @param user
+	 * @param pswd
+	 */
 	void login(String user, String pswd) {
 		username = user
 		password = pswd
 		loginButton.click()
 	}
 
+	/**
+	 * Sometimes if the application in redirected to the login page when a user is logged in, it shows a logout button. 
+	 * Then, this method logs out the session.
+	 */
 	void logout() {
 		def button = logoutButton
 		if (button?.size() == 1) {

@@ -5,11 +5,12 @@ import org.openqa.selenium.WebElement
 
 /**
  * Represents a navigation menu. Each item can have nested submenus of the same type. 
+ * <p>
  * A module or page that use this class, should include the base definition from the ul element:
  * <p> 
  * <code> menu { module NavigationMenuModule, $("ul.nav")[0] } </code>
  * <p> 
- * Following is an example of the html node that handles an instance of this class:
+ * Following is an example of the html node that handles an instance of this class:<p>
 <code> 
 <ul>
 	<li>

@@ -16,7 +16,10 @@ abstract class NavigationMenuSpec extends ApplicationSpec {
 	 * Value: string list of second level item labels for the corresponding first level item.
 	 */
 	abstract Map getMenuConfig()
-				
+
+	/**
+	 * Tests that current navigation menu has the expected items and submenus. It check all labels are correct. 				
+	 */
     def "Check valid menu options"() {
 		expect: "Check menu size (first level items)"
 		menu.items.size() == menuConfig.size()

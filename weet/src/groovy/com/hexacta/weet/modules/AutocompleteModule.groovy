@@ -5,7 +5,7 @@ import com.hexacta.weet.modules.WeetModule
 /**
  * Autocomplete field. 
  * <p> 
- * Following is an example of the html node that handles an instance of this class:
+ * Following is an example of the html node that handles an instance of this class:<p>
 <code> 
 <div class="yui-ac">
   <input class="yui-ac-input" style="" type="text" id="revisionManager.displayName" name="revisionManager.displayName" value="" title="" autocomplete="off">
@@ -28,29 +28,42 @@ class AutocompleteModule extends WeetModule {
 		options { $("ul li") }
     }
 	
-	def searchValue(val) {
+	/**
+	 * Enter the received value into the autocomplete field.
+	 * 
+	 * @param val
+	 */
+	def searchValue(String val) {
 		search = val
 	}
 	
 	/**
+	 * Select the received value from the autocomplete options.
 	 * 
 	 * @param val
-	 * @return
 	 */
-	def selectValue(val) {
-		def option = options.filter(text: val.toString())
+	def selectValue(String val) {
+		def option = options.filter(text: val)
 		if (option) {
 			avoidElementNotClickable(option)
 			option.click()
 		} 
 	}
 
+	/**
+	 * Enter the received value into the autocomplete field, and then select the displayed value from the combo.
+	 * 
+	 * @param val
+	 */
 	def setValue(val) {
 		search.value(val)
 		waitFor { options.present } 
 		selectValue(val)
 	}
 	
+	/**
+	 * Get the value from the autocomplete field.
+	 */
 	def getValue() {
 		search.value()
 	}

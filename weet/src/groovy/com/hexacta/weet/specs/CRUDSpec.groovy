@@ -2,6 +2,11 @@ package com.hexacta.weet.specs
 
 import spock.lang.*
 
+/**
+ * TODO
+ * 
+ * @author gmassenzano
+ */
 abstract class CRUDSpec extends ApplicationSpec {
 
 	// TODO: se asume la columna recibida ordenada ascendentemente

@@ -3,7 +3,7 @@ package com.hexacta.weet.modules
 /**
  * Pagination panel. 
  * <p> 
- * Following is an example of the html node that handles an instance of this class:
+ * Following is an example of the html node that handles an instance of this class:<p>
 <code> 
 <div class="pagination">
 	<div class="mensaje_pagination">
@@ -30,26 +30,43 @@ class PaginationModule extends WeetModule {
 		previousLink(required: false) { links.filter(".prevLink") }
 	}
 
+	/**
+	 * It navigates to the page corresponding to the received number.
+	 * 
+	 * @param pageNumber
+	 */
 	void toPage(int pageNumber) {
 		def link = links.filter(text: "$pageNumber")
 		if (!link) throw new IllegalArgumentException("Page number $pageNumber not present in pagination")
 		link.click()
 	}
 
+	/**
+	 * It navigates to next page.
+	 */
 	void next() {
 		if (lastPage) throw new IllegalStateException("Cannot go to next page from last page")
 		nextLink.click()
 	}
 
+	/**
+	 * It navigates to previous page.
+	 */
 	void previous() {
 		if (firstPage) throw new IllegalStateException("Cannot go to previous page from first page")
 		previousLink.click()
 	}
 
+	/**
+	 * It returns true if current page is the first one. Otherwise, false.
+	 */
 	boolean isFirstPage() {
 		previousLink.empty
 	}
 
+	/**
+	 * It returns true if current page is the last one. Otherwise, false.
+	 */
 	boolean isLastPage() {
 		nextLink.empty
 	}

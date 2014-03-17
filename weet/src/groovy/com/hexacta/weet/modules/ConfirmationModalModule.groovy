@@ -6,7 +6,7 @@ import com.hexacta.weet.modules.WeetModule
 /**
  * Confirmation pop in modal window.
  * <p> 
- * Following is an example of the html node that handles an instance of this class:
+ * Following is an example of the html node that handles an instance of this class:<p>
  <code> 
 <div class="modal hide in" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
    <div class="modal-body">

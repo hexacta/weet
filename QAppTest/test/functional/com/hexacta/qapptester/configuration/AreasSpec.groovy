@@ -96,14 +96,14 @@ class AreasSpec extends QApplicationCRUDSpec {
 		deleteConfirmation.displayed == true
 		
 		when: "Cancel deletion"
-		deleteConfirmation.cancel.click(AreaShowPage)
+		deleteConfirmation.cancel()
 		
 		then: "Confirmation modal dialog is not displayed and go back to show entity page."
 		deleteConfirmation.displayed == false
 		
 		when: "Click delete and Confirm deletion"
 		delete.click(AreaShowPage)
-		deleteConfirmation.confirm.click(AreasPage)
+		deleteConfirmation.confirm(AreasPage)
 		def newRowCount
 		(newRowCount, rowLink) = this.findRowInPages(0, AREA_NAME_UPDATED)
 		

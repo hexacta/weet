@@ -9,11 +9,11 @@ class GoogleResultsPage extends GoogleHomePage {
 		resultLink { i -> results[i].find("a.l") }
 	}
 	
-	def go(int i) {
+	void toResult(int i) {
 		resultLink(i).click()
 	}
 	
-	def resultText(int i) {
+	String resultText(int i) {
 		resultLink(i).text()
 	}
 }

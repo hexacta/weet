@@ -28,7 +28,7 @@ class GoogleWikipediaSpec extends WeetSpec {
  
 		when: "Navego a la URL del link del 1er resultado"
 		report "google results"
-		go(0)
+		toResult(0)
  
 		then: "Espero a cargarse la pagina (chequeando que sea la correcta)"
 		waitFor(3) { at WikipediaPage }

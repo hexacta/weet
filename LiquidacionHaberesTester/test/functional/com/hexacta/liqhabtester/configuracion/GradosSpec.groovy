@@ -147,8 +147,8 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		expect: "Pagina inicial"
 		table.pageRowCount == 10
 		table.currentPage == 1
-		table.firstPage
-		!table.lastPage
+		table.isFirstPage()
+		!table.isLastPage()
 		
 		when: "user navigates to 2nd page of results"
 		table.toPage(2)
@@ -157,8 +157,8 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		// at GradosPage
 		table.pageRowCount == 10
 		table.currentPage == 2
-		!table.firstPage
-		!table.lastPage
+		!table.isFirstPage()
+		!table.isLastPage()
 		
 		when: "user navigates to last page of results"
 		table.toPage(8)
@@ -167,8 +167,8 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		// at GradosPage
 		table.pageRowCount == 5
 		table.currentPage == 8
-		!table.firstPage
-		table.lastPage
+		!table.isFirstPage()
+		table.isLastPage()
 		
 		when: "user navigates back to 1st page of results"
 		table.toPage(1)

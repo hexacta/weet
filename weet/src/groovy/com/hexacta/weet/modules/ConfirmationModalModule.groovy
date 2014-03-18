@@ -28,12 +28,20 @@ class ConfirmationModalModule extends WeetModule {
     static content = {
 		// TODO: title { }
 		
-		cancel {
+		cancelButton {
 			$("button", text: cancelText)
 		}
 		
-		confirm {
+		confirmButton {
 			$("button", text: confirmText)
 		}
     }
+	
+	def cancel() {
+		cancelButton.click()
+	}
+	
+	def confirm(nextPage) {
+		confirmButton.click(nextPage)
+	}
 }

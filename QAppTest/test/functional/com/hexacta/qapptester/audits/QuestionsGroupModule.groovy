@@ -2,24 +2,11 @@ package com.hexacta.qapptester.audits
 
 import com.hexacta.weet.modules.WeetModule
 
-
 /**
- * 
- * 
- * @author gmassenzano
- */
-class QuestionsGroupModule extends WeetModule {
- 
-	//static base = $("div.accordion-group")
-	
-	static content = {
-		name { $("a.accordion-toggle") }
-		isExpanded { $("div.accordion-inner").displayed }
-		toogle { name.click() }
-    }
-}
-
-/*
+ * Questions group.
+ * <p> 
+ * Following is an example of the html node that handles an instance of this class:<p>
+ <code> 
 <div class="accordion-group">
 	<div class="accordion-heading">
 		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#processGestióndeproyectos"> Gestión de proyectos
@@ -33,16 +20,13 @@ class QuestionsGroupModule extends WeetModule {
 						<td>
 						<div>
 							<div class="pull-left">
-								¿Se cerro el proyecto en la wiki??
+								¿Se cerro el proyecto en la wiki?
 							</div>
-								<select class="pull-right" name="answer_2" onchange="showFindings(this, '2')" id="answer_2">
-									<option value="">Seleccione...</option>
-									<option value="OK">Ok</option>
-									<option value="NOK">Not Ok</option>
-									<option value="NOT_YET">Not Yet</option>
-									<option value="NA">Not Applicable</option>
-								</select>
-							</div>
+							<select class="pull-right" name="answer_2" onchange="showFindings(this, '2')" id="answer_2">
+								<option value="OK">Ok</option>
+								<option value="NOK">Not Ok</option>
+							</select>
+						</div>
 						<div class="clearfix"></div>
 							<div class="form-horizontal">
 								<div class="control-group">
@@ -80,4 +64,26 @@ class QuestionsGroupModule extends WeetModule {
 		</div>
 	</div>
 </div>
-*/
+</code> 
+ * 
+ * @author gmassenzano
+ */
+class QuestionsGroupModule extends WeetModule {
+ 
+	static content = {
+		name { $("a.accordion-toggle") }
+		main { $("div.accordion-inner") }
+    }
+	
+	boolean isExpanded() {
+		main.displayed
+	}
+	
+	void toogle() {
+		name.click()
+	}
+	
+	String getTitle() {
+		name.text().trim()
+	}
+}

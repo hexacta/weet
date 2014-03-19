@@ -45,7 +45,7 @@ class NavigationMenuModule extends WeetModule {
 		/**
 		 * Returns all first level menu items.
 		 */
-		items { $().children(itemBase != null ? itemBase : "li") }
+		items { $().children(itemBase != null ? itemBase : "li").not(style: contains("display: none")).not(text: "") }
 		
 		item { i -> items[i] }
 		
@@ -57,7 +57,7 @@ class NavigationMenuModule extends WeetModule {
 		 * 
 		 * NOTE: private usage, better to use the provided methods.
 		 */
-		submenu { item -> module NavigationMenuModule, item.find("ul") }
+		submenu { item -> module NavigationMenuModule, item.find("ul")[0].parent().children("ul") }
     }
 
 	/**
@@ -81,6 +81,13 @@ class NavigationMenuModule extends WeetModule {
 		itemLink(i).text().trim() 
 	}
 
+	/**
+	 * Returns true if the item is a leaf, thus it can't expand a submenu. 
+	 */
+	boolean isLeaf(item) {
+		item.find("ul").size() == 0
+	}
+	
 	/**
 	 * Expands the menu item corresponding to the received index, returning a submenu (instance of this class).
 	 *

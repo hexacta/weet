@@ -1,5 +1,3 @@
-import geb.download.helper.SelfSignedCertificateHelper
-
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -8,9 +6,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import org.openqa.selenium.ie.InternetExplorerDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 
-import com.sun.net.ssl.HttpsURLConnection
-
-baseUrl = "http://hxfox01:8080/"
+baseUrl = "http://hxfox01.hexacta.com:8080/"
 
 // --------------------------------------------------------------------------------------------
 //  Reports

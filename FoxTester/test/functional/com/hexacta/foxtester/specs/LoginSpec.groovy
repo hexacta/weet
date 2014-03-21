@@ -9,8 +9,8 @@ import com.hexacta.weet.pages.WeetPage
 class LoginSpec extends com.hexacta.weet.specs.LoginSpec {
 
 	def setupSpec() {
-		username = "gmassenzano"
-		password = "miclave1" // TODO: obtenerla por configuracion o ingresarla encriptada.
+		username = config.login.username
+		password = config.login.password
 	}
 
 	@Override

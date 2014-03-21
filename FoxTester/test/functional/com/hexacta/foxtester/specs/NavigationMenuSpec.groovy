@@ -5,6 +5,7 @@ import spock.lang.*
 import com.hexacta.foxtester.pages.HomePage
 import com.hexacta.foxtester.pages.LoginPage
 import com.hexacta.weet.pages.WeetPage
+import com.hexacta.weet.utils.SpringUtils
 
 class NavigationMenuSpec extends com.hexacta.weet.specs.NavigationMenuSpec {
 
@@ -31,8 +32,8 @@ class NavigationMenuSpec extends com.hexacta.weet.specs.NavigationMenuSpec {
 	]
 	
 	def setupSpec() {
-		username = "gmassenzano"
-		password = "XXXX" // TODO: obtenerla por configuracion o ingresarla encriptada.
+		username = config.login.username
+		password = config.login.password
 	}
 
 	@Override

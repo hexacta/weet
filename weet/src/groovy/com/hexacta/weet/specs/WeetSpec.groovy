@@ -9,6 +9,8 @@ import org.openqa.selenium.JavascriptExecutor
 
 import spock.lang.*
 
+import com.hexacta.weet.utils.SpringUtils
+
 /**
  * Generic spec which provides a generic behavior for any spec that uses weet.
  * 
@@ -18,6 +20,8 @@ abstract class WeetSpec extends GebSpec {
 
 	/** It provides the method name of the spec is being run. */
 	@Rule TestName testName = new TestName()
+	
+	static config = SpringUtils.getConfig()
 	
 	/**
 	 * Cleans the report group folder.

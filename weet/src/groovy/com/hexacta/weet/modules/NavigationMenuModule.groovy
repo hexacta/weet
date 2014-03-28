@@ -1,8 +1,5 @@
 package com.hexacta.weet.modules
 
-import org.openqa.selenium.WebElement
-
-
 /**
  * Represents a navigation menu. Each item can have nested submenus of the same type. 
  * <p>
@@ -39,7 +36,7 @@ import org.openqa.selenium.WebElement
 class NavigationMenuModule extends WeetModule {
  
 	String itemBase
-	
+
     static content = {
 		
 		/**
@@ -57,7 +54,7 @@ class NavigationMenuModule extends WeetModule {
 		 * 
 		 * NOTE: private usage, better to use the provided methods.
 		 */
-		submenu { item -> module NavigationMenuModule, item.find("ul")[0].parent().children("ul") }
+		submenu { item -> module NavigationMenuModule, findFirstLevel(item, "ul") }
     }
 
 	/**

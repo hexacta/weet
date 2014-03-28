@@ -1,6 +1,8 @@
 package com.hexacta.weet.pages
 
 import geb.Page
+import geb.navigator.EmptyNavigator
+import geb.navigator.NonEmptyNavigator
 
 import org.openqa.selenium.Capabilities
 import org.openqa.selenium.WebElement
@@ -52,5 +54,42 @@ abstract class WeetPage extends Page {
 		sleep(500)  // To avoid "Element is not clickable at point" exception
 		actions.release()
 	}
+
+	/**
+	 * It works like children, but extending the search further than direct descendants. <br/>
+	 * It works like find, but stopping the search in depth when the element is found. <br/>
+	 * It returns a Navigator containing the collection of matching WebElement's.
+	 * 
+	 * @param root
+	 * @param elem
+	 */
+	def findFirstLevel(root, String elem) {
+		Collection firstLevel = findFirstLevel2(root, elem)
+		firstLevel.empty ? new EmptyNavigator(browser) : new NonEmptyNavigator(browser, firstLevel)
+	}
+	
+	/**
+	 * Recursive method for resolving this.findFirstLevel(root, elem) <br/>
+	 * It returns a collection containing the matching WebElement's.
+	 * 
+	 * @param root
+	 * @param elem
+	 */
+	private Collection findFirstLevel2(root, String elem) {
+		Collection firstLevel = []
+		def children = root.children(elem)
+		if (children.empty) {
+			children = root.children().allElements()
+			if (!children.empty) {
+				firstLevel = children.collectMany { child ->
+					findFirstLevel2($(child), elem)
+				}
+			}
+		} else {
+			firstLevel = children.allElements()
+		}
+		firstLevel
+	}
+
 
 }

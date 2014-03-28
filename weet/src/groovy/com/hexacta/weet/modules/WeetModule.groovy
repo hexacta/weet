@@ -10,22 +10,14 @@ import geb.Module
 class WeetModule extends Module {
 
 	/**
-	 * Delegates on the corresponding page method.
-	 * 
-	 * @param element
-	 * @see WeetPage.avoidElementNotClickable(element)
+	 * If the method is not defined in super, it is delegated on the corresponding page method.
 	 */
-	void avoidElementNotClickable(element) {
-		page.avoidElementNotClickable(element)
+	def methodMissing(String name, args) {
+		try {
+			super.methodMissing(name, args)
+		} catch (MissingMethodException e) {
+			page."$name"(*args)
+		}
 	}
-	
-	/**
-	 * Delegates on the corresponding page method.
-	 * 
-	 * @param element
-	 * @see WeetPage.mouseoverAndClick(element)
-	 */
-	void mouseoverAndClick(element) {
-		page.mouseoverAndClick(element)
-	}
+
 }

@@ -195,6 +195,7 @@ class GradosSpec extends LiquidacionHaberesCRUDSpec {
 		table.currentPage == 1
 	}
 
+	@Ignore
 	def "Filtrar Grado"() {
 		expect:
 		!filter.displayed

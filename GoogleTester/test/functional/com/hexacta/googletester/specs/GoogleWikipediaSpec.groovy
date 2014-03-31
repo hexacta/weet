@@ -10,7 +10,7 @@ import com.hexacta.weet.specs.WeetSpec;
 class GoogleWikipediaSpec extends WeetSpec {
 
 	def "first result for wikipedia search should be wikipedia"() {
-		given: "Voy a la página de inicio de Google"
+		given: "Voy a la p\u00e1gina de inicio de Google"
 		to GoogleHomePage
  
 		expect: "Se cargo la pagina buscada"

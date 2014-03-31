@@ -11,8 +11,8 @@ class MesaUserSpec extends NavigationMenuSpec {
 
 	Map menuConfig = [
 		"Personal" : ["Consulta de empleados"],
-		"Novedades" : ["Verificación y aprobación"],
-		"Liquidación" : ["Conceptos y fórmulas"]
+		"Novedades" : ["Verificaci\u00f3n y aprobaci\u00f3n"],
+		"Liquidaci\u00f3n" : ["Conceptos y f\u00f3rmulas"]
 	]
 
 	def setupSpec() {

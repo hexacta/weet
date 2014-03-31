@@ -41,8 +41,8 @@ class AuditsSpec extends QApplicationSpec {
 		
 		then: "Navigate to show entity page displaying the values for the new entity."
 		groups.size() == 2
-		groups[0].title == "Gestión de proyectos"
-		groups[1].title == "Gestión de proyectos Ágiles"
+		groups[0].title == "Gesti\u00f3n de proyectos"
+		groups[1].title == "Gesti\u00f3n de proyectos Ágiles"
 		
 		when:
 		if (groups[0].isExpanded()) {

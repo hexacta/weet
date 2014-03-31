@@ -9,10 +9,10 @@ import com.hexacta.weet.modules.WeetModule
  <code> 
 <div class="accordion-group">
 	<div class="accordion-heading">
-		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#processGestióndeproyectos"> Gestión de proyectos
+		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#processGesti\u00f3ndeproyectos"> Gesti\u00f3n de proyectos
 		</a>
 	</div>
-	<div id="processGestióndeproyectos" class="accordion-body in collapse" style="height: auto;">
+	<div id="processGesti\u00f3ndeproyectos" class="accordion-body in collapse" style="height: auto;">
 		<div class="accordion-inner">
 			<table class="table table-striped">
 				<tbody>

@@ -16,7 +16,7 @@ import com.hexacta.weet.modules.WeetModule
 <!-- Do we still need this hidden prop? -->
 <input type="hidden" name="filterProperties" value="">
 <div cellspacing="0" cellpadding="0" class="filterPaneTable">
-	<div><label>Código</label>
+	<div><label>C\u00f3digo</label>
 <br>
 <select id="filter.op.codigo" name="filter.op.codigo" onchange="grailsFilterPane.filterOpChange('filter.op.codigo', 'codigo');">
 <option value=""></option>
@@ -29,7 +29,7 @@ import com.hexacta.weet.modules.WeetModule
 		<input type="text" name="filter.codigoTo" value="" opname="filter.op.codigo" domain="Grado" propertyname="codigo" id="codigoTo" onchange="grailsFilterPane.selectDefaultOperator('filter.op.codigo')">
 	</span>
 	</div>
-	<div><label>Cargo (código)</label>
+	<div><label>Cargo (c\u00f3digo)</label>
 <br>
 <select id="filter.op.cargo.codigo" name="filter.op.cargo.codigo" onchange="grailsFilterPane.filterOpChange('filter.op.cargo.codigo', 'cargo.codigo');">
 <option value=""></option>

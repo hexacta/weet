@@ -15,7 +15,7 @@ class StringUtils {
 	 * Normalizes the received text, i.e. extracting the accent from accented letters. 
 	 * <p>
 	 * Example:<br/>
-	 * "Descripción corta" -> "Descripcion corta"
+	 * "Descripci\u00f3n corta" -> "Descripcion corta"
 	 * 
 	 * @param text
 	 */
@@ -41,7 +41,7 @@ class StringUtils {
 	 * it concatenates them, using camel case format. Last step is set to lower case the first letter. It returns the transformed string.
 	 * <p>
 	 * Example:<br/>
-	 * "Descripción corta" -> "descripcionCorta"
+	 * "Descripci\u00f3n corta" -> "descripcionCorta"
 	 * 
 	 * @param text
 	 */

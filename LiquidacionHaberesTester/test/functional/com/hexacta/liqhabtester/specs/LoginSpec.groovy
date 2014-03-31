@@ -20,11 +20,11 @@ class LoginSpec extends com.hexacta.weet.specs.LoginSpec {
 	
 	@Override
 	void invalidPasswordExtraAssertion() {
-		$().text().contains("El nombre de usuario o contraseña no válidos. Verifique los datos ingresados")
+		$().text().contains("El nombre de usuario o contrase\u00f1a no v\u00e1lidos. Verifique los datos ingresados")
 	}
 	
 	@Override
 	void invalidUsernameExtraAssertion() {
-		$().text().contains("El nombre de usuario o contraseña no válidos. Verifique los datos ingresados")
+		$().text().contains("El nombre de usuario o contrase\u00f1a no v\u00e1lidos. Verifique los datos ingresados")
 	}
 }
